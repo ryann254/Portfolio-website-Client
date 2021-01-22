@@ -50,6 +50,7 @@ const Img = styled.img`
 
 const Footer = styled.footer`
     width: 100%;
+    margin-top: 40px;
 
     .upper-footer {
         padding: 10px 0;
@@ -115,7 +116,7 @@ const FooterHeader = styled.h4`
     margin-top: 40px;
     font-size: 22px;
     margin-bottom: 10px;
-    text-transform: capitalize;
+    text-transform: uppercase;
 `
 
 const Underline = styled.div`
@@ -143,7 +144,7 @@ function HeaderAndFooter({children}) {
             <ContainerFrame>
                 <Navbar className="mx-auto" expand="md" variant="dark">
                     <Navbar.Brand href="#home">
-                        <span className="logo-text pl-2">Portfolio Website</span></Navbar.Brand>
+                        <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>

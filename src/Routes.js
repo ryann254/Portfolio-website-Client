@@ -6,7 +6,7 @@ import {ThemeProvider} from 'styled-components'
 
 //Own Components
 import RouteWithLayout from './RouteWithLayout'
-import Homepage from './components/pages/Homepage'
+import Homepage from './components/pages/Homepage/Homepage'
 import HeaderAndFooter from './components/layout/HeaderAndFooter'
 import {GlobalStyles} from './styles/global'
 import {lightTheme} from './styles/theme'
