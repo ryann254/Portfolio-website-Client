@@ -26,8 +26,93 @@ const Container = styled.div`
         }
 `
 
-const Footer = styled.div`
+const Landing = styled.div`
+    background: ${props => props.theme.gradient};
+    position: relative;
+    height: 214px;
+`
 
+const Img = styled.img`
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 90%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+`
+
+const Footer = styled.footer`
+    width: 100%;
+`
+const Socials = styled.div`
+    /* background: #1e3c72; */
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .facebook svg {
+        font-size: 32px;
+    }
+
+    .twitter svg {
+        font-size: 35px;
+    }
+
+    .facebook {
+        color: #385898;
+    }
+
+    .twitter {
+        color: #65C7F7;
+    }
+
+    .insta svg {
+        font-size: 31px;
+        color: #D76D77;
+    }
+
+    .quora svg {
+        font-size: 31px;
+        color: #b92b27;
+    }
+`
+
+const UsefulLinks = styled.div`
+    background: #1D4350;
+    color: ${props => props.theme.primary};
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+
+    p {
+        font-size: 15px;
+        margin-top: 30px;
+        padding: 0 20px;
+    }
+
+    a {
+        text-align: left;
+        padding: 0 20px;
+        width: 100%;
+    }
+`
+
+const FooterHeader = styled.h4`
+    margin-top: 50px;
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+`
+
+const Underline = styled.div`
+    width: 40px;
+    height: 2px;
+    background: #3494E6;
 `
 
 function HeaderAndFooter({children}) {
@@ -53,8 +138,46 @@ function HeaderAndFooter({children}) {
                     </Navbar.Collapse>
                 </Navbar> 
             </Container>
+            <Landing>
+                <Img src="assets/bg-3.jpg" alt="bg" className="img-fluid"/>
+            </Landing>
             {children}
-            <Footer>Footer</Footer>
+            <Footer>
+                <Socials>
+                    <div className="pr-2 facebook">
+                        <span class="iconify" data-icon="cib:facebook" data-inline="false"></span>
+                    </div>
+                    <div className="pr-2 twitter">
+                        <span class="iconify" data-icon="ant-design:twitter-circle-filled" data-inline="false"></span>
+                    </div>
+                    <div className="pr-2 insta">
+                        <span class="iconify" data-icon="whh:circleinstagram" data-inline="false"></span>
+                    </div>
+                    <div className="quora">
+                        <span class="iconify" data-icon="whh:circlequora" data-inline="false"></span>
+                    </div>
+                </Socials>
+                <UsefulLinks>
+                    <FooterHeader>Our Vision</FooterHeader>
+                    <Underline />
+                    <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
+                </UsefulLinks>
+                <UsefulLinks>
+                    <FooterHeader>useful links</FooterHeader>
+                    <Underline />
+                    <a>About</a>
+                    <a>Contact</a>
+                    <a>Terms Of Use</a>
+                    <a>Entrepreneurship</a>
+                    <a>Incubation</a>
+                    <a>Blog</a>
+                </UsefulLinks>
+                <UsefulLinks>
+                    <FooterHeader>Our Vision</FooterHeader>
+                    <Underline />
+                    <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
+                </UsefulLinks>
+            </Footer>
         </>
     )
 }
