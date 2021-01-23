@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 
 //Own Components
 import EmbededVideo from './EmbededVideo'
+import Jobs from './Jobs'
 
 
 const ContainerFrame = styled.div`
@@ -20,7 +21,7 @@ const LandingSectionHeader = styled.h2`
     font-weight: bold;
 `
 
-const Underline = styled.div`
+export const Underline = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 40px;
@@ -28,7 +29,7 @@ const Underline = styled.div`
     background: #3494E6;
 `
 
-const Text = styled.p`
+export const Text = styled.p`
     margin-top: 30px;
     font-size: 15px;
 `
@@ -73,10 +74,10 @@ function Homepage() {
                     <Col>
                         <LandingSectionHeader>Welcome to My Donation Website</LandingSectionHeader>
                         <Underline />
-                        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        <br/>
-                        <br/>
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <Text>Oklahoma City is a thriving metropolis with a low cost of living, short commute times, big-league quality of life and a diversified economy. Through multiple resident-led tax initiatives called MAPS, Oklahoma City is bursting with new development, bettering its infrastructure and schools and creating new quality-of-life additions to the city that are wowing longtime citizens and drawing attention and visitors from around the country.
+                        <br />
+                        <br />
+                        With thrilling sports action, world-class museums, entertainment, shopping and dining at more than a dozen different districts, the energy to continue to grow, build and create is pumping all around town.
                         </Text>
 
                         <Email>
@@ -93,6 +94,7 @@ function Homepage() {
                         </Email>
                         {/* Embeded Youtube Video */}
                         <EmbededVideo />
+                        <Jobs />
                     </Col>
                 </Row>
             </Container>
