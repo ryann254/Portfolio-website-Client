@@ -7,7 +7,7 @@ import {EventHeader} from './SingleEvent'
 const News = styled.div`
     position: relative;
     margin-top: 45px;
-    margin-bottom: 45px;
+    margin-bottom: 55px;
     background: ${props => props.theme.primary};
     width: 320px;
     border-radius: 5px;

@@ -7,11 +7,11 @@ import Fade from 'react-reveal/Fade'
 
 //Own Components
 import {Header} from './Events'
-import {Underline, Text} from './Homepage'
+import {Underline} from './Homepage'
 import SingleMember from './SingleMember'
 
 const ContainerFrame = styled.div`
-    background: #f6f6f6;
+    margin-top: 35px;
 `
 
 export default function Members() {
@@ -23,13 +23,13 @@ export default function Members() {
                         <Header className="text-center">Members</Header>
                         <Underline />
                         <Fade bottom>
-                            <SingleMember picNumber="1" />
+                            <SingleMember picNumber="1" index={1}/>
                         </Fade>
                         <Fade bottom>   
-                            <SingleMember picNumber="3" />
+                            <SingleMember picNumber="3" index={2}/>
                         </Fade>
                         <Fade bottom>
-                            <SingleMember picNumber="4" />
+                            <SingleMember picNumber="4" index={3}/>
                         </Fade>
                     </Col>
                 </Row>

@@ -12,10 +12,11 @@ import EmbededVideo from './EmbededVideo'
 import Jobs from './Jobs'
 import Events from './Events'
 import News from './News'
+import Members from './Members'
 
 
 const ContainerFrame = styled.div`
-    margin-top: 40px;
+    margin-top: 55px;
 `
 
 const LandingSectionHeader = styled.h2`
@@ -38,7 +39,7 @@ export const Text = styled.p`
 
 const Email = styled.div`
     position: relative;
-    margin: 50px 0;
+    margin: 65px 0;
     border-radius: 5px;
     background: ${props => props.theme.darkColor};
     padding: 25px 0;
@@ -67,6 +68,7 @@ const Email = styled.div`
         }
     }
 `
+
 
 function Homepage() {
     return (
@@ -103,6 +105,7 @@ function Homepage() {
             <Jobs />
             <Events />
             <News />
+            <Members />
         </ContainerFrame>
     )
 }

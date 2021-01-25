@@ -16,7 +16,8 @@ const ContainerFrame = styled.div`
 
 export const Header = styled.h1`
     font-weight: bold;
-    margin-top: 40px;
+    text-align: center;
+    margin-top: 55px;
 `
 
 const JobLink = styled.div`
@@ -37,7 +38,7 @@ const JobLink = styled.div`
 `
 
 const JobContainer = styled.div`
-    margin-top: 40px;
+    margin-top: 55px;
 `
 
 export default function Jobs() {

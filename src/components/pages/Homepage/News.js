@@ -13,10 +13,11 @@ import SingleNews from './SingleNews'
 
 const ContainerFrame = styled.div`
     background: #f6f6f6;
+    padding-top: 45px;
 
     .btn {
         display: flex;
-        margin: 50px auto 40px auto;
+        margin: 50px auto 50px auto;
         border-radius: 0;
         padding: .375rem 1.6rem;
     }

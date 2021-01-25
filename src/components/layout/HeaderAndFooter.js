@@ -148,14 +148,14 @@ function HeaderAndFooter({children}) {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
-                            <Nav.Link href="#home" className="mx-auto">Home</Nav.Link>
-                            <Nav.Link href="#about" className="mx-auto">About</Nav.Link>
-                            <Nav.Link href="#portfolio" className="mx-auto">Members</Nav.Link>
-                            <Nav.Link href="#services" className="mx-auto">Events</Nav.Link>
-                            <Nav.Link href="#clients" className="mx-auto">Status</Nav.Link>
-                            <Nav.Link href="#Team" className="mx-auto">FAQ</Nav.Link>
-                            <Nav.Link href="#blog" className="mx-auto">Contact</Nav.Link>
-                            <Nav.Link href="#contact" className="mx-auto contact">Donation</Nav.Link>
+                            <Nav.Link href="/" className="mx-auto">Home</Nav.Link>
+                            <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
+                            <Nav.Link href="/members" className="mx-auto">Members</Nav.Link>
+                            <Nav.Link href="/events" className="mx-auto">Events</Nav.Link>
+                            <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
+                            <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
+                            <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
+                            <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
                             <Nav.Link href="/login" className="mx-auto text-white login">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
@@ -209,15 +209,15 @@ function HeaderAndFooter({children}) {
                                 <FooterHeader>Contact</FooterHeader>
                                 <Underline />
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="bi:house-fill" data-inline="false"></span>
+                                    <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
                                     <p>King Zoo Palace | Githurai 44 Road, 00100</p>
                                 </ContactDetails>
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
+                                    <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
                                     <p>client@gmail.com</p>
                                 </ContactDetails>
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="entypo:phone" data-inline="false"></span>
+                                    <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
                                     <p>+987879929202</p>
                                 </ContactDetails>
                             </UsefulLinks>

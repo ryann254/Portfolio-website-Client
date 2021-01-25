@@ -12,7 +12,7 @@ import SingleEvent from './SingleEvent'
 const ContainerFrame = styled.div`
     background: ${props => props.theme.darkColor};
     color: ${props => props.theme.primary};
-    margin-top: 40px;
+    margin-top: 55px;
 `
 
 export const Header = styled.h1`
