@@ -17,11 +17,11 @@ const News = styled.div`
     }
 `
 
-const Date = styled.div`
+export const Date = styled.div`
     color: #7b7b7b;
 `
 
-const Pointer = styled.div`
+export const Pointer = styled.div`
     width: 40px;
     height: 40px;
     background: ${props => props.theme.darkColor};

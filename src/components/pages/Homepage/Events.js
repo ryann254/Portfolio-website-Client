@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
 import ItemsCarousel from 'react-items-carousel';
 import Flip from 'react-reveal/Flip'
+import {Link} from 'react-router-dom'
 
 import {Underline, Text} from './Homepage'
 import SingleEvent from './SingleEvent'
@@ -13,6 +15,11 @@ const ContainerFrame = styled.div`
     background: ${props => props.theme.darkColor};
     color: ${props => props.theme.primary};
     margin-top: 55px;
+
+    .btn {
+        display: flex;
+        margin: 0 auto 25px auto;
+    }
 `
 
 export const Header = styled.h1`
@@ -69,6 +76,9 @@ export default function Events() {
                                 </Flip>
                             </ItemsCarousel>
                             </div>
+                            <Link to="/events">
+                                <Button variant="outline-primary">See All Events</Button>
+                            </Link>
                     </Col>
                 </Row>
             </Container>

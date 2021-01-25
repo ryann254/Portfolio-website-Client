@@ -20,8 +20,9 @@ const ContainerFrame = styled.div`
     }
 
     .login {
+        margin-top: 5px;
         background: #ffc107;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem !important;
         text-align: center;
         border-radius: 0.25rem;
         transition: color 0.15s ease-in-out, 

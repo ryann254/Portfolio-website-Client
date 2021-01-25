@@ -11,7 +11,7 @@ export const EventHeader = styled.div`
     color: ${props => props.theme.darkColor};
 `
 
-const Event = styled.div`
+export const Event = styled.div`
     background: ${props => props.theme.primary};
     border-radius: 5px;
 
