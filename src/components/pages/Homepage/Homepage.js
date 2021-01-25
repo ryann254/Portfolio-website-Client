@@ -10,6 +10,8 @@ import Button from 'react-bootstrap/Button'
 //Own Components
 import EmbededVideo from './EmbededVideo'
 import Jobs from './Jobs'
+import Events from './Events'
+import News from './News'
 
 
 const ContainerFrame = styled.div`
@@ -94,10 +96,13 @@ function Homepage() {
                         </Email>
                         {/* Embeded Youtube Video */}
                         <EmbededVideo />
-                        <Jobs />
                     </Col>
                 </Row>
             </Container>
+            {/* Rest of the components */}
+            <Jobs />
+            <Events />
+            <News />
         </ContainerFrame>
     )
 }
