@@ -7,7 +7,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  overflow-x: hidden !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.img-fluid {
+  width: 100%;
+}
+
+@media all and (min-width: 992px) {
+  .container {
+    max-width: 720px !important;
+  }
 }

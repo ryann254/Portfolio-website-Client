@@ -6,6 +6,7 @@ const IframeContainer = styled.div`
     width: 100%;
     padding-bottom: 56.25%; 
     height: 0;
+    margin-top: 85px;
 
     iframe {
         position: absolute;
@@ -19,7 +20,7 @@ const IframeContainer = styled.div`
 export default function EmbededVideo() {
     return (
         <IframeContainer>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/cxmOmGiOipI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe title="welcome-video" width="560" height="315" src="https://www.youtube.com/embed/cxmOmGiOipI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </IframeContainer>
     )
 }

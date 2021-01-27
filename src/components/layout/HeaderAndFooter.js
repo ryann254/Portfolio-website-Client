@@ -20,8 +20,9 @@ const ContainerFrame = styled.div`
     }
 
     .login {
+        margin-top: 5px;
         background: #ffc107;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem !important;
         text-align: center;
         border-radius: 0.25rem;
         transition: color 0.15s ease-in-out, 
@@ -29,12 +30,54 @@ const ContainerFrame = styled.div`
         border-color 0.15s ease-in-out, 
         box-shadow 0.15s ease-in-out;
         }
+
+        @media all and (min-width: 768px) {
+            .navbar-nav {
+                align-items: center;
+                width: 95%;
+                margin-left: auto;
+            }
+
+            .nav-link {
+                flex-grow: 0.1;
+            }
+        }
+
+        @media all and (min-width: 992px) {
+            .navbar-nav {
+                width: 80%;
+            }
+        }
+
+        @media all and (min-width: 1200px) {
+            .navbar-nav {
+                width: 70%;
+            }
+        }
+
+        @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 const Landing = styled.div`
     background: ${props => props.theme.gradient};
     position: relative;
     height: 214px;
+
+    @media all and (min-width: 768px) {
+        height: 300px;
+    }
+
+    @media all and (min-width: 992px) {
+        height: 350px;
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 const Img = styled.img`
@@ -46,11 +89,33 @@ const Img = styled.img`
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    
+    @media all and (min-width: 576px) {
+        top: 63%;
+        left: 50%;
+        transform: translate(-50%, -37%);
+    }
+
+    @media all and (min-width: 992px) {
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+    }
+
+    @media all and (min-width: 1200px) {
+        top: 69%;
+        left: 50%;
+        transform: translate(-50%, -31%);
+        width: 1080px;
+    }
 `
 
 const Footer = styled.footer`
     width: 100%;
     margin-top: 40px;
+    padding-bottom: 25px;
+    background: #1D4350;
+
 
     .upper-footer {
         padding: 10px 0;
@@ -60,9 +125,22 @@ const Footer = styled.footer`
             color: ${props => props.theme.primary}
         }
     }
-    
-    .bottom-footer {
-        background: #1D4350;
+
+    @media all and (min-width: 411px) {
+        p {
+            font-size: 16px !important;
+        }
+    }
+
+    @media all and (min-width: 1200px) {
+        .bottom-footer {
+            max-width: 1140px;
+        }
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
     }
 `
 const Socials = styled.div`
@@ -143,19 +221,18 @@ function HeaderAndFooter({children}) {
         <>
             <ContainerFrame>
                 <Navbar className="mx-auto" expand="md" variant="dark">
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
-                            <Nav.Link href="#home" className="mx-auto">Home</Nav.Link>
-                            <Nav.Link href="#about" className="mx-auto">About</Nav.Link>
-                            <Nav.Link href="#portfolio" className="mx-auto">Members</Nav.Link>
-                            <Nav.Link href="#services" className="mx-auto">Events</Nav.Link>
-                            <Nav.Link href="#clients" className="mx-auto">Status</Nav.Link>
-                            <Nav.Link href="#Team" className="mx-auto">FAQ</Nav.Link>
-                            <Nav.Link href="#blog" className="mx-auto">Contact</Nav.Link>
-                            <Nav.Link href="#contact" className="mx-auto contact">Donation</Nav.Link>
+                            <Nav.Link href="/" className="mx-auto">Home</Nav.Link>
+                            <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
+                            <Nav.Link href="/events" className="mx-auto">Events</Nav.Link>
+                            <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
+                            <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
+                            <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
+                            <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
                             <Nav.Link href="/login" className="mx-auto text-white login">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
@@ -183,41 +260,41 @@ function HeaderAndFooter({children}) {
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
-                <Container className="bottom-footer">
+                <Container className="bottom-footer" fluid>
                     <Row>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Our Vision</FooterHeader>
                                 <Underline />
                                 <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>useful links</FooterHeader>
                                 <Underline />
-                                <a href="/#">About</a>
-                                <a href="/#">Contact</a>
-                                <a href="/#">Terms Of Use</a>
-                                <a href="/#">Entrepreneurship</a>
-                                <a href="/#">Incubation</a>
-                                <a href="/#">Blog</a>
+                                <a href="/about">About</a>
+                                <a href="/events">Events</a>
+                                <a href="/status">Status</a>
+                                <a href="/faq">FAQ</a>
+                                <a href="/contact">Contact</a>
+                                <a href="/donation">Donation</a>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Contact</FooterHeader>
                                 <Underline />
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="bi:house-fill" data-inline="false"></span>
+                                    <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
                                     <p>King Zoo Palace | Githurai 44 Road, 00100</p>
                                 </ContactDetails>
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
+                                    <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
                                     <p>client@gmail.com</p>
                                 </ContactDetails>
                                 <ContactDetails>
-                                    <span class="iconify" data-icon="entypo:phone" data-inline="false"></span>
+                                    <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
                                     <p>+987879929202</p>
                                 </ContactDetails>
                             </UsefulLinks>
