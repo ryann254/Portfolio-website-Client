@@ -32,6 +32,18 @@ const ContainerFrame = styled.div`
             margin-left: auto;
         }
     }
+
+    @media all and (min-width: 1200px) {
+        .container {
+            max-width: 1140px !important;
+        }
+
+        .jobs-image {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 `
 
 export const Header = styled.h1`
@@ -71,6 +83,10 @@ const JobLink = styled(Link)`
     @media all and (min-width: 992px) {
         width: 350px;
         margin-right: initial;
+    }
+
+    @media all and (min-width: 992px) {
+        margin-right: auto;
     }
 `
 

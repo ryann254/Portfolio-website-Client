@@ -29,6 +29,17 @@ const ContainerFrame = styled.div`
             max-width: 960px;
         }
     }
+
+    @media all and (min-width: 992px) {
+        .news-container {
+            max-width: 1140px;
+        }
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 export default function News() {

@@ -23,6 +23,10 @@ const ContainerFrame = styled.div`
     @media all and (min-width: 992px) {
         margin-top: 270px;
     }
+
+    @media all and (min-width: 1200px) {
+        margin-top: 370px;
+    }
 `
 
 const headingStatus = 'Status'

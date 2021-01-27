@@ -38,6 +38,14 @@ const ContainerFrame = styled.div`
             max-width: 960px;
         }
     }
+
+    @media all and (min-width: 1200px) {
+        margin-top: 350px;
+
+        .events-container {
+            max-width: 1140px;
+        }
+    }
 `
 
 export default function index() {
@@ -59,7 +67,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-2.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-9.jpg`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -67,7 +75,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-3.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-7.jpg`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -75,7 +83,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-4.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-8.jpg`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>

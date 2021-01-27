@@ -18,6 +18,12 @@ const ContainerFrame = styled.div`
             max-width: 960px;
         }
     }
+
+    @media all and (min-width: 992px) {
+        .members-container {
+            max-width: 1140px;
+        }
+    }
 `
 
 export default function Members() {

@@ -48,6 +48,12 @@ const ContainerFrame = styled.div`
             margin-top: 240px;
         }
     }
+
+    @media all and (min-width: 1200px) {
+        .heading {
+            margin-top: 350px;
+        }
+    }
 `
 
 export default function About() {

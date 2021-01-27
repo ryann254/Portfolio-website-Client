@@ -54,6 +54,11 @@ const ContainerFrame = styled.div`
                 width: 70%;
             }
         }
+
+        @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 const Landing = styled.div`
@@ -67,6 +72,11 @@ const Landing = styled.div`
 
     @media all and (min-width: 992px) {
         height: 350px;
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
     }
 `
 
@@ -92,7 +102,7 @@ const Img = styled.img`
         transform: translate(-50%, -35%);
     }
 
-    @media all and (min-width: 992px) {
+    @media all and (min-width: 1200px) {
         top: 69%;
         left: 50%;
         transform: translate(-50%, -31%);
@@ -103,6 +113,9 @@ const Img = styled.img`
 const Footer = styled.footer`
     width: 100%;
     margin-top: 40px;
+    padding-bottom: 25px;
+    background: #1D4350;
+
 
     .upper-footer {
         padding: 10px 0;
@@ -112,15 +125,22 @@ const Footer = styled.footer`
             color: ${props => props.theme.primary}
         }
     }
-    
-    .bottom-footer {
-        background: #1D4350;
-    }
 
     @media all and (min-width: 411px) {
         p {
             font-size: 16px !important;
         }
+    }
+
+    @media all and (min-width: 1200px) {
+        .bottom-footer {
+            max-width: 1140px;
+        }
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
     }
 `
 const Socials = styled.div`
@@ -242,26 +262,26 @@ function HeaderAndFooter({children}) {
                 </div>
                 <Container className="bottom-footer" fluid>
                     <Row>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Our Vision</FooterHeader>
                                 <Underline />
                                 <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>useful links</FooterHeader>
                                 <Underline />
-                                <a href="/#">About</a>
-                                <a href="/#">Contact</a>
-                                <a href="/#">Terms Of Use</a>
-                                <a href="/#">Entrepreneurship</a>
-                                <a href="/#">Incubation</a>
-                                <a href="/#">Blog</a>
+                                <a href="/about">About</a>
+                                <a href="/events">Events</a>
+                                <a href="/status">Status</a>
+                                <a href="/faq">FAQ</a>
+                                <a href="/contact">Contact</a>
+                                <a href="/donation">Donation</a>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Contact</FooterHeader>
                                 <Underline />
