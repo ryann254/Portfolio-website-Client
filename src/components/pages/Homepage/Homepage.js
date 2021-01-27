@@ -21,6 +21,27 @@ const ContainerFrame = styled.div`
     @media all and (max-width: 320px) {
         margin-top: 35px;
     }
+
+    @media all and (min-width: 411px) {
+
+        .upper-text, .lower-text {
+            padding: 0 10px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    @media all and (min-width: 576px) {
+        margin-top: 175px;
+
+        .input-group {
+            top: 90%;
+            transform: translate(-50%, -10%);
+            width: 80% !important;
+        }
+    }
 `
 
 const LandingSectionHeader = styled.h2`
@@ -38,7 +59,7 @@ export const Underline = styled.div`
 
 export const Text = styled.p`
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 15px;
 `
 
 const Email = styled.div`
@@ -70,12 +91,6 @@ const Email = styled.div`
 
         .form-control, .btn {
             border-radius: 0 !important;
-        }
-    }
-
-    @media all and (min-width: 411px) {
-        .upper-text, .lower-text {
-            padding: 0 10px;
         }
     }
 `

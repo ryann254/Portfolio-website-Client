@@ -15,6 +15,10 @@ const ContainerFrame = styled.div`
         width: 100%;
         border-radius: 0;
     }
+
+    @media all and (min-width: 576px) {
+        margin-top: 110px;
+    }
 `
 
 export default function ContactForm() {

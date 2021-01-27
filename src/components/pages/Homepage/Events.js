@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useCallback} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -23,6 +23,12 @@ const ContainerFrame = styled.div`
         padding: .575rem 1rem;
         justify-content: center;
     }
+
+    @media all and (min-width: 576px) {
+        .event-text {
+            margin-bottom: 27px;
+        }
+    }
 `
 
 export const Header = styled.h1`
@@ -31,10 +37,13 @@ export const Header = styled.h1`
     font-size: 35px;
 `
 
-
+let cards = 1;
 
 export default function Events() {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
+    if (window.screen.width >= 576 && window.screen.width < 768) {
+        cards = 2
+    }
 
     return (
         <ContainerFrame>
@@ -43,7 +52,7 @@ export default function Events() {
                     <Col>
                         <Header>You think you know Oklahoma City?</Header>
                         <Underline />
-                        <Text>Leave your preconceived notions at the door and discover an Oklahoma City you may have had no idea existed. From beautiful weather to some of the best schools in America, there is more than meets the eye in OKC.
+                        <Text className="event-text">Leave your preconceived notions at the door and discover an Oklahoma City you may have had no idea existed. From beautiful weather to some of the best schools in America, there is more than meets the eye in OKC.
                         </Text>
                         <div style={{"padding":"0 25px 70px 25px","maxWidth":800,"margin":"0 auto"}}>
                         <ItemsCarousel
@@ -53,7 +62,7 @@ export default function Events() {
                             chevronWidth={60}
                             disableSwipe={false}
                             alwaysShowChevrons={false}
-                            numberOfCards={1}
+                            numberOfCards={cards}
                             slidesToScroll={1}
                             outsideChevron={true}
                             showSlither={false}

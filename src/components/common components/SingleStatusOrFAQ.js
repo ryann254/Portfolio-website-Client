@@ -17,6 +17,13 @@ const ContainerFrame = styled.div`
             font-size: 14px;
         }
     }
+
+    @media all and (min-width: 576px) {
+        width: 80%;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
 `
 
 export default function SingleStatusOrFAQ({questionOrStatus}) {

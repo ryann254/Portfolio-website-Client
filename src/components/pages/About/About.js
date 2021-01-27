@@ -18,6 +18,12 @@ const ContainerFrame = styled.div`
         margin: 20px 0 10px 0; 
         text-align: center;
     }
+
+    @media all and (min-width: 576px) {
+        .heading {
+            margin-top: 110px;
+        }
+    }
 `
 
 export default function About() {

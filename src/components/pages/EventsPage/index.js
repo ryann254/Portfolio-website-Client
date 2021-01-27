@@ -19,6 +19,10 @@ const ContainerFrame = styled.div`
         position: relative;
         margin: 30px 0;
     }
+
+    @media all and (min-width: 576px) {
+        margin-top: 110px;
+    }
 `
 
 export default function index() {

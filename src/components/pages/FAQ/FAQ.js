@@ -19,6 +19,10 @@ const FAQAnswers = [
 
 const ContainerFrame = styled.div`
     margin-top: 55px;
+
+    @media all and (min-width: 576px) {
+        margin-top: 140px;
+    }
 `
 
 export default function Status() {

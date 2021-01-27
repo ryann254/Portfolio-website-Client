@@ -47,6 +47,12 @@ const Img = styled.img`
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    
+    @media all and (min-width: 576px) {
+        top: 63%;
+        left: 50%;
+        transform: translate(-50%, -37%);
+    }
 `
 
 const Footer = styled.footer`
@@ -64,6 +70,12 @@ const Footer = styled.footer`
     
     .bottom-footer {
         background: #1D4350;
+    }
+
+    @media all and (min-width: 411px) {
+        p {
+            font-size: 16px !important;
+        }
     }
 `
 const Socials = styled.div`

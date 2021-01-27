@@ -11,6 +11,10 @@ import SingleStatus from '../../common components/SingleStatusOrFAQ'
 
 const ContainerFrame = styled.div`
     margin-top: 55px;
+
+    @media all and (min-width: 576px) {
+        margin-top: 140px;
+    }
 `
 
 const headingStatus = 'Status'
