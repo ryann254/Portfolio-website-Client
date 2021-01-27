@@ -39,7 +39,7 @@ export default function SingleEvent({picNumber}) {
     return (
         <Event>
             <Link to="/events-page">
-                <img src={`assets/events/event-${picNumber}.jpg`} alt="events" className="img-fluid"/>
+                <img src={`assets/events/event-${picNumber}.webp`} alt="events" className="img-fluid"/>
                 <EventHeader className="pt-4 pl-4 pr-4 header">A place for all</EventHeader>
                 <Text className="text-dark p-4 mt-0 event-text">
                     Whether in an international grocery store that carries that hard to find item that reminds you of home or a religious center that gives you a sense of community, Oklahoma City is diverse when it comes to its cultural options.

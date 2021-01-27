@@ -54,7 +54,7 @@ export default function SingleMember({picNumber}) {
 
     return (
         <Member className="member">
-            <img src={`assets/members/member-${picNumber}.jpg`} alt="members" className="img-fluid member-image"/>
+            <img src={`assets/members/member-${picNumber}.webp`} alt="members" className="img-fluid member-image"/>
             <EventHeader>MATT BARRIE</EventHeader>
             <Title>Chief Executive Officer & Chairman</Title>
             <Break></Break>

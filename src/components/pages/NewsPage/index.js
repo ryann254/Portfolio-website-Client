@@ -54,7 +54,7 @@ export default function index() {
                         <Underline />
                     </Col>
                     <Col>
-                        <img src="assets/jobs/job-1.jpg" alt="event" className="img-fluid event-image"/>
+                        <img src="assets/jobs/job-1.webp" alt="event" className="img-fluid event-image"/>
                     </Col>
                     <Col xs={12} className="text-container">
                         <Text>

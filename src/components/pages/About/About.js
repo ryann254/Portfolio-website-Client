@@ -66,7 +66,7 @@ export default function About() {
                         <Underline />
                     </Col>
                     <Col xs={12} md={6}>
-                        <img src="assets/events/event-7.jpg" alt="events" className="img-fluid about-image"/>
+                        <img src="assets/events/event-7.webp" alt="events" className="img-fluid about-image"/>
                     </Col>
                     <Col xs={12} md={6}>
                         <EventHeader className="smaller-header">Abundant opportunity</EventHeader>

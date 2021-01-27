@@ -54,7 +54,7 @@ export default function SingleEventPage() {
                         <Underline />
                     </Col>
                     <Col>
-                        <img src="assets/events/event-2.jpg" alt="event" className="img-fluid event-image"/>
+                        <img src="assets/events/event-2.webp" alt="event" className="img-fluid event-image"/>
                     </Col>
                     <Col xs={12} className="text-container">
                         <Text>

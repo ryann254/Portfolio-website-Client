@@ -109,21 +109,21 @@ export default function Jobs() {
                     </Col>
                     <Col xs={12} md={6}>
                         <JobContainer>
-                            <img src="assets/jobs/job-1.jpg" alt="jobs" className="img-fluid jobs-image"/>
+                            <img src="assets/jobs/job-1.webp" alt="jobs" className="img-fluid jobs-image"/>
                             <JobLink to="/jobs-page">
                                 Software and Cybersecurity
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
                         </JobContainer>
                         <JobContainer>
-                            <img src="assets/jobs/job-2.jpg" alt="jobs" className="img-fluid jobs-image"/>
+                            <img src="assets/jobs/job-2.webp" alt="jobs" className="img-fluid jobs-image"/>
                             <JobLink to="/jobs-page">
                                 Health Care
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
                         </JobContainer>
                         <JobContainer>
-                            <img src="assets/jobs/job-3.jpg" alt="jobs" className="img-fluid jobs-image"/>
+                            <img src="assets/jobs/job-3.webp" alt="jobs" className="img-fluid jobs-image"/>
                             <JobLink to="/jobs-page">
                                 Aerospace
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>

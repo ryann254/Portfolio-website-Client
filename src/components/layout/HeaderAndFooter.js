@@ -239,23 +239,23 @@ function HeaderAndFooter({children}) {
                 </Navbar> 
             </ContainerFrame>
             <Landing>
-                <Img src="assets/bg-3.jpg" alt="bg" className="img-fluid"/>
+                <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
             </Landing>
             {children}
             <Footer>
                 <div className="upper-footer">
                     <Socials>
                         <div className="pr-2 facebook">
-                            <img src="assets/icons/facebook-48.png" alt="icons"/>
+                            <img src="assets/icons/facebook-48.webp" alt="icons"/>
                         </div>
                         <div className="pr-2 twitter">
-                            <img src="assets/icons/twitter-48.png" alt="icons"/>
+                            <img src="assets/icons/twitter-48.webp" alt="icons"/>
                         </div>
                         <div className="pr-2 insta">
-                            <img src="assets/icons/instagram-48.png" alt="icons"/>
+                            <img src="assets/icons/instagram-48.webp" alt="icons"/>
                         </div>
                         <div className="quora">
-                            <img src="assets/icons/quora-48.png" alt="icons"/>
+                            <img src="assets/icons/quora-48.webp" alt="icons"/>
                         </div>
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>

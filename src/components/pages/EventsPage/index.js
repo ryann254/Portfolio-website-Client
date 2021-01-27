@@ -59,7 +59,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-1.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-1.webp`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower, catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -67,7 +67,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-9.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-9.webp`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -75,7 +75,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-7.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-7.webp`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -83,7 +83,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-8.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-8.webp`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
@@ -91,7 +91,7 @@ export default function index() {
                     </Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
-                            <img src={`assets/events/event-5.jpg`} alt="events" className="img-fluid"/>
+                            <img src={`assets/events/event-5.webp`} alt="events" className="img-fluid"/>
                             <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                             <EventHeader className="pt-4 pl-4 pr-4 pb-5">Gaze in awe at the world's largest Chihuly glass tower; catch an outdoor concert at a 17-acre park in the middle of downtown.</EventHeader>
                             <Pointer to="/events-page"><i class="fa fa-arrow-right"></i></Pointer>
