@@ -10,15 +10,63 @@ import Button from 'react-bootstrap/Button'
 //Own Components
 import EmbededVideo from './EmbededVideo'
 import Jobs from './Jobs'
+import Events from './Events'
+import News from './News'
+import Members from './Members'
 
 
 const ContainerFrame = styled.div`
-    margin-top: 40px;
+    margin-top: 55px;
+
+    @media all and (max-width: 320px) {
+        margin-top: 35px;
+    }
+
+    @media all and (min-width: 411px) {
+
+        .upper-text, .lower-text {
+            padding: 0 10px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    @media all and (min-width: 576px) {
+        margin-top: 175px;
+
+        .input-group {
+            top: 90%;
+            transform: translate(-50%, -10%);
+            width: 80% !important;
+        }
+    }
+
+    @media all and (min-width: 768px) {
+        margin-top: 210px;
+
+        .input-group {
+            width: 65% !important;
+        }
+    }
+
+    @media all and (min-width: 992px) {
+        margin-top: 310px;
+    }
+
+    @media all and (min-width: 1200px) {
+        margin-top: 410px;
+    }
 `
 
-const LandingSectionHeader = styled.h2`
+const LandingSectionHeader = styled.h1`
     text-align: center;
     font-weight: bold;
+
+    @media all and (min-width: 992px) {
+        font-size: 2.7rem;
+    } 
 `
 
 export const Underline = styled.div`
@@ -32,11 +80,15 @@ export const Underline = styled.div`
 export const Text = styled.p`
     margin-top: 30px;
     font-size: 15px;
+
+    @media all and (min-width: 768px) {
+        font-size: 16px;
+    }
 `
 
 const Email = styled.div`
     position: relative;
-    margin: 50px 0;
+    margin: 65px 0;
     border-radius: 5px;
     background: ${props => props.theme.darkColor};
     padding: 25px 0;
@@ -46,10 +98,11 @@ const Email = styled.div`
     .upper-text {
         font-size: 22px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
 
     .lower-text {
-        font-size: 15px;
+        font-size: 16px;
         margin-bottom: 25px;
     }
 
@@ -65,6 +118,7 @@ const Email = styled.div`
         }
     }
 `
+
 
 function Homepage() {
     return (
@@ -94,10 +148,14 @@ function Homepage() {
                         </Email>
                         {/* Embeded Youtube Video */}
                         <EmbededVideo />
-                        <Jobs />
                     </Col>
                 </Row>
             </Container>
+            {/* Rest of the components */}
+            <Jobs />
+            <Events />
+            <News />
+            <Members />
         </ContainerFrame>
     )
 }
