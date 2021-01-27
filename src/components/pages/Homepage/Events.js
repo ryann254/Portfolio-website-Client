@@ -19,6 +19,9 @@ const ContainerFrame = styled.div`
     .btn {
         display: flex;
         margin: 0 auto 25px auto;
+        width: 50%;
+        padding: .575rem 1rem;
+        justify-content: center;
     }
 `
 

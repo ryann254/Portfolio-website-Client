@@ -1,5 +1,6 @@
 import React from 'react'   
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 //Own Components
 import {EventHeader} from './SingleEvent'
@@ -9,7 +10,6 @@ const News = styled.div`
     margin-top: 45px;
     margin-bottom: 55px;
     background: ${props => props.theme.primary};
-    width: 320px;
     border-radius: 5px;
 
     .news-text {
@@ -21,7 +21,7 @@ export const Date = styled.div`
     color: #7b7b7b;
 `
 
-export const Pointer = styled.div`
+export const Pointer = styled(Link)`
     width: 40px;
     height: 40px;
     background: ${props => props.theme.darkColor};
@@ -62,7 +62,7 @@ export default function SingleNews({picNumber}) {
                 <Date>Jan 20, 2021</Date>
                 <EventHeader className="news-text">Red Solo Pup will soon be here to entertain you and your furry friend</EventHeader>
             </div>
-            <Pointer>
+            <Pointer to="/news-page">
                 <i class="fa fa-arrow-right"></i>
             </Pointer>
         </News>

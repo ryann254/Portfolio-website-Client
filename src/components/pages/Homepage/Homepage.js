@@ -17,6 +17,10 @@ import Members from './Members'
 
 const ContainerFrame = styled.div`
     margin-top: 55px;
+
+    @media all and (max-width: 320px) {
+        margin-top: 35px;
+    }
 `
 
 const LandingSectionHeader = styled.h2`
@@ -34,7 +38,7 @@ export const Underline = styled.div`
 
 export const Text = styled.p`
     margin-top: 30px;
-    font-size: 15px;
+    font-size: 16px;
 `
 
 const Email = styled.div`
@@ -49,10 +53,11 @@ const Email = styled.div`
     .upper-text {
         font-size: 22px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
 
     .lower-text {
-        font-size: 15px;
+        font-size: 16px;
         margin-bottom: 25px;
     }
 
@@ -65,6 +70,12 @@ const Email = styled.div`
 
         .form-control, .btn {
             border-radius: 0 !important;
+        }
+    }
+
+    @media all and (min-width: 411px) {
+        .upper-text, .lower-text {
+            padding: 0 10px;
         }
     }
 `

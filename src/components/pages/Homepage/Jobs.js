@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 //Own Components
 import {Underline, Text} from './Homepage'
@@ -11,6 +12,8 @@ import {Underline, Text} from './Homepage'
 const ContainerFrame = styled.div`
     .btn {
         border-radius: 0 !important;
+        width: 50%;
+        padding: .575rem .75rem;
     }
 `
 
@@ -20,12 +23,14 @@ export const Header = styled.h1`
     margin-top: 55px;
 `
 
-const JobLink = styled.div`
+const JobLink = styled(Link)`
     background: ${props => props.theme.darkColor};
     width: 90%;
     color: ${props => props.theme.primary};
-    padding: 15px 20px;
+    padding: 15px 0px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -34,6 +39,11 @@ const JobLink = styled.div`
     svg {
         padding-left: 6px;
         font-size: 24px;
+        padding-top: 5px;
+    }
+
+    @media all and (min-width: 411px) {
+        width: 80%;
     }
 `
 
@@ -57,7 +67,7 @@ export default function Jobs() {
                     <Col xs={12}>
                         <JobContainer>
                             <img src="assets/jobs/job-1.jpg" alt="jobs" className="img-fluid"/>
-                            <JobLink>
+                            <JobLink to="/jobs-page">
                                 Software and Cybersecurity
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
@@ -66,7 +76,7 @@ export default function Jobs() {
                     <Col xs={12}>
                         <JobContainer>
                             <img src="assets/jobs/job-2.jpg" alt="jobs" className="img-fluid"/>
-                            <JobLink>
+                            <JobLink to="/jobs-page">
                                 Health Care
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
@@ -75,7 +85,7 @@ export default function Jobs() {
                     <Col xs={12}>
                         <JobContainer>
                             <img src="assets/jobs/job-3.jpg" alt="jobs" className="img-fluid"/>
-                            <JobLink>
+                            <JobLink to="/jobs-page">
                                 Aerospace
                                 <span class="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>

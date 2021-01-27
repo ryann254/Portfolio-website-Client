@@ -11,6 +11,12 @@ const ContainerFrame = styled.div`
     .question {
         font-weight: bold;
     }
+
+    @media all and (max-width: 320px) {
+        .question {
+            font-size: 14px;
+        }
+    }
 `
 
 export default function SingleStatusOrFAQ({questionOrStatus}) {

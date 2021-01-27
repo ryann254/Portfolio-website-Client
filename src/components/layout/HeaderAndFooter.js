@@ -151,7 +151,6 @@ function HeaderAndFooter({children}) {
                         <Nav>
                             <Nav.Link href="/" className="mx-auto">Home</Nav.Link>
                             <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
-                            <Nav.Link href="/members" className="mx-auto">Members</Nav.Link>
                             <Nav.Link href="/events" className="mx-auto">Events</Nav.Link>
                             <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
                             <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>

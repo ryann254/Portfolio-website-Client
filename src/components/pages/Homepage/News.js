@@ -19,7 +19,9 @@ const ContainerFrame = styled.div`
         display: flex;
         margin: 50px auto 50px auto;
         border-radius: 0;
-        padding: .375rem 1.6rem;
+        padding: .575rem 1.6rem;
+        width: 50%;
+        justify-content: center;
     }
 `
 
