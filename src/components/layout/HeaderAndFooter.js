@@ -114,7 +114,7 @@ const UsefulLinks = styled.div`
 
 const FooterHeader = styled.h4`
     margin-top: 40px;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
 `
