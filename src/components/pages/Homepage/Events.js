@@ -29,12 +29,19 @@ const ContainerFrame = styled.div`
             margin-bottom: 27px;
         }
     }
+
+    @media all and (min-width: 992px) {
+        .events-container {
+            max-width: 960px;
+        }
+    }
 `
 
 export const Header = styled.h1`
     padding-top: 25px;
     font-weight: bold;
     font-size: 35px;
+    text-align: center;
 `
 
 let cards = 1;
@@ -47,7 +54,7 @@ export default function Events() {
 
     return (
         <ContainerFrame>
-            <Container fluid>
+            <Container fluid className="events-container">
                 <Row>
                     <Col>
                         <Header>You think you know Oklahoma City?</Header>

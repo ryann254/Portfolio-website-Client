@@ -23,6 +23,10 @@ const ContainerFrame = styled.div`
         display: flex;
         margin-left: auto;
         margin-right: auto;
+
+        .question {
+            font-size: 1.25rem;
+        }
     }
 `
 

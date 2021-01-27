@@ -4,20 +4,39 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from 'styled-components'
 
-
 //Own Components
+import {Underline,Text} from '../Homepage/Homepage'
 import {Header} from '../Homepage/Jobs'
-import {Underline, Text} from '../Homepage/Homepage'
+
 
 const ContainerFrame = styled.div`
-    background: #f6f6f6;
-
-    .jobs-image {
-        margin-top: 45px
+    .text-container {
+        margin-top: 20px;
+        background: #f6f6f6;
     }
 
-    .col-12 {
-        background: ${props => props.theme.primary};
+    @media all and (min-width: 576px) {
+        margin-top: 110px;
+
+        .heading {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media all and (min-width: 768px) {
+        margin-top: 150px;
+
+        .heading {
+            margin-bottom: 50px;
+        }
+
+        .event-image {
+            width: 690px;
+        }
+    }
+
+    @media all and (min-width: 992px) {
+        margin-top: 240px;
     }
 `
 
@@ -30,14 +49,16 @@ export default function index() {
                         <Header className="text-center">Jobs</Header>
                         <Underline />
                     </Col>
-                    <Col xs={12}>
-                        <img src={`assets/jobs/job-2.jpg`} alt="events" className="img-fluid jobs-image"/>
+                    <Col>
+                        <img src="assets/jobs/job-2.jpg" alt="event" className="img-fluid event-image"/>
                     </Col>
-                    <Col xs={12}>
-                        <Text>Gaze in awe at the world's largest Chihuly glass tower, catch an outdoor concert at a 17-acre park in the middle of downtown.</Text>
+                    <Col xs={12} className="text-container">
+                        <Text>
+                        Oklahoma City is a thriving metropolis with a low cost of living, short commute times, big-league quality of life and a diversified economy. Through multiple resident-led tax initiatives called MAPS, Oklahoma City is bursting with new development, bettering its infrastructure and schools and creating new quality-of-life additions to the city that are wowing longtime citizens and drawing attention
+                        </Text>
                     </Col>
                 </Row>
-            </Container> 
+            </Container>
         </ContainerFrame>
     )
 }

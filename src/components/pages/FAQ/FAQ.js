@@ -23,6 +23,14 @@ const ContainerFrame = styled.div`
     @media all and (min-width: 576px) {
         margin-top: 140px;
     }
+
+    @media all and (min-width: 576px) {
+        margin-top: 180px;
+    }
+
+    @media all and (min-width: 992px) {
+        margin-top: 270px;
+    }
 `
 
 export default function Status() {

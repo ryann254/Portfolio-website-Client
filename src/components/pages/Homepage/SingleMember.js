@@ -10,6 +10,12 @@ import {EventHeader} from './SingleEvent'
 
 const Member = styled.div`
     margin-top: 55px;
+
+    @media all and (min-width: 768px) {
+        .member-image {
+            height: 219px;
+        }
+    }
 `
 
 const Title = styled.div`
@@ -48,7 +54,7 @@ export default function SingleMember({picNumber}) {
 
     return (
         <Member className="member">
-            <img src={`assets/members/member-${picNumber}.jpg`} alt="members" className="img-fluid"/>
+            <img src={`assets/members/member-${picNumber}.jpg`} alt="members" className="img-fluid member-image"/>
             <EventHeader>MATT BARRIE</EventHeader>
             <Title>Chief Executive Officer & Chairman</Title>
             <Break></Break>

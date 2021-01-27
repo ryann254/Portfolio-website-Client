@@ -23,28 +23,42 @@ const ContainerFrame = styled.div`
         width: 50%;
         justify-content: center;
     }
+
+    @media all and (min-width: 992px) {
+        .news-container {
+            max-width: 960px;
+        }
+    }
 `
 
 export default function News() {
     return (
         <ContainerFrame>
-            <Container>
+            <Container fluid className="news-container">
                 <Row>
-                    <Col>
+                    <Col xs={12}>
                         <Header className="text-center">News</Header>
                         <Underline />
                         <Text>
                             We aren’t the only ones talking about how Oklahoma City is the perfect place to live, work and play. See what others are saying about your next hometown.
                         </Text>
+                    </Col>
+                    <Col xs={12} md={6} lg={4}>
                         <Flip bottom>
                             <SingleNews picNumber="1" />
                         </Flip>
+                    </Col>
+                    <Col xs={12} md={6} lg={4}>
                         <Flip bottom>
                             <SingleNews picNumber="2" />
                         </Flip>
+                    </Col>
+                    <Col xs={12} md={6} lg={4}>
                         <Flip bottom>
                             <SingleNews picNumber="3" />
                         </Flip>
+                    </Col>
+                    <Col xs={12}>
                         <Button variant="primary">See All News</Button>
                     </Col>
                 </Row>

@@ -30,12 +30,44 @@ const ContainerFrame = styled.div`
         border-color 0.15s ease-in-out, 
         box-shadow 0.15s ease-in-out;
         }
+
+        @media all and (min-width: 768px) {
+            .navbar-nav {
+                align-items: center;
+                width: 95%;
+                margin-left: auto;
+            }
+
+            .nav-link {
+                flex-grow: 0.1;
+            }
+        }
+
+        @media all and (min-width: 992px) {
+            .navbar-nav {
+                width: 80%;
+            }
+        }
+
+        @media all and (min-width: 1200px) {
+            .navbar-nav {
+                width: 70%;
+            }
+        }
 `
 
 const Landing = styled.div`
     background: ${props => props.theme.gradient};
     position: relative;
     height: 214px;
+
+    @media all and (min-width: 768px) {
+        height: 300px;
+    }
+
+    @media all and (min-width: 992px) {
+        height: 350px;
+    }
 `
 
 const Img = styled.img`
@@ -52,6 +84,19 @@ const Img = styled.img`
         top: 63%;
         left: 50%;
         transform: translate(-50%, -37%);
+    }
+
+    @media all and (min-width: 992px) {
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+    }
+
+    @media all and (min-width: 992px) {
+        top: 69%;
+        left: 50%;
+        transform: translate(-50%, -31%);
+        width: 1080px;
     }
 `
 
@@ -156,7 +201,7 @@ function HeaderAndFooter({children}) {
         <>
             <ContainerFrame>
                 <Navbar className="mx-auto" expand="md" variant="dark">
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -195,16 +240,16 @@ function HeaderAndFooter({children}) {
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
-                <Container className="bottom-footer">
+                <Container className="bottom-footer" fluid>
                     <Row>
-                        <Col xs={12}>
+                        <Col xs={12} md={6}>
                             <UsefulLinks>
                                 <FooterHeader>Our Vision</FooterHeader>
                                 <Underline />
                                 <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6}>
                             <UsefulLinks>
                                 <FooterHeader>useful links</FooterHeader>
                                 <Underline />
@@ -216,7 +261,7 @@ function HeaderAndFooter({children}) {
                                 <a href="/#">Blog</a>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6}>
                             <UsefulLinks>
                                 <FooterHeader>Contact</FooterHeader>
                                 <Underline />
