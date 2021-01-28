@@ -42,11 +42,31 @@ const ContainerFrame = styled.div`
             width: 80% !important;
         }
     }
+
+    @media all and (min-width: 768px) {
+        margin-top: 210px;
+
+        .input-group {
+            width: 65% !important;
+        }
+    }
+
+    @media all and (min-width: 992px) {
+        margin-top: 310px;
+    }
+
+    @media all and (min-width: 1200px) {
+        margin-top: 410px;
+    }
 `
 
-const LandingSectionHeader = styled.h2`
+const LandingSectionHeader = styled.h1`
     text-align: center;
     font-weight: bold;
+
+    @media all and (min-width: 992px) {
+        font-size: 2.7rem;
+    } 
 `
 
 export const Underline = styled.div`
@@ -60,6 +80,10 @@ export const Underline = styled.div`
 export const Text = styled.p`
     margin-top: 30px;
     font-size: 15px;
+
+    @media all and (min-width: 768px) {
+        font-size: 16px;
+    }
 `
 
 const Email = styled.div`

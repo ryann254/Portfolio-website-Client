@@ -15,6 +15,12 @@ const News = styled.div`
     .news-text {
         font-size: 22px;
     }
+
+    @media all and (min-width: 768px) {
+        .news-image {
+            height: 220px;
+        }
+    }
 `
 
 export const Date = styled.div`
@@ -57,7 +63,7 @@ export const Pointer = styled(Link)`
 export default function SingleNews({picNumber}) {
     return (
         <News>
-            <img src={`assets/jobs/job-${picNumber}.jpg`} alt="events" className="img-fluid"/>
+            <img src={`assets/jobs/job-${picNumber}.webp`} alt="events" className="img-fluid news-image"/>
             <div className="pt-3 pl-3 pr-3 pb-5">
                 <Date>Jan 20, 2021</Date>
                 <EventHeader className="news-text">Red Solo Pup will soon be here to entertain you and your furry friend</EventHeader>

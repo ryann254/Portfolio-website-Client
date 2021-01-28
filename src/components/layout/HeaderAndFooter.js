@@ -30,12 +30,54 @@ const ContainerFrame = styled.div`
         border-color 0.15s ease-in-out, 
         box-shadow 0.15s ease-in-out;
         }
+
+        @media all and (min-width: 768px) {
+            .navbar-nav {
+                align-items: center;
+                width: 95%;
+                margin-left: auto;
+            }
+
+            .nav-link {
+                flex-grow: 0.1;
+            }
+        }
+
+        @media all and (min-width: 992px) {
+            .navbar-nav {
+                width: 80%;
+            }
+        }
+
+        @media all and (min-width: 1200px) {
+            .navbar-nav {
+                width: 70%;
+            }
+        }
+
+        @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 const Landing = styled.div`
     background: ${props => props.theme.gradient};
     position: relative;
     height: 214px;
+
+    @media all and (min-width: 768px) {
+        height: 300px;
+    }
+
+    @media all and (min-width: 992px) {
+        height: 350px;
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 `
 
 const Img = styled.img`
@@ -53,11 +95,27 @@ const Img = styled.img`
         left: 50%;
         transform: translate(-50%, -37%);
     }
+
+    @media all and (min-width: 992px) {
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+    }
+
+    @media all and (min-width: 1200px) {
+        top: 69%;
+        left: 50%;
+        transform: translate(-50%, -31%);
+        width: 1080px;
+    }
 `
 
 const Footer = styled.footer`
     width: 100%;
     margin-top: 40px;
+    padding-bottom: 25px;
+    background: #1D4350;
+
 
     .upper-footer {
         padding: 10px 0;
@@ -67,15 +125,22 @@ const Footer = styled.footer`
             color: ${props => props.theme.primary}
         }
     }
-    
-    .bottom-footer {
-        background: #1D4350;
-    }
 
     @media all and (min-width: 411px) {
         p {
             font-size: 16px !important;
         }
+    }
+
+    @media all and (min-width: 1200px) {
+        .bottom-footer {
+            max-width: 1140px;
+        }
+    }
+
+    @media all and (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
     }
 `
 const Socials = styled.div`
@@ -156,7 +221,7 @@ function HeaderAndFooter({children}) {
         <>
             <ContainerFrame>
                 <Navbar className="mx-auto" expand="md" variant="dark">
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -174,49 +239,49 @@ function HeaderAndFooter({children}) {
                 </Navbar> 
             </ContainerFrame>
             <Landing>
-                <Img src="assets/bg-3.jpg" alt="bg" className="img-fluid"/>
+                <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
             </Landing>
             {children}
             <Footer>
                 <div className="upper-footer">
                     <Socials>
                         <div className="pr-2 facebook">
-                            <img src="assets/icons/facebook-48.png" alt="icons"/>
+                            <img src="assets/icons/facebook-48.webp" alt="icons"/>
                         </div>
                         <div className="pr-2 twitter">
-                            <img src="assets/icons/twitter-48.png" alt="icons"/>
+                            <img src="assets/icons/twitter-48.webp" alt="icons"/>
                         </div>
                         <div className="pr-2 insta">
-                            <img src="assets/icons/instagram-48.png" alt="icons"/>
+                            <img src="assets/icons/instagram-48.webp" alt="icons"/>
                         </div>
                         <div className="quora">
-                            <img src="assets/icons/quora-48.png" alt="icons"/>
+                            <img src="assets/icons/quora-48.webp" alt="icons"/>
                         </div>
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
-                <Container className="bottom-footer">
+                <Container className="bottom-footer" fluid>
                     <Row>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Our Vision</FooterHeader>
                                 <Underline />
                                 <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>useful links</FooterHeader>
                                 <Underline />
-                                <a href="/#">About</a>
-                                <a href="/#">Contact</a>
-                                <a href="/#">Terms Of Use</a>
-                                <a href="/#">Entrepreneurship</a>
-                                <a href="/#">Incubation</a>
-                                <a href="/#">Blog</a>
+                                <a href="/about">About</a>
+                                <a href="/events">Events</a>
+                                <a href="/status">Status</a>
+                                <a href="/faq">FAQ</a>
+                                <a href="/contact">Contact</a>
+                                <a href="/donation">Donation</a>
                             </UsefulLinks>
                         </Col>
-                        <Col xs={12}>
+                        <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>
                                 <FooterHeader>Contact</FooterHeader>
                                 <Underline />

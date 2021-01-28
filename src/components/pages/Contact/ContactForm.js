@@ -19,6 +19,18 @@ const ContainerFrame = styled.div`
     @media all and (min-width: 576px) {
         margin-top: 110px;
     }
+
+    @media all and (min-width: 768px) {
+        margin-top: 150px;
+    }
+
+    @media all and (min-width: 992px) {
+        margin-top: 270px;
+    }
+
+    @media all and (min-width: 1200px) {
+        margin-top: 350px;
+    }
 `
 
 export default function ContactForm() {

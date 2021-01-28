@@ -24,6 +24,36 @@ const ContainerFrame = styled.div`
             margin-top: 110px;
         }
     }
+
+    @media all and (min-width: 768px) {
+        .heading {
+            margin-top: 150px;
+            margin-bottom: 50px;
+        }
+
+        .smaller-header {
+            margin-top: 0px; 
+            text-align: center;
+        }
+
+        .about-image {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+    }
+
+    @media all and (min-width: 992px) {
+        .heading {
+            margin-top: 240px;
+        }
+    }
+
+    @media all and (min-width: 1200px) {
+        .heading {
+            margin-top: 350px;
+        }
+    }
 `
 
 export default function About() {
@@ -35,10 +65,10 @@ export default function About() {
                         <Header className="text-center">About</Header>
                         <Underline />
                     </Col>
-                    <Col xs={12}>
-                        <img src="assets/events/event-7.jpg" alt="events" className="img-fluid"/>
+                    <Col xs={12} md={6}>
+                        <img src="assets/events/event-7.webp" alt="events" className="img-fluid about-image"/>
                     </Col>
-                    <Col xs={12}>
+                    <Col xs={12} md={6}>
                         <EventHeader className="smaller-header">Abundant opportunity</EventHeader>
                         <Underline />
                         <Text>Oklahoma City has everything a prospective employee could want: OKC is thriving under a strong economic climate, diverse industries and low tax rates, which give our businesses the opportunity to grow and expand. And this means, in turn, there are great job opportunities for you.
