@@ -15,8 +15,12 @@ const ContainerFrame = styled.div`
         background: #f6f6f6;
     }
 
+    .heading {
+        margin-bottom: 40px;
+    }
+
     @media all and (min-width: 576px) {
-        margin-top: 90px;
+        margin-top: 60px;
 
         .heading {
             margin-bottom: 40px;
@@ -24,7 +28,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 110px;
+        margin-top: 80px;
 
         .heading {
             margin-bottom: 50px;
@@ -36,7 +40,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 150px;
+        margin-top: 110px;
     }
 `
 

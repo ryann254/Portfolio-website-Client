@@ -34,7 +34,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 576px) {
-        margin-top: 140px;
+        margin-top: 150px;
 
         .input-group {
             top: 90%;
@@ -88,7 +88,7 @@ export const Text = styled.p`
 
 const Email = styled.div`
     position: relative;
-    margin: 65px 0;
+    margin: 75px 0;
     border-radius: 5px;
     background: ${props => props.theme.darkColor};
     padding: 25px 0;
@@ -116,6 +116,14 @@ const Email = styled.div`
         .form-control, .btn {
             border-radius: 0 !important;
         }
+    }
+
+    @media all and (min-width: 576px) {
+        margin: 95px 0;
+    }
+
+    @media all and (min-width: 1200px) {
+        margin: 115px 0;
     }
 `
 

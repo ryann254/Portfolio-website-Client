@@ -24,6 +24,10 @@ export const Event = styled.div`
         padding-bottom: 50px !important;
     }
 
+    .event-link {
+        text-decoration: none !important;
+    }
+
     @media all and (max-width: 320px) {
         .event-text {
             padding: 1.1rem 1.1rem 35px 1.1rem !important;
@@ -38,7 +42,7 @@ export const Event = styled.div`
 export default function SingleEvent({picNumber}) {
     return (
         <Event>
-            <Link to="/events-page">
+            <Link to="/events-page" className="event-link">
                 <img src={`assets/events/event-${picNumber}.webp`} alt="events" className="img-fluid"/>
                 <EventHeader className="pt-4 pl-4 pr-4 header">A place for all</EventHeader>
                 <Text className="text-dark p-4 mt-0 event-text">

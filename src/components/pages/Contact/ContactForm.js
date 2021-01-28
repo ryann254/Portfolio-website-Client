@@ -17,15 +17,15 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 576px) {
-        margin-top: 90px;
+        margin-top: 60px;
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 110px;
+        margin-top: 80px;
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 150px;
+        margin-top: 110px;
     }
 `
 

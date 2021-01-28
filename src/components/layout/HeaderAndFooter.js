@@ -39,7 +39,7 @@ const ContainerFrame = styled.div`
         @media all and (min-width: 768px) {
             .navbar-nav {
                 align-items: center;
-                width: 95%;
+                width: 97%;
                 margin-left: auto;
             }
 
@@ -61,9 +61,9 @@ const ContainerFrame = styled.div`
         }
 
         @media all and (min-width: 1920px) {
-        max-width: 1920px;
-        margin: 0 auto;
-    }
+            max-width: 1920px;
+            margin: 0 auto;
+        }
 `
 
 const Landing = styled.div`
@@ -144,7 +144,7 @@ const Img = styled.img`
  
 const Footer = styled.footer`
     width: 100%;
-    margin-top: 40px;
+    margin-top: 60px;
     padding-bottom: 25px;
     background: #1D4350;
 
@@ -165,6 +165,8 @@ const Footer = styled.footer`
     }
 
     @media all and (min-width: 1200px) {
+        margin-top: 85px;
+
         .bottom-footer {
             max-width: 1140px;
         }
@@ -172,7 +174,7 @@ const Footer = styled.footer`
 
     @media all and (min-width: 1920px) {
         max-width: 1920px;
-        margin: 0 auto;
+        margin: 85px auto 0 auto;
     }
 `
 const Socials = styled.div`
@@ -223,7 +225,7 @@ const UsefulLinks = styled.div`
 `
 
 const FooterHeader = styled.h4`
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;

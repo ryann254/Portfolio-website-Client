@@ -25,6 +25,10 @@ const ContainerFrame = styled.div`
             margin-left: initial;
         }
 
+        .jobs-component {
+            margin-top: 50px;
+        }
+
         .jobs-image {
             width: 350px;
             height: 234px;
@@ -44,12 +48,23 @@ const ContainerFrame = styled.div`
             margin-right: auto;
         }
     }
+
+    @media all and (min-width: 1440px) {
+        .jobs-component {
+            margin-top: 60px;
+        }
+    }
 `
 
 export const Header = styled.h1`
     font-weight: bold;
     text-align: center;
-    margin-top: 55px;
+    margin-top: 65px;
+
+    @media all and (min-width: 576px) {
+        margin-top: 85px;
+    }
+
 
     @media all and (min-width: 992px) {
         font-size: 2.7rem;
@@ -91,7 +106,7 @@ const JobLink = styled(Link)`
 `
 
 const JobContainer = styled.div`
-    margin-top: 55px;
+    margin-top: 75px;
 `
 
 export default function Jobs() {
@@ -107,7 +122,7 @@ export default function Jobs() {
                         </Text>
                         <Button variant="primary">View All Jobs</Button>
                     </Col>
-                    <Col xs={12} md={6}>
+                    <Col xs={12} md={6} className="jobs-component">
                         <JobContainer>
                             <img src="assets/jobs/job-1.webp" alt="jobs" className="img-fluid jobs-image"/>
                             <JobLink to="/jobs-page">

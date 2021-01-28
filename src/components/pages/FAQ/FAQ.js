@@ -21,7 +21,7 @@ const ContainerFrame = styled.div`
     margin-top: 55px;
 
     @media all and (min-width: 576px) {
-        margin-top: 120px;
+        margin-top: 110px;
     }
 
     @media all and (min-width: 768px) {

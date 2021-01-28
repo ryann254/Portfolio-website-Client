@@ -14,7 +14,7 @@ import SingleEvent from './SingleEvent'
 const ContainerFrame = styled.div`
     background: ${props => props.theme.darkColor};
     color: ${props => props.theme.primary};
-    margin-top: 55px;
+    margin-top: 75px;
 
     .btn {
         display: flex;
@@ -31,20 +31,31 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 992px) {
-        .events-container {
+        margin-top: 100px;
+
+        .header-container {
             max-width: 960px;
+        }
+
+        .btn {
+            width: 40%;
         }
     }
 
     @media all and (min-width: 1200px) {
-        .events-container {
+        .header-container {
+            padding-top: 30px;
             max-width: 1140px;
+        }
+
+        .btn {
+            width: 30%;
         }
     }
 
     @media all and (min-width: 1920px) {
         max-width: 1920px;
-        margin: 0 auto;
+        margin: 100px auto 0 auto;
     }
 `
 
@@ -59,20 +70,26 @@ let cards = 1;
 
 export default function Events() {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
-    if (window.screen.width >= 576 && window.screen.width < 768) {
+    if (window.screen.width >= 576 && window.screen.width < 992) {
         cards = 2
+    } else if (window.screen.width >= 992 && window.screen.width < 1200) {
+        cards = 3
+    } else if (window.screen.width >= 1200) {
+        cards = 4
     }
 
     return (
         <ContainerFrame>
-            <Container fluid className="events-container">
+            <Container fluid>
                 <Row>
-                    <Col>
+                    <Col xs={12} className="header-container mx-auto">
                         <Header>You think you know Oklahoma City?</Header>
                         <Underline />
                         <Text className="event-text">Leave your preconceived notions at the door and discover an Oklahoma City you may have had no idea existed. From beautiful weather to some of the best schools in America, there is more than meets the eye in OKC.
                         </Text>
-                        <div style={{"padding":"0 25px 70px 25px","maxWidth":800,"margin":"0 auto"}}>
+                    </Col>
+                    <Col xs={12} className="events-container">
+                    <div style={{"padding":"40px 25px 70px 25px","maxWidth":1200,"margin":"0 auto"}}>
                         <ItemsCarousel
                             infiniteLoop={true}
                             gutter={12}
