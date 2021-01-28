@@ -34,7 +34,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 576px) {
-        margin-top: 175px;
+        margin-top: 140px;
 
         .input-group {
             top: 90%;
@@ -44,7 +44,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 210px;
+        margin-top: 170px;
 
         .input-group {
             width: 65% !important;
@@ -52,11 +52,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 310px;
-    }
-
-    @media all and (min-width: 1200px) {
-        margin-top: 410px;
+        margin-top: 210px;
     }
 `
 
@@ -80,6 +76,10 @@ export const Underline = styled.div`
 export const Text = styled.p`
     margin-top: 30px;
     font-size: 15px;
+
+    @media all and (min-width: 576px) {
+        margin-top: 40px;
+    }
 
     @media all and (min-width: 768px) {
         font-size: 16px;

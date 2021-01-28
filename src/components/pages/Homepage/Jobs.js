@@ -85,7 +85,7 @@ const JobLink = styled(Link)`
         margin-right: initial;
     }
 
-    @media all and (min-width: 992px) {
+    @media all and (min-width: 1200px) {
         margin-right: auto;
     }
 `

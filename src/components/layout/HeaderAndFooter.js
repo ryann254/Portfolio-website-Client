@@ -18,6 +18,11 @@ const ContainerFrame = styled.div`
             color: #457fca;
         }
     }
+    
+    .navbar-nav {
+        text-transform: uppercase;
+        font-size: 15px;
+    }
 
     .login {
         margin-top: 5px;
@@ -66,12 +71,24 @@ const Landing = styled.div`
     position: relative;
     height: 214px;
 
-    @media all and (min-width: 768px) {
+    @media all and (min-width: 576px) {
         height: 300px;
     }
 
+    @media all and (min-width: 768px) {
+        height: 390px;
+    }
+
     @media all and (min-width: 992px) {
-        height: 350px;
+        height: 510px;
+    }
+
+    @media all and (min-width: 1200px) {
+        height: 630px;
+    }
+
+    @media all and (min-width: 1440px) {
+        height: 700px;
     }
 
     @media all and (min-width: 1920px) {
@@ -91,25 +108,40 @@ const Img = styled.img`
     margin-right: auto;
     
     @media all and (min-width: 576px) {
-        top: 63%;
+        top: 57%;
         left: 50%;
-        transform: translate(-50%, -37%);
+        transform: translate(-50%, -43%);
+    }
+
+     
+    @media all and (min-width: 768px) {
+        top: 56%;
+        left: 50%;
+        transform: translate(-50%, -44%);
     }
 
     @media all and (min-width: 992px) {
-        top: 65%;
+        top: 56%;
         left: 50%;
-        transform: translate(-50%, -35%);
+        transform: translate(-50%, -44%);
     }
 
     @media all and (min-width: 1200px) {
-        top: 69%;
+        top: 55%;
         left: 50%;
-        transform: translate(-50%, -31%);
-        width: 1080px;
+        transform: translate(-50%, -45%);
+    }
+
+    @media all and (min-width: 1440px) {
+        width: 88%;
+        height: 800px !important;
+    }
+
+    @media all and (min-width: 1920px) {
+        width: 85%;
     }
 `
-
+ 
 const Footer = styled.footer`
     width: 100%;
     margin-top: 40px;
