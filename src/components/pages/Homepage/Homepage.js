@@ -154,12 +154,12 @@ function Homepage() {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Email>
-                        {/* Embeded Youtube Video */}
-                        <EmbededVideo />
                     </Col>
                 </Row>
             </Container>
             {/* Rest of the components */}
+            {/* Embeded Youtube Video */}
+            <EmbededVideo />
             <Jobs />
             <Events />
             <News />
