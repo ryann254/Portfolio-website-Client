@@ -19,9 +19,3 @@ code {
 .img-fluid {
   width: 100%;
 }
-
-/* @media all and (min-width: 576px) {
-  .container {
-    max-width: 992px !important;
-  }
-} */
