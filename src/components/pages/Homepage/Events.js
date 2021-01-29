@@ -25,9 +25,21 @@ const ContainerFrame = styled.div`
         justify-content: center;
     }
 
+    .events-container {
+            svg {
+                font-size: 22px;
+            }
+        }
+
     @media all and (min-width: 576px) {
         .event-text {
             margin-bottom: 27px;
+        }
+
+        .events-container {
+            svg {
+                font-size: 27px;
+            }
         }
     }
 
@@ -41,6 +53,12 @@ const ContainerFrame = styled.div`
         .btn {
             width: 40%;
         }
+
+        .events-container {
+            svg {
+                font-size: 34px;
+            }
+        }
     }
 
     @media all and (min-width: 1200px) {
@@ -52,11 +70,23 @@ const ContainerFrame = styled.div`
         .btn {
             width: 30%;
         }
+
+        .events-container {
+            svg {
+                font-size: 39px;
+            }
+        }
     }
 
     @media all and (min-width: 1920px) {
         max-width: 1920px;
         margin: 100px auto 0 auto;
+
+        .events-container {
+            svg {
+                font-size: 43px;
+            }
+        }
     }
 `
 
@@ -106,8 +136,8 @@ export default function Events() {
                             firstAndLastGutter={false}
                             activeItemIndex={activeItemIndex}
                             requestToChangeActive={value => setActiveItemIndex(value)}
-                            rightChevron={'>'}
-                            leftChevron={'<'}>
+                            leftChevron={<span class="iconify" data-icon="dashicons:arrow-left-alt2" data-inline="false"></span>}
+                            rightChevron={<span class="iconify" data-icon="dashicons:arrow-right-alt2" data-inline="false"></span>}>
                                 <Flip bottom>
                                     <SingleEvent picNumber="2" />
                                 </Flip>
