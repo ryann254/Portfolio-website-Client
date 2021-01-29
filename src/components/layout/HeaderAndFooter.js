@@ -116,22 +116,6 @@ const Img = styled.div`
     margin-left: auto;
     margin-right: auto;
 
-    .aws-btn {
-        --slider-height-percentage: 60%;
-        --slider-transition-duration: 6000ms;
-        --organic-arrow-thickness: 6px;
-        --organic-arrow-border-radius: 0px;
-        --organic-arrow-height: 36px;
-        --organic-arrow-color: #ffffff;
-        --control-button-width: 7%;
-        --control-button-height: 25%;
-        --control-button-background: transparent;
-        --control-bullet-color: #5f6fab;
-        --control-bullet-active-color: #1b4074;
-        --loader-bar-color: #851515;
-        --loader-bar-height: 5px;
-    }
-
     .awssld {
         --organic-arrow-thickness: 7px;
         --organic-arrow-color: #f46b34;
@@ -140,6 +124,28 @@ const Img = styled.div`
         --control-button-hover-opacity: 1;     
         --control-bullet-color: #f46b34;
         --control-bullet-active-color: #cf5b2c;
+    }
+
+    img {
+        animation: zoom 5000ms linear infinite;
+    }
+
+    @keyframes zoom {
+        0% { 
+            transform: scale(1.01);
+        }
+        25% {
+            transform: scale(1.03);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        75% {
+            transform: scale(1.07);
+        }
+        100% {
+            transform: scale(1.09);
+        }
     }
 
 
@@ -344,7 +350,7 @@ function HeaderAndFooter({children}) {
                             <AutoplaySlider 
                                 play={true}
                                 cancelOnInteraction={false} // should stop playing on user interaction
-                                interval={6000}
+                                interval={5000}
                                 animation="fallAnimation">
                                     <div data-src="assets/bg-images/bg-3.webp" />
                                     <div data-src="assets/bg-images/bg-2.webp" />
