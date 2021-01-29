@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const ContainerFrame = styled.div`
-    background: ${props => props.theme.darkColor};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     color: ${props => props.theme.primary};
 
     .iframe-container {
@@ -19,13 +19,6 @@ const ContainerFrame = styled.div`
             max-width: 720px;
         }
     }
-
-    /* @media all and (min-width: 992px) {
-        .iframe-container {
-            max-width: 960px;
-            padding: 60px 0;
-        }
-    } */
 
     @media all and (min-width: 1920px) {
         max-width: 1920px;

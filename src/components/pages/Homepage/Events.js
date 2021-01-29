@@ -10,9 +10,10 @@ import {Link} from 'react-router-dom'
 
 import {Underline, Text} from './Homepage'
 import SingleEvent from './SingleEvent'
+import MovingBackground from '../../reusable components/MovingBackground'
 
 const ContainerFrame = styled.div`
-    background: ${props => props.theme.darkColor};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     color: ${props => props.theme.primary};
     margin-top: 75px;
 
@@ -81,6 +82,7 @@ export default function Events() {
     return (
         <ContainerFrame>
             <Container fluid>
+                <MovingBackground />
                 <Row>
                     <Col xs={12} className="header-container mx-auto">
                         <Header>You think you know Oklahoma City?</Header>
@@ -89,7 +91,7 @@ export default function Events() {
                         </Text>
                     </Col>
                     <Col xs={12} className="events-container">
-                    <div style={{"padding":"40px 25px 70px 25px","maxWidth":1200,"margin":"0 auto"}}>
+                    <div style={{"padding":"40px 25px 70px 25px","maxWidth":1300,"margin":"0 auto"}}>
                         <ItemsCarousel
                             infiniteLoop={true}
                             gutter={12}

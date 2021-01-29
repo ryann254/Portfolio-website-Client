@@ -6,10 +6,13 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import styled from 'styled-components'
 
+import MovingBackground from '../reusable components/MovingBackground'
+
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
 const ContainerFrame = styled.div`
-    background: ${props => props.theme.gradient};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+
 
     .navbar-dark .navbar-nav .nav-link {
         color: rgba(255,255,255,.8);
@@ -67,7 +70,7 @@ const ContainerFrame = styled.div`
 `
 
 const Landing = styled.div`
-    background: ${props => props.theme.gradient};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     position: relative;
     height: 214px;
 
@@ -146,7 +149,6 @@ const Footer = styled.footer`
     width: 100%;
     margin-top: 60px;
     padding-bottom: 25px;
-    background: #1D4350;
 
 
     .upper-footer {
@@ -156,6 +158,10 @@ const Footer = styled.footer`
         p {
             color: ${props => props.theme.primary}
         }
+    }
+
+    .bottom-footer {
+        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     }
 
     @media all and (min-width: 411px) {
@@ -273,6 +279,7 @@ function HeaderAndFooter({children}) {
                 </Navbar> 
             </ContainerFrame>
             <Landing>
+                <MovingBackground />
                 <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
             </Landing>
             {children}
@@ -295,6 +302,7 @@ function HeaderAndFooter({children}) {
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
                 <Container className="bottom-footer" fluid>
+                    <MovingBackground />
                     <Row>
                         <Col xs={12} md={6} xl={4}>
                             <UsefulLinks>

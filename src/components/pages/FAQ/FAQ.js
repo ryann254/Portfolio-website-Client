@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 //Own Components
 import {Header} from '../Homepage/Events'
 import {Underline} from '../Homepage/Homepage'
-import SingleStatus from '../../common components/SingleStatusOrFAQ'
+import SingleStatus from '../../reusable components/SingleStatusOrFAQ'
 
 const headingQtn = 'FAQ'
 const FAQAnswers = [
