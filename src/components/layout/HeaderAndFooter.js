@@ -5,8 +5,14 @@ import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import styled from 'styled-components'
+import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/dist/styles.css';
+import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
 
 import MovingBackground from '../reusable components/MovingBackground'
+
+const AutoplaySlider = withAutoplay(AwesomeSlider)
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
@@ -100,7 +106,7 @@ const Landing = styled.div`
     }
 `
 
-const Img = styled.img`
+const Img = styled.div`
     position: absolute;
     top: 55%;
     left: 50%;
@@ -109,6 +115,34 @@ const Img = styled.img`
     display: flex;
     margin-left: auto;
     margin-right: auto;
+
+    .aws-btn {
+        --slider-height-percentage: 60%;
+        --slider-transition-duration: 6000ms;
+        --organic-arrow-thickness: 6px;
+        --organic-arrow-border-radius: 0px;
+        --organic-arrow-height: 36px;
+        --organic-arrow-color: #ffffff;
+        --control-button-width: 7%;
+        --control-button-height: 25%;
+        --control-button-background: transparent;
+        --control-bullet-color: #5f6fab;
+        --control-bullet-active-color: #1b4074;
+        --loader-bar-color: #851515;
+        --loader-bar-height: 5px;
+    }
+
+    .awssld {
+        --organic-arrow-thickness: 7px;
+        --organic-arrow-color: #f46b34;
+        --organic-arrow-thickness: 6px;
+        --control-button-opacity: 0.85;
+        --control-button-hover-opacity: 1;     
+        --control-bullet-color: #f46b34;
+        --control-bullet-active-color: #cf5b2c;
+    }
+
+
     
     @media all and (min-width: 576px) {
         top: 57%;
@@ -306,7 +340,17 @@ function HeaderAndFooter({children}) {
             </ContainerFrame>
             <Landing>
                 <MovingBackground>
-                    <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
+                        <Img>
+                            <AutoplaySlider 
+                                play={true}
+                                cancelOnInteraction={false} // should stop playing on user interaction
+                                interval={6000}
+                                animation="fallAnimation">
+                                    <div data-src="assets/bg-images/bg-3.webp" />
+                                    <div data-src="assets/bg-images/bg-2.webp" />
+                                    <div data-src="assets/bg-images/bg-4.webp" />
+                            </AutoplaySlider>
+                        </Img>
                 </MovingBackground>
             </Landing>
             {children}
