@@ -160,16 +160,43 @@ const Footer = styled.footer`
     }
 
     .bottom-footer {
-        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        height: 940px;
+        padding-right: 0;
+        padding-left: 0;
+        position: relative;
+    }
+
+    .footer-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     @media all and (min-width: 411px) {
+        .bottom-footer {
+            height: 960px;
+        }
+
         p {
             font-size: 16px !important;
         }
     }
 
+    @media all and (min-width: 768px) {
+        .bottom-footer {
+            height: 770px;
+        }
+    }
+
     @media all and (min-width: 1200px) {
+        .bottom-footer {
+            height: 500px;
+        }
+
         margin-top: 85px;
     }
 
@@ -212,7 +239,6 @@ const UsefulLinks = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 35px;
 
     p {
         font-size: 15px;
@@ -302,48 +328,49 @@ function HeaderAndFooter({children}) {
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
-                <Container className="bottom-footer" fluid>
-                    <MovingBackground />
-                    <Row>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>Our Vision</FooterHeader>
-                                <Underline />
-                                <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
-                            </UsefulLinks>
-                        </Col>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>useful links</FooterHeader>
-                                <Underline />
-                                <a href="/about">About</a>
-                                <a href="/events">Events</a>
-                                <a href="/status">Status</a>
-                                <a href="/faq">FAQ</a>
-                                <a href="/contact">Contact</a>
-                                <a href="/donation">Donation</a>
-                            </UsefulLinks>
-                        </Col>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>Contact</FooterHeader>
-                                <Underline />
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
-                                    <p>King Zoo Palace | Githurai 44 Road, 00100</p>
-                                </ContactDetails>
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
-                                    <p>client@gmail.com</p>
-                                </ContactDetails>
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
-                                    <p>+987879929202</p>
-                                </ContactDetails>
-                            </UsefulLinks>
-                        </Col>
-                    </Row>
-                </Container>
+                    <Container className="bottom-footer" fluid>
+                        <MovingBackground>
+                        <Row className="footer-container">
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>Our Vision</FooterHeader>
+                                    <Underline />
+                                    <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
+                                </UsefulLinks>
+                            </Col>
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>useful links</FooterHeader>
+                                    <Underline />
+                                    <a href="/about">About</a>
+                                    <a href="/events">Events</a>
+                                    <a href="/status">Status</a>
+                                    <a href="/faq">FAQ</a>
+                                    <a href="/contact">Contact</a>
+                                    <a href="/donation">Donation</a>
+                                </UsefulLinks>
+                            </Col>
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>Contact</FooterHeader>
+                                    <Underline />
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
+                                        <p>King Zoo Palace | Githurai 44 Road, 00100</p>
+                                    </ContactDetails>
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
+                                        <p>client@gmail.com</p>
+                                    </ContactDetails>
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
+                                        <p>+987879929202</p>
+                                    </ContactDetails>
+                                </UsefulLinks>
+                            </Col>
+                        </Row>
+                        </MovingBackground>
+                    </Container>
             </Footer>
         </>
     )
