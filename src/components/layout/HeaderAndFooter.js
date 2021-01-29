@@ -148,7 +148,6 @@ const Img = styled.img`
 const Footer = styled.footer`
     width: 100%;
     margin-top: 60px;
-    padding-bottom: 25px;
 
 
     .upper-footer {
@@ -172,10 +171,6 @@ const Footer = styled.footer`
 
     @media all and (min-width: 1200px) {
         margin-top: 85px;
-
-        .bottom-footer {
-            max-width: 1140px;
-        }
     }
 
     @media all and (min-width: 1920px) {
@@ -217,6 +212,7 @@ const UsefulLinks = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 35px;
 
     p {
         font-size: 15px;
@@ -227,6 +223,10 @@ const UsefulLinks = styled.div`
     a {
         margin-top: 30px;
         color: ${props => props.theme.primary} !important;
+    }
+
+    @media all and (min-width: 1200px) {
+        padding-bottom: 50px;
     }
 `
 

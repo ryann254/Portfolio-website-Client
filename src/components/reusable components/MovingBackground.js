@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import './MovingBackground.scss'
 const ContainerFrame = styled.div`
-    
+    position: absolute;
 `
 
 export default function MovingBackground() {
