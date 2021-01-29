@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import MovingBackground from '../../reusable components/MovingBackground'
 
 const ContainerFrame = styled.div`
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
@@ -44,6 +45,7 @@ export default function EmbededVideo() {
     return (
         <ContainerFrame>
             <Container fluid>
+            <MovingBackground>
                 <Row>
                     <Col className="iframe-container">
                         <IframeContainer>
@@ -51,6 +53,7 @@ export default function EmbededVideo() {
                         </IframeContainer>
                     </Col>
                 </Row>
+             </MovingBackground>
             </Container>
         </ContainerFrame>
     )

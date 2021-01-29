@@ -3,11 +3,10 @@ import styled from 'styled-components'
 
 import './MovingBackground.scss'
 const ContainerFrame = styled.div`
-    position: absolute;
+    height: inherit;
 `
 
-export default function MovingBackground() {
-    console.log('here')
+export default function MovingBackground({children}) {
     return (
         <ContainerFrame>
             <div className="background-container">
@@ -15,6 +14,7 @@ export default function MovingBackground() {
                 <div id="stars2"></div>
                 <div id="stars3"></div>
             </div>
+            {children}
         </ContainerFrame>
     )
 }

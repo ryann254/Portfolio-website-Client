@@ -279,8 +279,9 @@ function HeaderAndFooter({children}) {
                 </Navbar> 
             </ContainerFrame>
             <Landing>
-                <MovingBackground />
-                <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
+                <MovingBackground>
+                    <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
+                </MovingBackground>
             </Landing>
             {children}
             <Footer>
