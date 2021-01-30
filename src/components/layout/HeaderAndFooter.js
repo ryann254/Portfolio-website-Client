@@ -149,13 +149,11 @@ const Img = styled.div`
     }
 
 
-    
-    @media all and (min-width: 576px) {
+    @media all and (min-width: 411px) {
         top: 57%;
         left: 50%;
         transform: translate(-50%, -43%);
     }
-
      
     @media all and (min-width: 768px) {
         top: 56%;
