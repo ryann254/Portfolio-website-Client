@@ -19,7 +19,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 576px) {
-        width: 80%;
+        width: 90%;
         display: flex;
         margin-left: auto;
         margin-right: auto;

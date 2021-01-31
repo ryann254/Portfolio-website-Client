@@ -9,7 +9,7 @@ import {Text} from './Homepage'
 import {EventHeader} from './SingleEvent'
 
 const Member = styled.div`
-    margin-top: 55px;
+    margin-top: 75px;
 
     @media all and (min-width: 768px) {
         .member-image {

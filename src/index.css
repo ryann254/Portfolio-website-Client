@@ -7,10 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
-  overflow-x: hidden !important;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -18,6 +14,10 @@ code {
 
 .img-fluid {
   width: 100%;
+}
+
+html, body {
+  overflow: initial !important;
 }
 
 @media all and (min-width: 992px) {

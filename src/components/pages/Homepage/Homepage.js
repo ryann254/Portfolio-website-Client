@@ -34,7 +34,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 576px) {
-        margin-top: 175px;
+        margin-top: 150px;
 
         .input-group {
             top: 90%;
@@ -44,7 +44,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 210px;
+        margin-top: 170px;
 
         .input-group {
             width: 65% !important;
@@ -52,11 +52,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 310px;
-    }
-
-    @media all and (min-width: 1200px) {
-        margin-top: 410px;
+        margin-top: 210px;
     }
 `
 
@@ -81,6 +77,10 @@ export const Text = styled.p`
     margin-top: 30px;
     font-size: 15px;
 
+    @media all and (min-width: 576px) {
+        margin-top: 40px;
+    }
+
     @media all and (min-width: 768px) {
         font-size: 16px;
     }
@@ -88,7 +88,7 @@ export const Text = styled.p`
 
 const Email = styled.div`
     position: relative;
-    margin: 65px 0;
+    margin: 75px 0;
     border-radius: 5px;
     background: ${props => props.theme.darkColor};
     padding: 25px 0;
@@ -116,6 +116,14 @@ const Email = styled.div`
         .form-control, .btn {
             border-radius: 0 !important;
         }
+    }
+
+    @media all and (min-width: 576px) {
+        margin: 95px 0;
+    }
+
+    @media all and (min-width: 1200px) {
+        margin: 115px 0;
     }
 `
 
@@ -146,12 +154,12 @@ function Homepage() {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Email>
-                        {/* Embeded Youtube Video */}
-                        <EmbededVideo />
                     </Col>
                 </Row>
             </Container>
             {/* Rest of the components */}
+            {/* Embeded Youtube Video */}
+            <EmbededVideo />
             <Jobs />
             <Events />
             <News />

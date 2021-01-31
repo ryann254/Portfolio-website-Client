@@ -28,6 +28,10 @@ const ContainerFrame = styled.div`
         .news-container {
             max-width: 960px;
         }
+
+        .btn {
+            width: 40%;
+        }
     }
 
     @media all and (min-width: 992px) {

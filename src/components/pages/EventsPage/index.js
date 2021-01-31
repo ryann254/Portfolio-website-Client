@@ -16,15 +16,19 @@ const ContainerFrame = styled.div`
     
     .event {
         position: relative;
-        margin: 30px 0;
+        margin: 50px 0;
     }
 
     @media all and (min-width: 576px) {
-        margin-top: 110px;
+        margin-top: 60px;
+
+        .event {
+            margin-top: 40px;
+        }
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 150px;
+        margin-top: 80px;
 
         .heading {
             margin-bottom: 50px;
@@ -32,7 +36,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 240px;
+        margin-top: 110px;
 
         .events-container {
             max-width: 960px;
@@ -40,7 +44,7 @@ const ContainerFrame = styled.div`
     }
 
     @media all and (min-width: 1200px) {
-        margin-top: 350px;
+        margin-top: 130px;
 
         .events-container {
             max-width: 1140px;

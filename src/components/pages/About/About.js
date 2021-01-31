@@ -15,19 +15,23 @@ const ContainerFrame = styled.div`
     }
 
     .smaller-header {
-        margin: 20px 0 10px 0; 
+        margin: 40px 0 10px 0; 
         text-align: center;
     }
 
     @media all and (min-width: 576px) {
         .heading {
-            margin-top: 110px;
+            margin-top: 60px;
+        }
+
+        .about-underline {
+            margin-bottom: 20px;
         }
     }
 
     @media all and (min-width: 768px) {
         .heading {
-            margin-top: 150px;
+            margin-top: 80px;
             margin-bottom: 50px;
         }
 
@@ -45,13 +49,7 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 992px) {
         .heading {
-            margin-top: 240px;
-        }
-    }
-
-    @media all and (min-width: 1200px) {
-        .heading {
-            margin-top: 350px;
+            margin-top: 110px;
         }
     }
 `
@@ -63,7 +61,7 @@ export default function About() {
                 <Row>
                     <Col xs={12} className="heading">
                         <Header className="text-center">About</Header>
-                        <Underline />
+                        <Underline className="about-underline" />
                     </Col>
                     <Col xs={12} md={6}>
                         <img src="assets/events/event-7.webp" alt="events" className="img-fluid about-image"/>

@@ -5,11 +5,20 @@ import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import styled from 'styled-components'
+import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/dist/styles.css';
+import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
+
+import MovingBackground from '../reusable components/MovingBackground'
+
+const AutoplaySlider = withAutoplay(AwesomeSlider)
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
 const ContainerFrame = styled.div`
-    background: ${props => props.theme.gradient};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+
 
     .navbar-dark .navbar-nav .nav-link {
         color: rgba(255,255,255,.8);
@@ -17,6 +26,11 @@ const ContainerFrame = styled.div`
         &:hover {
             color: #457fca;
         }
+    }
+    
+    .navbar-nav {
+        text-transform: uppercase;
+        font-size: 15px;
     }
 
     .login {
@@ -34,7 +48,7 @@ const ContainerFrame = styled.div`
         @media all and (min-width: 768px) {
             .navbar-nav {
                 align-items: center;
-                width: 95%;
+                width: 97%;
                 margin-left: auto;
             }
 
@@ -56,22 +70,34 @@ const ContainerFrame = styled.div`
         }
 
         @media all and (min-width: 1920px) {
-        max-width: 1920px;
-        margin: 0 auto;
-    }
+            max-width: 1920px;
+            margin: 0 auto;
+        }
 `
 
 const Landing = styled.div`
-    background: ${props => props.theme.gradient};
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     position: relative;
     height: 214px;
 
-    @media all and (min-width: 768px) {
+    @media all and (min-width: 576px) {
         height: 300px;
     }
 
+    @media all and (min-width: 768px) {
+        height: 390px;
+    }
+
     @media all and (min-width: 992px) {
-        height: 350px;
+        height: 510px;
+    }
+
+    @media all and (min-width: 1200px) {
+        height: 630px;
+    }
+
+    @media all and (min-width: 1440px) {
+        height: 700px;
     }
 
     @media all and (min-width: 1920px) {
@@ -80,7 +106,7 @@ const Landing = styled.div`
     }
 `
 
-const Img = styled.img`
+const Img = styled.div`
     position: absolute;
     top: 55%;
     left: 50%;
@@ -89,32 +115,79 @@ const Img = styled.img`
     display: flex;
     margin-left: auto;
     margin-right: auto;
+
+    .awssld {
+        --organic-arrow-thickness: 7px;
+        --organic-arrow-color: #f46b34;
+        --organic-arrow-thickness: 6px;
+        --control-button-opacity: 0.85;
+        --control-button-hover-opacity: 1;     
+        --control-bullet-color: #f46b34;
+        --control-bullet-active-color: #cf5b2c;
+    }
+
+    img {
+        animation: zoom 5000ms linear infinite;
+    }
+
+    @keyframes zoom {
+        0% { 
+            transform: scale(1.01);
+        }
+        25% {
+            transform: scale(1.03);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        75% {
+            transform: scale(1.07);
+        }
+        100% {
+            transform: scale(1.09);
+        }
+    }
+
+
     
     @media all and (min-width: 576px) {
-        top: 63%;
+        top: 57%;
         left: 50%;
-        transform: translate(-50%, -37%);
+        transform: translate(-50%, -43%);
+    }
+
+     
+    @media all and (min-width: 768px) {
+        top: 56%;
+        left: 50%;
+        transform: translate(-50%, -44%);
     }
 
     @media all and (min-width: 992px) {
-        top: 65%;
+        top: 56%;
         left: 50%;
-        transform: translate(-50%, -35%);
+        transform: translate(-50%, -44%);
     }
 
     @media all and (min-width: 1200px) {
-        top: 69%;
+        top: 55%;
         left: 50%;
-        transform: translate(-50%, -31%);
-        width: 1080px;
+        transform: translate(-50%, -45%);
+    }
+
+    @media all and (min-width: 1440px) {
+        width: 88%;
+        height: 800px !important;
+    }
+
+    @media all and (min-width: 1920px) {
+        width: 85%;
     }
 `
-
+ 
 const Footer = styled.footer`
     width: 100%;
-    margin-top: 40px;
-    padding-bottom: 25px;
-    background: #1D4350;
+    margin-top: 60px;
 
 
     .upper-footer {
@@ -126,21 +199,50 @@ const Footer = styled.footer`
         }
     }
 
+    .bottom-footer {
+        height: 940px;
+        padding-right: 0;
+        padding-left: 0;
+        position: relative;
+    }
+
+    .footer-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     @media all and (min-width: 411px) {
+        .bottom-footer {
+            height: 960px;
+        }
+
         p {
             font-size: 16px !important;
         }
     }
 
+    @media all and (min-width: 768px) {
+        .bottom-footer {
+            height: 770px;
+        }
+    }
+
     @media all and (min-width: 1200px) {
         .bottom-footer {
-            max-width: 1140px;
+            height: 500px;
         }
+
+        margin-top: 85px;
     }
 
     @media all and (min-width: 1920px) {
         max-width: 1920px;
-        margin: 0 auto;
+        margin: 85px auto 0 auto;
     }
 `
 const Socials = styled.div`
@@ -188,10 +290,14 @@ const UsefulLinks = styled.div`
         margin-top: 30px;
         color: ${props => props.theme.primary} !important;
     }
+
+    @media all and (min-width: 1200px) {
+        padding-bottom: 50px;
+    }
 `
 
 const FooterHeader = styled.h4`
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -239,7 +345,19 @@ function HeaderAndFooter({children}) {
                 </Navbar> 
             </ContainerFrame>
             <Landing>
-                <Img src="assets/bg-images/bg-3.webp" alt="bg" className="img-fluid"/>
+                <MovingBackground>
+                        <Img>
+                            <AutoplaySlider 
+                                play={true}
+                                cancelOnInteraction={false} // should stop playing on user interaction
+                                interval={5000}
+                                animation="fallAnimation">
+                                    <div data-src="assets/bg-images/bg-3.webp" />
+                                    <div data-src="assets/bg-images/bg-2.webp" />
+                                    <div data-src="assets/bg-images/bg-4.webp" />
+                            </AutoplaySlider>
+                        </Img>
+                </MovingBackground>
             </Landing>
             {children}
             <Footer>
@@ -260,47 +378,49 @@ function HeaderAndFooter({children}) {
                     </Socials>
                     <p className="text-center">Get connected with us on social networks</p>
                 </div>
-                <Container className="bottom-footer" fluid>
-                    <Row>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>Our Vision</FooterHeader>
-                                <Underline />
-                                <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
-                            </UsefulLinks>
-                        </Col>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>useful links</FooterHeader>
-                                <Underline />
-                                <a href="/about">About</a>
-                                <a href="/events">Events</a>
-                                <a href="/status">Status</a>
-                                <a href="/faq">FAQ</a>
-                                <a href="/contact">Contact</a>
-                                <a href="/donation">Donation</a>
-                            </UsefulLinks>
-                        </Col>
-                        <Col xs={12} md={6} xl={4}>
-                            <UsefulLinks>
-                                <FooterHeader>Contact</FooterHeader>
-                                <Underline />
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
-                                    <p>King Zoo Palace | Githurai 44 Road, 00100</p>
-                                </ContactDetails>
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
-                                    <p>client@gmail.com</p>
-                                </ContactDetails>
-                                <ContactDetails>
-                                    <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
-                                    <p>+987879929202</p>
-                                </ContactDetails>
-                            </UsefulLinks>
-                        </Col>
-                    </Row>
-                </Container>
+                    <Container className="bottom-footer" fluid>
+                        <MovingBackground>
+                        <Row className="footer-container">
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>Our Vision</FooterHeader>
+                                    <Underline />
+                                    <p>Our vision is to change the life of all students who're hungry for success. That's why you're here today.</p>
+                                </UsefulLinks>
+                            </Col>
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>useful links</FooterHeader>
+                                    <Underline />
+                                    <a href="/about">About</a>
+                                    <a href="/events">Events</a>
+                                    <a href="/status">Status</a>
+                                    <a href="/faq">FAQ</a>
+                                    <a href="/contact">Contact</a>
+                                    <a href="/donation">Donation</a>
+                                </UsefulLinks>
+                            </Col>
+                            <Col xs={12} md={6} xl={4}>
+                                <UsefulLinks>
+                                    <FooterHeader>Contact</FooterHeader>
+                                    <Underline />
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="bi:house-fill" data-inline="false"></span>
+                                        <p>King Zoo Palace | Githurai 44 Road, 00100</p>
+                                    </ContactDetails>
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="clarity:email-solid" data-inline="false"></span>
+                                        <p>client@gmail.com</p>
+                                    </ContactDetails>
+                                    <ContactDetails>
+                                        <span className="iconify" data-icon="entypo:phone" data-inline="false"></span>
+                                        <p>+987879929202</p>
+                                    </ContactDetails>
+                                </UsefulLinks>
+                            </Col>
+                        </Row>
+                        </MovingBackground>
+                    </Container>
             </Footer>
         </>
     )
