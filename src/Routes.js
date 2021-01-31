@@ -18,7 +18,6 @@ import EventsPage from './components/pages/EventsPage'
 import SingleEventPage from './components/pages/EventsPage/SingleEventPage'
 import NewsPage from './components/pages/NewsPage'
 import JobsPage from './components/pages/JobsPage'
-import Donation from './components/pages/Donation'
 
 
 function Routes() {
@@ -36,7 +35,6 @@ function Routes() {
                     <RouteWithLayout path="/faq" exact component={FAQ} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/contact" exact component={ContactForm} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/about" exact component={About} layout={HeaderAndFooter}/>
-                    <RouteWithLayout path="/donation" exact component={Donation} layout={HeaderAndFooter}/>
                 </ThemeProvider>
             </Switch>
         </BrowserRouter>
