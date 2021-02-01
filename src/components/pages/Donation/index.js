@@ -56,8 +56,8 @@ const CardElementContainer = styled.div`
 `;
 
 function CheckoutForm() {
-  const [isProcessing, setProcessingTo] = useState(false);
-  const [checkoutError, setCheckoutError] = useState();
+  const [isProcessing] = useState(false);
+  const [checkoutError] = useState();
 
   const handleFormSubmit = async ev => {
     ev.preventDefault();
