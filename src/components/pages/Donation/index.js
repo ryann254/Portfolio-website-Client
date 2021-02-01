@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components'
 import {loadStripe} from '@stripe/stripe-js'
 import {Elements, CardElement} from '@stripe/react-stripe-js'
+import axios from 'axios'
 
 //Own Components
 import Row from './prebuilt/Row'
@@ -54,8 +55,8 @@ const CardElementContainer = styled.div`
 `;
 
 function CheckoutForm() {
-  const [isProcessing, setProcessingTo] = useState(false);
-  const [checkoutError, setCheckoutError] = useState();
+  const [isProcessing] = useState(false);
+  const [checkoutError] = useState();
 
   const handleFormSubmit = async ev => {
     ev.preventDefault();
@@ -69,9 +70,32 @@ function CheckoutForm() {
         state: ev.target.state.value,
         postal_code: ev.target.zip.value
       },
-      price: ev.target.price.value
+      price: ev.target.amount.value
     };
+
+    const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
+      amount: parseInt(billingDetails.price, 10) * 100
+    })
+
+    console.log(clientSecret)
   };
+
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#fff",
+        "::placeholder": {
+          color: "#87bbfd" }
+      },
+      invalid: {
+        color: "#ffc7ee",
+        iconColor: "#ffc7ee"
+      }
+    },
+    hidePostalCode: true
+  }
   return ( 
     <ContainerFrame>
       <Elements stripe={stripePromise}>
@@ -81,13 +105,13 @@ function CheckoutForm() {
           </Row>
           <Row>
             <CardElementContainer>
-              <CardElement />
+              <CardElement options={cardElementOptions}/>
             </CardElementContainer>
           </Row>
           {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
           <Row>
             <SubmitButton disabled={isProcessing}>
-              {isProcessing ? "Processing..." : `Pay`}
+              {isProcessing ? "Processing...." : `Pay`}
             </SubmitButton>
           </Row>
         </form>

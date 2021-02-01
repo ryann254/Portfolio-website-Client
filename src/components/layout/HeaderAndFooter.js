@@ -9,7 +9,6 @@ import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
-import {loadStripe} from '@stripe/stripe-js';
 
 
 import MovingBackground from '../reusable components/MovingBackground'
@@ -321,8 +320,6 @@ const ContactDetails = styled.div`
         margin-top: 10px;
     }
 `
-
-const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk');
 
 
 function HeaderAndFooter({children}) {
