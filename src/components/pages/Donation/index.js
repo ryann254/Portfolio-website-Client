@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components'
 import {loadStripe} from '@stripe/stripe-js'
 import {Elements, CardElement} from '@stripe/react-stripe-js'
+import axios from 'axios'
 
 //Own Components
 import Row from './prebuilt/Row'
@@ -9,7 +10,7 @@ import BillingDetailsFields from './prebuilt/BillingDetailsFields'
 import CheckoutError from "./prebuilt/CheckoutError";
 import SubmitButton from "./prebuilt/SubmitButton";
 
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
 
 const ContainerFrame = styled.div`
   background-color: #6772e5;
@@ -70,9 +71,32 @@ function CheckoutForm() {
         state: ev.target.state.value,
         postal_code: ev.target.zip.value
       },
-      price: ev.target.price.value
+      price: ev.target.amount.value
     };
+    
+    const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
+      amount: parseInt(billingDetails.price, 10) * 100
+    })
+
+    console.log(clientSecret)
   };
+
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#fff",
+        "::placeholder": {
+          color: "#87bbfd" }
+      },
+      invalid: {
+        color: "#ffc7ee",
+        iconColor: "#ffc7ee"
+      }
+    },
+    hidePostalCode: true
+  }
   return ( 
     <ContainerFrame>
       <Elements stripe={stripePromise}>
@@ -82,7 +106,7 @@ function CheckoutForm() {
           </Row>
           <Row>
             <CardElementContainer>
-              <CardElement />
+              <CardElement options={cardElementOptions}/>
             </CardElementContainer>
           </Row>
           {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
