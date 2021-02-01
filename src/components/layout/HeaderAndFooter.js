@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,17 +9,44 @@ import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
+import $ from 'jquery'
 
 
 import MovingBackground from '../reusable components/MovingBackground'
+import LoginModal from '../reusable components/LoginModal'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
+
+const OuterContainer = styled.div`
+    transition: all 500ms cubic-bezier(0.55, 0, 0.1, 1);
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        box-shadow:0 2px 6px rgba(0,0,0,0.2);  
+        animation:slide-down 0.7s;
+        opacity:0.9; 
+    }
+
+    @keyframes slide-down {
+        0% {
+            opacity: 0;
+            transform: translateY(-100%);
+        } 
+        100% {
+            opacity: 0.9;
+            transform: translateY(0);
+        } 
+    }
+`
 const ContainerFrame = styled.div`
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-
 
     .navbar-dark .navbar-nav .nav-link {
         color: rgba(255,255,255,.8);
@@ -323,9 +350,24 @@ const ContactDetails = styled.div`
 
 
 function HeaderAndFooter({children}) {
+    const [show, setShow] = useState(false)
+
+    const handleShow = () => setShow(!show)
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50){  
+          $('.header').addClass("sticky");
+        }
+        else {
+          $('.header').removeClass("sticky");
+        }
+      });
+
     return (
         <>
-            <ContainerFrame>
+            <LoginModal show={show} onHide={handleShow}/>
+            <OuterContainer>
+            <ContainerFrame className="header">
                 <Navbar className="mx-auto" expand="md" variant="dark">
                     <Navbar.Brand href="/">
                         <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
@@ -339,11 +381,12 @@ function HeaderAndFooter({children}) {
                             <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
                             <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
                             <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
-                            <Nav.Link href="/login" className="mx-auto text-white login">Login</Nav.Link>
+                            <Nav.Link href="#" className="mx-auto text-white login" onClick={handleShow}>Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar> 
             </ContainerFrame>
+            </OuterContainer>
             <Landing>
                 <MovingBackground>
                         <Img>
