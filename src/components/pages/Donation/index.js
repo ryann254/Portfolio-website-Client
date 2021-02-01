@@ -10,11 +10,7 @@ import BillingDetailsFields from './prebuilt/BillingDetailsFields'
 import CheckoutError from "./prebuilt/CheckoutError";
 import SubmitButton from "./prebuilt/SubmitButton";
 
-<<<<<<< HEAD
 const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
-=======
-const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
->>>>>>> 86afdec69409530427aef944be7ac5368d6c83b6
 
 const ContainerFrame = styled.div`
   background-color: #6772e5;
