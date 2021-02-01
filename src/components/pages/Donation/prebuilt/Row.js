@@ -7,6 +7,7 @@ const Row = styled.div`
     inset 0 1px 0 #829fff;
   border-radius: 4px;
   position: relative;
+  padding: 20px 10px;
 
   @media all and (min-width: 411px) {
     width: 350px;

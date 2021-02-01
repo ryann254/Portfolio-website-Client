@@ -82,18 +82,6 @@ function CheckoutForm() {
 
 
   const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: "16px",
-        color: "#fff",
-        "::placeholder": {
-          color: "#87bbfd" }
-      },
-      invalid: {
-        color: "#ffc7ee",
-        iconColor: "#ffc7ee"
-      }
-    },
     hidePostalCode: true
   }
   return ( 
