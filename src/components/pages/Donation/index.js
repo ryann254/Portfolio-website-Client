@@ -10,7 +10,11 @@ import BillingDetailsFields from './prebuilt/BillingDetailsFields'
 import CheckoutError from "./prebuilt/CheckoutError";
 import SubmitButton from "./prebuilt/SubmitButton";
 
+<<<<<<< HEAD
 const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
+=======
+const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
+>>>>>>> 86afdec69409530427aef944be7ac5368d6c83b6
 
 const ContainerFrame = styled.div`
   background-color: #6772e5;
@@ -56,8 +60,8 @@ const CardElementContainer = styled.div`
 `;
 
 function CheckoutForm() {
-  const [isProcessing, setProcessingTo] = useState(false);
-  const [checkoutError, setCheckoutError] = useState();
+  const [isProcessing] = useState(false);
+  const [checkoutError] = useState();
 
   const handleFormSubmit = async ev => {
     ev.preventDefault();
@@ -73,7 +77,7 @@ function CheckoutForm() {
       },
       price: ev.target.amount.value
     };
-    
+
     const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
       amount: parseInt(billingDetails.price, 10) * 100
     })
@@ -112,7 +116,7 @@ function CheckoutForm() {
           {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
           <Row>
             <SubmitButton disabled={isProcessing}>
-              {isProcessing ? "Processing..." : `Pay`}
+              {isProcessing ? "Processing...." : `Pay`}
             </SubmitButton>
           </Row>
         </form>
