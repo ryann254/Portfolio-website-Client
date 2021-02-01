@@ -12,7 +12,6 @@ import SubmitButton from "./prebuilt/SubmitButton";
 const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
 
 const ContainerFrame = styled.div`
-  background-color: #6772e5;
   font-size: 18px;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   padding-top: 85px;
