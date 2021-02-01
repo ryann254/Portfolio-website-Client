@@ -10,7 +10,7 @@ import BillingDetailsFields from './prebuilt/BillingDetailsFields'
 import CheckoutError from "./prebuilt/CheckoutError";
 import SubmitButton from "./prebuilt/SubmitButton";
 
-const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
+const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
 
 const ContainerFrame = styled.div`
   background-color: #6772e5;
