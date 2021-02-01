@@ -3,17 +3,24 @@ const express = require('express')
 const cors = require("cors");
 const app = express()
 
+// parse json request body
+app.use(express.json());
+
+// parse urlencoded request body
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use(cors());
 
 const Stripe = require('stripe')
-const stripe = new Stripe(process.env.NODE_ENV_SECRET_KEY)
+const stripe = new Stripe(process.env.SECRET_KEY)
 console.log(process.env.SECRET_KEY)
 
 app.post('/api/payment_intents', async (req, res) => {
     if (req.method === 'POST') {
         try {
-            console.log(req.method)
+            console.log(req.method);
+            console.log(req.body);
             const { amount } = req.body;
 
             const paymentIntent = await stripe.paymentIntents.create({
@@ -21,9 +28,12 @@ app.post('/api/payment_intents', async (req, res) => {
                 currency: "usd"
             })
 
+            console.log(paymentIntent.client_secret);
+
             res.status(200).send(paymentIntent.client_secret)
             
         } catch (error) {
+            console.log(error);
             res.status(500).json({ statusCode: 500, message: error.message })
         }
     } else {
