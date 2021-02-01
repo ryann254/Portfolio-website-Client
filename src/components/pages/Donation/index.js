@@ -73,7 +73,7 @@ function CheckoutForm() {
       },
       price: ev.target.amount.value
     };
-    
+
     const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
       amount: parseInt(billingDetails.price, 10) * 100
     })
@@ -112,7 +112,7 @@ function CheckoutForm() {
           {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
           <Row>
             <SubmitButton disabled={isProcessing}>
-              {isProcessing ? "Processing..." : `Pay`}
+              {isProcessing ? "Processing...." : `Pay`}
             </SubmitButton>
           </Row>
         </form>
