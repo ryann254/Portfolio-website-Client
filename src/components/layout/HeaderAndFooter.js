@@ -326,22 +326,6 @@ const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD0
 
 
 function HeaderAndFooter({children}) {
-    const handleClick = async(event) => {
-        const stripe = await stripePromise
-    
-        const response = await fetch('http://localhost:4242/create-checkout-session', {method: 'POST'})
-    
-        const session = await response.json()
-    
-        const result = await stripe.redirectToCheckout({
-          sessionId: session.id
-        })
-    
-        if (result.error) {
-          console.log(result.error.message)
-        }
-      }
-
     return (
         <>
             <ContainerFrame>
@@ -357,7 +341,7 @@ function HeaderAndFooter({children}) {
                             <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
                             <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
                             <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
-                            <Nav.Link href="#" className="mx-auto contact" onClick={handleClick}>Donation</Nav.Link>
+                            <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
                             <Nav.Link href="/login" className="mx-auto text-white login">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
