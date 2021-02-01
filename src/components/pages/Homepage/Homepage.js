@@ -16,13 +16,10 @@ import Members from './Members'
 
 
 const ContainerFrame = styled.div`
-    margin-top: 55px;
-
-    @media all and (max-width: 320px) {
-        margin-top: 35px;
-    }
+    margin-top: 115px;
 
     @media all and (min-width: 411px) {
+        margin-top: 145px;
 
         .upper-text, .lower-text {
             padding: 0 10px;
@@ -53,6 +50,10 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 992px) {
         margin-top: 210px;
+    }
+
+    @media all and (min-width: 1440px) {
+        margin-top: 250px;
     }
 `
 

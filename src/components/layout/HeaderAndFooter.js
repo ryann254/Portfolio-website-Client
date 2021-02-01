@@ -10,6 +10,7 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
 
+
 import MovingBackground from '../reusable components/MovingBackground'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
@@ -149,13 +150,11 @@ const Img = styled.div`
     }
 
 
-    
-    @media all and (min-width: 576px) {
+    @media all and (min-width: 411px) {
         top: 57%;
         left: 50%;
         transform: translate(-50%, -43%);
     }
-
      
     @media all and (min-width: 768px) {
         top: 56%;
@@ -321,6 +320,7 @@ const ContactDetails = styled.div`
         margin-top: 10px;
     }
 `
+
 
 function HeaderAndFooter({children}) {
     return (

@@ -10,6 +10,8 @@ import {Header} from '../Homepage/Jobs'
 
 
 const ContainerFrame = styled.div`
+    margin-top: 50px;
+
     .text-container {
         margin-top: 20px;
         background: #f6f6f6;
@@ -17,6 +19,10 @@ const ContainerFrame = styled.div`
 
     .heading {
         margin-bottom: 40px;
+    }
+
+    @media all and (min-width: 411px) {
+        margin-top: 90px;
     }
 
 
@@ -42,6 +48,10 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 992px) {
         margin-top: 110px;
+    }
+
+    @media all and (min-width: 1440px) {
+        margin-top: 160px;
     }
 `
 

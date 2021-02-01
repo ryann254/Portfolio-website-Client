@@ -13,12 +13,17 @@ import {Date, Pointer} from '../Homepage/SingleNews'
 
 const ContainerFrame = styled.div`
     background: #f6f6f6;
+    margin-top: 50px;
     
     .event {
         position: relative;
         margin: 50px 0;
     }
 
+    @media all and (min-width: 411px) {
+        margin-top: 90px;
+    }
+ 
     @media all and (min-width: 576px) {
         margin-top: 60px;
 
@@ -49,6 +54,10 @@ const ContainerFrame = styled.div`
         .events-container {
             max-width: 1140px;
         }
+    }
+
+    @media all and (min-width: 1440px) {
+        margin-top: 160px;
     }
 `
 

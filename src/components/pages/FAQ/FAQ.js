@@ -18,7 +18,11 @@ const FAQAnswers = [
 ]
 
 const ContainerFrame = styled.div`
-    margin-top: 55px;
+    margin-top: 95px;
+
+    @media all and (min-width: 411px) {
+        margin-top: 130px;
+    }
 
     @media all and (min-width: 576px) {
         margin-top: 110px;
@@ -30,6 +34,10 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 992px) {
         margin-top: 170px;
+    }
+
+    @media all and (min-width: 1440px) {
+        margin-top: 220px;
     }
 `
 

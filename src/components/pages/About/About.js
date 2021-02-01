@@ -12,11 +12,18 @@ import {Underline, Text} from '../Homepage/Homepage'
 const ContainerFrame = styled.div`
     .heading {
         margin-bottom: 20px;
+        margin-top: 50px;
     }
 
     .smaller-header {
         margin: 40px 0 10px 0; 
         text-align: center;
+    }
+
+    @media all and (min-width: 411px) {
+        .heading {
+            margin-top: 90px;
+        }
     }
 
     @media all and (min-width: 576px) {
@@ -50,6 +57,12 @@ const ContainerFrame = styled.div`
     @media all and (min-width: 992px) {
         .heading {
             margin-top: 110px;
+        }
+    }
+
+    @media all and (min-width: 1440px) {
+        .heading {
+            margin-top: 160px;
         }
     }
 `
