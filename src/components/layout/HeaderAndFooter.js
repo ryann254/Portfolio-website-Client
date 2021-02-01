@@ -10,6 +10,7 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
 
+
 import MovingBackground from '../reusable components/MovingBackground'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
@@ -319,6 +320,7 @@ const ContactDetails = styled.div`
         margin-top: 10px;
     }
 `
+
 
 function HeaderAndFooter({children}) {
     return (

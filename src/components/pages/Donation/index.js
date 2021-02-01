@@ -1,75 +1,110 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState} from 'react';
 import styled from 'styled-components'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import {loadStripe} from '@stripe/stripe-js';
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js'
+import {Elements, CardElement} from '@stripe/react-stripe-js'
+import axios from 'axios'
+
+//Own Components
+import Row from './prebuilt/Row'
+import BillingDetailsFields from './prebuilt/BillingDetailsFields'
+import CheckoutError from "./prebuilt/CheckoutError";
+import SubmitButton from "./prebuilt/SubmitButton";
+
+const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
 
 const ContainerFrame = styled.div`
-  margin-top: 100px;
-`
-
-const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement),
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
-  );
-};
-
-const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk');
-
-function index() {
-  const handleClick = async(event) => {
-    const stripe = await stripePromise
-
-    const response = await fetch('http://localhost:4242/create-checkout-session', {method: 'POST'})
-
-    const session = await response.json()
-
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id
-    })
-
-    if (result.error) {
-      console.log(result.error.message)
-    }
+  font-size: 18px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding-top: 85px;
+  padding-bottom: 30px;
+  input,
+  button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border-style: none;
   }
 
-  return ( 
-  <ContainerFrame>
-    <Container>
-      <Row>
-        <Col>
-          <button type="button" role="link" onClick={handleClick}>
-            Checkout
-          </button>
-        </Col>
-      </Row>
-    </Container>
-  </ContainerFrame>
+  @media all and (min-width: 411px) {
+    padding-top: 115px;
+  }
 
+  @media all and (min-width: 768px) {
+    padding-top: 135px;
+  }
+
+  @media all and (min-width: 1200px) {
+    padding-top: 145px;
+  }
+
+  @media all and (min-width: 1440px) {
+    padding-top: 195px;
+  }
+`
+
+const CardElementContainer = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  & .StripeElement {
+    width: 100%;
+    padding: 15px;
+  }
+`;
+
+function CheckoutForm() {
+  const [isProcessing] = useState(false);
+  const [checkoutError] = useState();
+
+  const handleFormSubmit = async ev => {
+    ev.preventDefault();
+
+    const billingDetails = {
+      name: ev.target.name.value,
+      email: ev.target.email.value,
+      address: {
+        city: ev.target.city.value,
+        line1: ev.target.address.value,
+        state: ev.target.state.value,
+        postal_code: ev.target.zip.value
+      },
+      price: ev.target.amount.value
+    };
+
+    const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
+      amount: parseInt(billingDetails.price, 10) * 100
+    })
+
+    console.log(clientSecret)
+  };
+
+
+  const cardElementOptions = {
+    hidePostalCode: true
+  }
+  return ( 
+    <ContainerFrame>
+      <Elements stripe={stripePromise}>
+        <form onSubmit={handleFormSubmit}>
+          <Row>
+            <BillingDetailsFields />
+          </Row>
+          <Row>
+            <CardElementContainer>
+              <CardElement options={cardElementOptions}/>
+            </CardElementContainer>
+          </Row>
+          {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
+          <Row>
+            <SubmitButton disabled={isProcessing}>
+              {isProcessing ? "Processing...." : `Pay`}
+            </SubmitButton>
+          </Row>
+        </form>
+      </Elements>
+    </ContainerFrame>
   )};
 
-export default index;
+export default CheckoutForm;
