@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components'
-import {loadStripe} from '@stripe/stripe-js'
-import {Elements, CardElement} from '@stripe/react-stripe-js'
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
 import axios from 'axios'
 
 //Own Components
@@ -10,7 +9,6 @@ import BillingDetailsFields from './prebuilt/BillingDetailsFields'
 import CheckoutError from "./prebuilt/CheckoutError";
 import SubmitButton from "./prebuilt/SubmitButton";
 
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
 
 const ContainerFrame = styled.div`
   font-size: 18px;
@@ -54,9 +52,16 @@ const CardElementContainer = styled.div`
   }
 `;
 
-function CheckoutForm() {
-  const [isProcessing] = useState(false);
-  const [checkoutError] = useState();
+function CheckoutForm({history}) {
+  const [isProcessing, setProcessing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState();
+
+  const stripe = useStripe()
+  const elements = useElements()
+
+  const handleCardDetailsChange = ev => {
+    ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
+  };
 
   const handleFormSubmit = async ev => {
     ev.preventDefault();
@@ -73,11 +78,45 @@ function CheckoutForm() {
       price: ev.target.amount.value
     };
 
-    const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
-      amount: parseInt(billingDetails.price, 10) * 100
-    })
+    setProcessing(true)
 
-    console.log(clientSecret)
+    const cardElement = elements.getElement(CardElement)
+
+    try {
+      const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
+        amount: parseInt(billingDetails.price, 10) * 100
+      })
+  
+      //So that the price does not get sent along with the data
+      delete billingDetails.price
+  
+      const paymentMethodReq = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+        billing_details: billingDetails
+      })
+
+      if (paymentMethodReq.error) {
+        setCheckoutError(paymentMethodReq.error.message)
+        setProcessing(false)
+        return;
+      }
+
+      const {error} = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: paymentMethodReq.paymentMethod.id
+      })
+
+      if (error) {
+        setCheckoutError(error.message)
+        setProcessing(false)
+        return;
+      }
+
+    history.push("/success")
+
+    } catch (error) {
+      setCheckoutError(error.message)
+    }
   };
 
 
@@ -86,24 +125,22 @@ function CheckoutForm() {
   }
   return ( 
     <ContainerFrame>
-      <Elements stripe={stripePromise}>
         <form onSubmit={handleFormSubmit}>
           <Row>
             <BillingDetailsFields />
           </Row>
           <Row>
             <CardElementContainer>
-              <CardElement options={cardElementOptions}/>
+              <CardElement options={cardElementOptions} onChange={handleCardDetailsChange}/>
             </CardElementContainer>
           </Row>
           {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
           <Row>
             <SubmitButton disabled={isProcessing}>
-              {isProcessing ? "Processing...." : `Pay`}
+              {isProcessing ? "Processing...." : `Donate`}
             </SubmitButton>
           </Row>
         </form>
-      </Elements>
     </ContainerFrame>
   )};
 

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const Stripe = require('stripe')
-const stripe = new Stripe(process.env.SECRET_KEY)
+const stripe = Stripe('sk_test_51HWJt8DnpHPxB6GWIMhEViTnCWCt2JZbOBN1YX1y3GnYCMlTx0YQbIRrus7naSEbCCaTSl9OX7GaIdDr4me154PI009Iau2Ht3')
 
 app.post('/api/payment_intents', async (req, res) => {
     if (req.method === 'POST') {
@@ -29,7 +29,6 @@ app.post('/api/payment_intents', async (req, res) => {
             res.status(200).send(paymentIntent.client_secret)
             
         } catch (error) {
-            console.log(error);
             res.status(500).json({ statusCode: 500, message: error.message })
         }
     } else {

@@ -19,6 +19,7 @@ import SingleEventPage from './components/pages/EventsPage/SingleEventPage'
 import NewsPage from './components/pages/NewsPage'
 import JobsPage from './components/pages/JobsPage'
 import Donation from './components/pages/Donation'
+import SuccessPage from './components/pages/Donation/success'
 
 
 function Routes() {
@@ -37,6 +38,7 @@ function Routes() {
                     <RouteWithLayout path="/contact" exact component={ContactForm} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/about" exact component={About} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/donation" exact component={Donation} layout={HeaderAndFooter}/>
+                    <RouteWithLayout path="/success" exact component={SuccessPage} layout={HeaderAndFooter}/>
                 </ThemeProvider>
             </Switch>
         </BrowserRouter>

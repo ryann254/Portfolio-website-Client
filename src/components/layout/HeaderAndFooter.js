@@ -10,12 +10,17 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/fall-animation.css';
 import $ from 'jquery'
+import {loadStripe} from '@stripe/stripe-js'
+import {Elements} from '@stripe/react-stripe-js'
+
 
 
 import MovingBackground from '../reusable components/MovingBackground'
 import LoginModal from '../reusable components/LoginModal'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
+const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
+
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
@@ -365,28 +370,29 @@ function HeaderAndFooter({children}) {
 
     return (
         <>
+      <Elements stripe={stripePromise}>
             <LoginModal show={show} onHide={handleShow}/>
             <OuterContainer>
-            <ContainerFrame className="header">
-                <Navbar className="mx-auto" expand="md" variant="dark">
-                    <Navbar.Brand href="/">
-                        <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav>
-                            <Nav.Link href="/" className="mx-auto">Home</Nav.Link>
-                            <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
-                            <Nav.Link href="/events" className="mx-auto">Events</Nav.Link>
-                            <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
-                            <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
-                            <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
-                            <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
-                            <Nav.Link href="#" className="mx-auto text-white login" onClick={handleShow}>Login</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar> 
-            </ContainerFrame>
-            </OuterContainer>
+                <ContainerFrame className="header">
+                    <Navbar className="mx-auto" expand="md" variant="dark">
+                        <Navbar.Brand href="/">
+                            <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav>
+                                <Nav.Link href="/" className="mx-auto">Home</Nav.Link>
+                                <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
+                                <Nav.Link href="/events" className="mx-auto">Events</Nav.Link>
+                                <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
+                                <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
+                                <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
+                                <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
+                                <Nav.Link href="#" className="mx-auto text-white login" onClick={handleShow}>Login</Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar> 
+                </ContainerFrame>
+                </OuterContainer>
             <Landing>
                 <MovingBackground>
                         <Img>
@@ -465,6 +471,7 @@ function HeaderAndFooter({children}) {
                         </MovingBackground>
                     </Container>
             </Footer>
+            </Elements>
         </>
     )
 }
