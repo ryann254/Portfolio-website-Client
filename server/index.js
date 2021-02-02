@@ -14,13 +14,10 @@ app.use(cors());
 
 const Stripe = require('stripe')
 const stripe = new Stripe(process.env.SECRET_KEY)
-console.log(process.env.SECRET_KEY)
 
 app.post('/api/payment_intents', async (req, res) => {
     if (req.method === 'POST') {
         try {
-            console.log(req.method);
-            console.log(req.body);
             const { amount } = req.body;
 
             const paymentIntent = await stripe.paymentIntents.create({
@@ -28,7 +25,6 @@ app.post('/api/payment_intents', async (req, res) => {
                 currency: "usd"
             })
 
-            console.log(paymentIntent.client_secret);
 
             res.status(200).send(paymentIntent.client_secret)
             
