@@ -5,52 +5,21 @@ import Col from 'react-bootstrap/Col'
 import styled from 'styled-components'
 
 //Own Components
-import {Underline,Text} from '../Homepage/Homepage'
-import {Header} from '../Homepage/Jobs'
+import {Text} from '../Homepage/Homepage'
 
 
 const ContainerFrame = styled.div`
-    margin-top: 50px;
+    margin-top: 80px;
 
     .text-container {
         margin-top: 20px;
         background: #f6f6f6;
     }
 
-    .heading {
-        margin-bottom: 40px;
-    }
-
-    @media all and (min-width: 411px) {
-        margin-top: 90px;
-    }
-
-    @media all and (min-width: 576px) {
-        margin-top: 60px;
-
-        .heading {
-            margin-bottom: 40px;
-        }
-    }
-
     @media all and (min-width: 768px) {
-        margin-top: 80px;
-
-        .heading {
-            margin-bottom: 50px;
-        }
-
         .event-image {
             width: 690px;
         }
-    }
-
-    @media all and (min-width: 992px) {
-        margin-top: 110px;
-    }
-
-    @media all and (min-width: 1440px) {
-        margin-top: 160px;
     }
 `
 
@@ -59,10 +28,7 @@ export default function index() {
         <ContainerFrame>
             <Container>
                 <Row>
-                    <Col xs={12} className="heading">
-                        <Header className="text-center">Jobs</Header>
-                        <Underline />
-                    </Col>
+                    <Col xs={12} className="heading"></Col>
                     <Col>
                         <img src="assets/jobs/job-2.webp" alt="event" className="img-fluid event-image"/>
                     </Col>

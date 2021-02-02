@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const ErrorContainer = styled.div`
-  color: #fff;
+  color: red;
   display: flex;
   justify-content: center;
   padding: 0 15px;

@@ -6,8 +6,6 @@ import styled from 'styled-components'
 
 
 //Own Components
-import {Header} from '../Homepage/Jobs'
-import {Underline} from '../Homepage/Homepage'
 import {EventHeader, Event} from '../Homepage/SingleEvent'
 import {Date, Pointer} from '../Homepage/SingleNews'
 
@@ -19,45 +17,29 @@ const ContainerFrame = styled.div`
         position: relative;
         margin: 50px 0;
     }
-
-    @media all and (min-width: 411px) {
-        margin-top: 90px;
-    }
  
     @media all and (min-width: 576px) {
-        margin-top: 60px;
-
         .event {
             margin-top: 40px;
         }
     }
 
     @media all and (min-width: 768px) {
-        margin-top: 80px;
-
         .heading {
             margin-bottom: 50px;
         }
     }
 
     @media all and (min-width: 992px) {
-        margin-top: 110px;
-
         .events-container {
             max-width: 960px;
         }
     }
 
     @media all and (min-width: 1200px) {
-        margin-top: 130px;
-
         .events-container {
             max-width: 1140px;
         }
-    }
-
-    @media all and (min-width: 1440px) {
-        margin-top: 160px;
     }
 `
 
@@ -66,10 +48,7 @@ export default function index() {
         <ContainerFrame>
             <Container fluid className="events-container">
                 <Row>
-                    <Col xs={12} className="heading">
-                        <Header className="text-center">Events</Header>
-                        <Underline />
-                    </Col>
+                    <Col xs={12} className="heading"></Col>
                     <Col xs={12} md={6} lg={4}>
                         <Event className="event">
                             <img src={`assets/events/event-1.webp`} alt="events" className="img-fluid"/>

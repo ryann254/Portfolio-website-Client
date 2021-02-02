@@ -23,22 +23,6 @@ const ContainerFrame = styled.div`
     outline: none;
     border-style: none;
   }
-
-  @media all and (min-width: 411px) {
-    padding-top: 115px;
-  }
-
-  @media all and (min-width: 768px) {
-    padding-top: 135px;
-  }
-
-  @media all and (min-width: 1200px) {
-    padding-top: 145px;
-  }
-
-  @media all and (min-width: 1440px) {
-    padding-top: 195px;
-  }
 `
 
 const CardElementContainer = styled.div`
@@ -83,7 +67,7 @@ function CheckoutForm({history}) {
     const cardElement = elements.getElement(CardElement)
 
     try {
-      const { data: clientSecret } = await axios.post("http://localhost:4242/api/payment_intents", {
+      const { data: clientSecret } = await axios.post("https://stripe-payment-backend-001.herokuapp.com/api/payment_intents", {
         amount: parseInt(billingDetails.price, 10) * 100
       })
   
