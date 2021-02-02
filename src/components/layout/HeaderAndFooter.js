@@ -75,7 +75,7 @@ const ContainerFrame = styled.div`
         @media all and (min-width: 768px) {
             .navbar-nav {
                 align-items: center;
-                width: 97%;
+                width: 100%;
                 margin-left: auto;
             }
 
@@ -86,13 +86,13 @@ const ContainerFrame = styled.div`
 
         @media all and (min-width: 992px) {
             .navbar-nav {
-                width: 80%;
+                width: 85%;
             }
         }
 
         @media all and (min-width: 1200px) {
             .navbar-nav {
-                width: 70%;
+                width: 75%;
             }
         }
 
@@ -168,26 +168,51 @@ const Socials = styled.div`
     flex-direction: row;
     justify-content: center;
 
-    .facebook img {
-        font-size: 48px;
-        color: #385898;
+    .facebook, .twitter, .insta, .quora {
+        background-color: #eceeef;
+        color: #818a91;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 44px;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        margin-right: 8px;
+        border-radius: 100%;
+        transition: all .2s linear;
     }
 
-    .twitter svg {
-        font-size: 35px;
-        color: #65C7F7;
-
+    .facebook {
+        &:hover {
+            background-color: #3b5998;
+            color: #fff;
+        }
     }
 
-    .insta svg {
-        font-size: 31px;
-        color: #D76D77;
+    .twitter {
+        &:hover {
+            background-color: #00aced;
+            color: #fff;
+        }
     }
 
-    .quora svg {
-        font-size: 31px;
-        color: #b92b27;
+    .insta {
+        &:hover {
+            background-color: #ea4c89;
+            color: #fff;
+        }
     }
+
+    .quora {
+        &:hover {
+            background-color: rgb(185, 43, 39);
+            color: #fff;
+        }
+    }
+
+
 `
 
 const UsefulLinks = styled.div`
@@ -260,6 +285,14 @@ const Landing = styled.div`
     }
 `
 
+const Logo = styled.img`
+    width: 70px;
+
+    @media all and (min-width: 768px) {
+        width: 60px;
+    }
+`
+
 function HeaderAndFooter({children}) {
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState('')
@@ -310,7 +343,9 @@ function HeaderAndFooter({children}) {
                 <ContainerFrame className="header">
                     <Navbar className="mx-auto" expand="md" variant="dark">
                         <Navbar.Brand href="/">
-                            <span className="logo-text pl-2">Donation Website</span></Navbar.Brand>
+                            <span className="logo-text pl-2">
+                                <Logo src="assets/bg-images/Logo-1.jpg" className="img-fluid"/>
+                            </span></Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav>
@@ -336,17 +371,17 @@ function HeaderAndFooter({children}) {
                 <Footer>
                     <div className="upper-footer">
                         <Socials>
-                            <div className="pr-2 facebook">
-                                <img src="assets/icons/facebook-48.webp" alt="icons"/>
+                            <div className="facebook">
+                                <i class="fa fa-facebook-f"></i>
                             </div>
-                            <div className="pr-2 twitter">
-                                <img src="assets/icons/twitter-48.webp" alt="icons"/>
+                            <div className="twitter">
+                                <i class="fa fa-twitter"></i>
                             </div>
-                            <div className="pr-2 insta">
-                                <img src="assets/icons/instagram-48.webp" alt="icons"/>
+                            <div className="insta">
+                                <i class="fa fa-instagram"></i>
                             </div>
                             <div className="quora">
-                                <img src="assets/icons/quora-48.webp" alt="icons"/>
+                                <i class="fa fa-quora"></i>
                             </div>
                         </Socials>
                         <p className="text-center">Get connected with us on social networks</p>
