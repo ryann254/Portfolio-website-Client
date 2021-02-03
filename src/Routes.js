@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Switch} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {ThemeProvider} from 'styled-components'
 
 
@@ -28,9 +28,14 @@ function Routes() {
             <Switch>
                 <ThemeProvider theme={lightTheme}>
                     <GlobalStyles />
-                    <RouteWithLayout path="/" exact component={Homepage} layout={HeaderAndFooter}/>
+                    {/* Setting the default route to '/home' */}
+                    <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
+
+                    <RouteWithLayout path="/home" exact component={Homepage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/status" exact component={Status} layout={HeaderAndFooter}/>
-                    <RouteWithLayout path="/events" exact component={EventsPage} layout={HeaderAndFooter}/>
+                    <RouteWithLayout path="/events." exact component={EventsPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/news-page" exact component={NewsPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/events-page" exact component={SingleEventPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/jobs-page" exact component={JobsPage} layout={HeaderAndFooter}/>

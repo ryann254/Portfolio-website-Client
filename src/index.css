@@ -16,8 +16,10 @@ code {
   width: 100%;
 }
 
-html, body {
-  overflow: initial !important;
+@media all and (max-width: 767px) {
+  html, body {
+    overflow-x: hidden;
+  }
 }
 
 @media all and (min-width: 992px) {

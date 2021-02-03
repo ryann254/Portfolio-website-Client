@@ -7,8 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 //Own Components
-import { Header } from '../Homepage/Jobs'
-import { Underline, Text } from '../Homepage/Homepage'
+import { Text } from '../Homepage/Homepage'
 
 const ContainerFrame = styled.div`
     margin-top: 50px;
@@ -16,26 +15,6 @@ const ContainerFrame = styled.div`
     .btn {
         width: 100%;
         border-radius: 0;
-    }
-
-    @media all and (min-width: 411px) {
-        margin-top: 80px;
-    }
-
-    @media all and (min-width: 576px) {
-        margin-top: 60px;
-    }
-
-    @media all and (min-width: 768px) {
-        margin-top: 80px;
-    }
-
-    @media all and (min-width: 992px) {
-        margin-top: 110px;
-    }
-
-    @media all and (min-width: 1440px) {
-        margin-top: 160px;
     }
 `
 
@@ -45,8 +24,6 @@ export default function ContactForm() {
             <Container>
                 <Row>
                     <Col>
-                    <Header className="text-center">Contact Us</Header>
-                    <Underline />
                     <Text>We look forward to hearing from you. Fill out the form below and we will get back with you shortly.</Text>
                     <Form>
                         <Form.Group>
