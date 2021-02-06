@@ -14,21 +14,25 @@ import {UpdateEvent} from '../../redux/action-creator/EventsActionCreator'
 export default function ReusableModal({show, onHide, modalType, title, body}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [picture, setPicture] = useState('')
     const [eventTitle, setEventTitle] = useState('')
     const [description, setDescription] = useState('')
     const api = new Api()
     const dispatch = useDispatch()
-    console.log(modalType)
 
     useEffect(() => {
         if (body !== undefined) {
-            setPicture(body.picture)
             setEventTitle(body.title)
             setDescription(body.description)
         }
+
+        return () => {
+            setEventTitle('')
+            setDescription('')
+            setEmail('')
+            setPassword('')
+        }
         // eslint-disable-next-line
-    }, [body])
+    }, [body, modalType, onHide])
 
     const fillFields = () => {
         setEmail('ryan@example.com')
@@ -70,29 +74,73 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
 
     function handleUpdate(e) {
         e.preventDefault()
+        const uploadUrl = 'https://api.cloudinary.com/v1_1/ryansimageupload/image/upload'
 
-        const data = {
-            picture,
-            title: eventTitle,
-            description
+        const files = document.querySelector('[type=file]').files
+        const formData = new FormData()
+        let picData = {}
+
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i]
+            formData.append('file', file)
+            formData.append('upload_preset', 'ml_default')
+
+            fetch(uploadUrl, {
+                method: 'POST',
+                body: formData
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then(data => {
+                const {public_id, version, format} = data
+                picData[i] = {public_id, version, format}
+                console.log(Object.keys(picData).length)
+            })
         }
 
-        api.Events().updateEvent(body.id, data)
-        .then(res => {
-            if (res.status === 200) {
-                notify('success', 'Event updated successfully')
-                dispatch(UpdateEvent())
-                onHide()
+        //Check if the images object is empty before sending a request
+        if (Object.keys(picData).length !== 0) {
+            console.log(picData)
+            
+            let picUrl = `${uploadUrl}/${picData[0].version}/${picData[0].public_id}.${picData[0].format}`
+
+            const data = {
+                picture: picUrl,
+                title: eventTitle,
+                description
             }
-        })
-        .catch(err => {
-            if (err.response) {
-                const {message} = err.response.data
-                notify('error', message)
-			} else {
-				notify('error', 'Something went wrong, Please refresh the page.')
-			}
-        })
+
+            if (modalType === 'create') {
+                api.Events().createEvent(data)
+                .then(res => {
+                    if (res.status === 201) {
+                        notify('success', 'Event created successfully')
+                        //When an event is created and it has multiple values update the event with
+                        //the event picture values
+                        if (files.length > 1 && Object.keys(picData).length > 1) {
+                            let dataUrls = ''
+                            Object.keys(picData).map(item => {
+                                let picUrl =  `${uploadUrl}/${item.version}/${item.public_id}.${item.format}`
+                                dataUrls += picUrl
+                                return null;
+                            })
+                            console.log(dataUrls)
+                        }
+                        dispatch(UpdateEvent())
+                        onHide()
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        const {message} = err.response.data
+                        notify('error', message)
+                    } else {
+                        notify('error', 'Something went wrong, Please refresh the page.')
+                    }
+                })
+            }
+        }
     }
 
     function handleDelete() {
@@ -138,10 +186,10 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             </Button>
                             <Button variant="warning" className="d-flex mt-3 mx-auto" onClick={fillFields}>Fill</Button>
                     </Form>
-                    ): modalType === 'update' ? body !== '' ? (
+                    ): modalType === 'update' || modalType === 'create' ? (
                         <Form>
                             <Form.Group>
-                                <Form.Control value={picture} onChange={(e) => setPicture(e.target.value)} type="text" placeholder="Add new link..." />
+                                <Form.Control type="file" name="files[]" multiple/>
                             </Form.Group>
 
                             <Form.Group>
@@ -155,7 +203,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 Send
                             </Button>
                         </Form>
-                    ): null : modalType === 'delete' ? (
+                    ) : modalType === 'delete' ? (
                         <>
                         <Button variant="outline-primary" className="mr-3" onClick={onHide}>No</Button>
                         <Button variant="danger" onClick={handleDelete}>Yes</Button>

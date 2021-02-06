@@ -9,6 +9,8 @@ import Tooltip from 'react-bootstrap/Tooltip'
 import Popover from 'react-bootstrap/Popover'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
+import {Image} from 'cloudinary-react'
+
 
 
 //Own Components
@@ -139,6 +141,12 @@ function Index() {
         }
     }
 
+    function handleCreate() {
+        setModalShow(!modalShow)
+        setModalType('create')
+        setTitle('Create an Event')
+    }
+
     return (
         <ContainerFrame>
             <Modal show={modalShow} modalType={modalType} title={title} body={eventBody} onHide={() => setModalShow(false)}/>
@@ -158,14 +166,13 @@ function Index() {
                                     <Popover id="popover-basic" onClick={handlePopover}>
                                         <Popover.Title as="h3">Actions</Popover.Title>
                                         <Popover.Content>
-                                            <Button variant="outline-primary" className="mr-2" onClick={handleEventUpdate}>Update</Button>
                                             <Button variant="danger" onClick={handleDelete}>Delete</Button>
                                         </Popover.Content>
                                     </Popover>
                                 </Overlay>
                                 <Col>
                                     <Event className="event">
-                                        <img src={`${event.picture}/1600x900`} alt="events" className="img-fluid"/>
+                                        <img src="https://res.cloudinary.com/ryansimageupload/image/upload/v1612586565/Screenshot_25_08_2020_16_45_41_qr2p5f.png" className="img-fluid"/>
                                         <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title}</EventHeader>
                                         <Pointer to="/events-page"><i className="fa fa-arrow-right"></i></Pointer>
@@ -189,7 +196,7 @@ function Index() {
                             delay={{ show: 250, hide: 400 }}
                             overlay={renderTooltip}
                         >
-                            <Col xs={12} md={6} lg={4}>
+                            <Col xs={12} md={6} lg={4} onClick={handleCreate}>
                                 <AddButton>
                                     <span class="iconify" data-icon="akar-icons:plus" data-inline="false"></span>
                                 </AddButton>
