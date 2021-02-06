@@ -9,7 +9,6 @@ import Tooltip from 'react-bootstrap/Tooltip'
 import Popover from 'react-bootstrap/Popover'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
-import {Image} from 'cloudinary-react'
 
 
 
@@ -17,7 +16,7 @@ import {Image} from 'cloudinary-react'
 import {EventHeader, Event} from '../Homepage/SingleEvent'
 import {Date, Pointer} from '../Homepage/SingleNews'
 import Api from '../../../services/network'
-import { AddEvents } from '../../../redux/action-creator/EventsActionCreator'
+import { AddEvents, ViewEvent } from '../../../redux/action-creator/EventsActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
 
@@ -111,21 +110,6 @@ function Index() {
         setId(e.currentTarget.id)
     }
 
-    const handleEventUpdate = () => {
-        setTitle('Update')
-        setModalShow(!modalShow)
-        setModalType('update')
-
-        if (Id !== '') {
-            events.map(event => {
-                if (Id === event.id) {
-                    setEventBody(event)
-                }
-                return null;
-            })
-        }
-    }
-
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
           Click to add an Event
@@ -145,6 +129,11 @@ function Index() {
         setModalShow(!modalShow)
         setModalType('create')
         setTitle('Create an Event')
+    }
+
+    //Dispatch the event to be viewed on the single event page
+    function handleViewEvent(event) {
+        dispatch(ViewEvent(event))
     }
 
     return (
@@ -172,17 +161,17 @@ function Index() {
                                 </Overlay>
                                 <Col>
                                     <Event className="event">
-                                        <img src="https://res.cloudinary.com/ryansimageupload/image/upload/v1612586565/Screenshot_25_08_2020_16_45_41_qr2p5f.png" className="img-fluid"/>
+                                        <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
                                         <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title}</EventHeader>
-                                        <Pointer to="/events-page"><i className="fa fa-arrow-right"></i></Pointer>
+                                        <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
                                 </Col>
                         </Col>)
                     ): null : events.length !== 0 ? events.map((event, index) => (
                         <Col xs={12} md={6} lg={4} key={index}>
                             <Event className="event">
-                                <img src={`${event.picture}/1600x900`} alt="events" className="img-fluid"/>
+                                 <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
                                 <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                                 <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title}</EventHeader>
                                 <Pointer to="/events-page"><i className="fa fa-arrow-right"></i></Pointer>

@@ -1,8 +1,9 @@
-import {ADD_EVENTS, UPDATE_COUNT} from '../action-types'
+import {ADD_EVENTS, UPDATE_COUNT, VIEW_EVENT} from '../action-types'
 
 const initialState = {
    events: [],
-   updateCount: 0
+   updateCount: 0,
+   viewEvent: ''
 }
 
 function EventsReducer(state=initialState, action) {
@@ -16,6 +17,12 @@ function EventsReducer(state=initialState, action) {
             return {
                 ...state,
                 updateCount: state.updateCount + 1,
+            }
+
+        case VIEW_EVENT:
+            return {
+                ...state,
+                viewEvent: action.payload,
             }
     
         default:

@@ -95,51 +95,53 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
             .then(data => {
                 const {public_id, version, format} = data
                 picData[i] = {public_id, version, format}
-                console.log(Object.keys(picData).length)
+
+                //Check if the images object is empty before sending a request
+                if (Object.keys(picData).length !== 0 && i === files.length - 1) {
+                    const getUrl = 'https://res.cloudinary.com/ryansimageupload/image/upload'
+                    let picUrl = `${getUrl}/v${picData[0].version}/${picData[0].public_id}.${picData[0].format}`
+
+                    const data = {
+                        picture: picUrl,
+                        title: eventTitle,
+                        description
+                    }
+
+                    if (modalType === 'create') {
+                        api.Events().createEvent(data)
+                        .then(res => {
+                            if (res.status === 201) {
+                                notify('success', 'Event created successfully')
+                                //When an event is created and it has multiple values update the event with
+                                //the event picture values
+                                if (files.length > 1 && Object.keys(picData).length > 1) {
+                                    let dataUrls = []
+                                    Object.values(picData).map(item => {
+                                        let picUrl =  `${getUrl}/v${item.version}/${item.public_id}.${item.format}`
+                                        dataUrls.push(picUrl)
+                                        return null;
+                                    })
+                                    //Prepare the data for sending
+                                    let data = {
+                                        picture: dataUrls.toString()
+                                    }
+                                    api.Events().updateEvent(res.data.id, data)
+                                }
+                                dispatch(UpdateEvent())
+                                onHide()
+                            }
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                const {message} = err.response.data
+                                notify('error', message)
+                            } else {
+                                notify('error', 'Something went wrong, Please refresh the page.')
+                            }
+                        })
+                    }
+                }
             })
-        }
-
-        //Check if the images object is empty before sending a request
-        if (Object.keys(picData).length !== 0) {
-            console.log(picData)
-            
-            let picUrl = `${uploadUrl}/${picData[0].version}/${picData[0].public_id}.${picData[0].format}`
-
-            const data = {
-                picture: picUrl,
-                title: eventTitle,
-                description
-            }
-
-            if (modalType === 'create') {
-                api.Events().createEvent(data)
-                .then(res => {
-                    if (res.status === 201) {
-                        notify('success', 'Event created successfully')
-                        //When an event is created and it has multiple values update the event with
-                        //the event picture values
-                        if (files.length > 1 && Object.keys(picData).length > 1) {
-                            let dataUrls = ''
-                            Object.keys(picData).map(item => {
-                                let picUrl =  `${uploadUrl}/${item.version}/${item.public_id}.${item.format}`
-                                dataUrls += picUrl
-                                return null;
-                            })
-                            console.log(dataUrls)
-                        }
-                        dispatch(UpdateEvent())
-                        onHide()
-                    }
-                })
-                .catch(err => {
-                    if (err.response) {
-                        const {message} = err.response.data
-                        notify('error', message)
-                    } else {
-                        notify('error', 'Something went wrong, Please refresh the page.')
-                    }
-                })
-            }
         }
     }
 
