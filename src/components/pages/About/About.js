@@ -5,12 +5,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 //Own Components
-import {Header} from '../Homepage/Jobs'
 import {EventHeader} from '../Homepage/SingleEvent'
 import {Underline, Text} from '../Homepage/Homepage'
 
 const ContainerFrame = styled.div`
     .heading {
+        margin-top: 50px;
         margin-bottom: 20px;
     }
 
@@ -19,9 +19,15 @@ const ContainerFrame = styled.div`
         text-align: center;
     }
 
+    @media all and (min-width: 411px) {
+        .heading {
+            margin-top: 90px;
+        }
+    }
+
     @media all and (min-width: 576px) {
         .heading {
-            margin-top: 60px;
+            margin-top: 50px;
         }
 
         .about-underline {
@@ -31,7 +37,6 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 768px) {
         .heading {
-            margin-top: 80px;
             margin-bottom: 50px;
         }
 
@@ -49,7 +54,7 @@ const ContainerFrame = styled.div`
 
     @media all and (min-width: 992px) {
         .heading {
-            margin-top: 110px;
+            margin-top: 80px;
         }
     }
 `
@@ -59,10 +64,7 @@ export default function About() {
         <ContainerFrame>
             <Container>
                 <Row>
-                    <Col xs={12} className="heading">
-                        <Header className="text-center">About</Header>
-                        <Underline className="about-underline" />
-                    </Col>
+                    <Col xs={12} className="heading"></Col>
                     <Col xs={12} md={6}>
                         <img src="assets/events/event-7.webp" alt="events" className="img-fluid about-image"/>
                     </Col>

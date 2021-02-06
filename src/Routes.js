@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Switch} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {ThemeProvider} from 'styled-components'
 
 
@@ -18,6 +18,8 @@ import EventsPage from './components/pages/EventsPage'
 import SingleEventPage from './components/pages/EventsPage/SingleEventPage'
 import NewsPage from './components/pages/NewsPage'
 import JobsPage from './components/pages/JobsPage'
+import Donation from './components/pages/Donation'
+import SuccessPage from './components/pages/Donation/success'
 
 
 function Routes() {
@@ -26,15 +28,22 @@ function Routes() {
             <Switch>
                 <ThemeProvider theme={lightTheme}>
                     <GlobalStyles />
-                    <RouteWithLayout path="/" exact component={Homepage} layout={HeaderAndFooter}/>
+                    {/* Setting the default route to '/home' */}
+                    <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
+
+                    <RouteWithLayout path="/home" exact component={Homepage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/status" exact component={Status} layout={HeaderAndFooter}/>
-                    <RouteWithLayout path="/events" exact component={EventsPage} layout={HeaderAndFooter}/>
+                    <RouteWithLayout path="/events." exact component={EventsPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/news-page" exact component={NewsPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/events-page" exact component={SingleEventPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/jobs-page" exact component={JobsPage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/faq" exact component={FAQ} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/contact" exact component={ContactForm} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/about" exact component={About} layout={HeaderAndFooter}/>
+                    <RouteWithLayout path="/donation" exact component={Donation} layout={HeaderAndFooter}/>
+                    <RouteWithLayout path="/success" exact component={SuccessPage} layout={HeaderAndFooter}/>
                 </ThemeProvider>
             </Switch>
         </BrowserRouter>

@@ -169,7 +169,7 @@ export default function Events() {
                                     </Flip>
                                 </ItemsCarousel>
                                 </div>
-                                <Link to="/events">
+                                <Link to="/events.">
                                     <Button variant="outline-primary">See All Events</Button>
                                 </Link>
                         </Col>
