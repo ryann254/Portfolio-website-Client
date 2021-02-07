@@ -1,11 +1,12 @@
 import axios from 'axios'
 
 export const API_URL = 'http://localhost:3000/v1/'
+export const PROD_URL = 'https://portfolio-backend-application.herokuapp.com/v1'
 
 class Api {
     constructor() {
         this.instance =  axios.create({
-            baseURL: API_URL,
+            baseURL: process.env.REACT_APP_ENV === 'PRODUCTION' ? PROD_URL : API_URL,
             timeout: 9000,
             headers: {
                 Authorization: `Bearer ${this.getToken()}`

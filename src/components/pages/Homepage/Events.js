@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -115,7 +115,6 @@ export const Header = styled.h1`
     text-align: center;
 `
 
-let cards = 1;
 
 export default function Events() {
     return (

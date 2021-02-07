@@ -16,7 +16,6 @@ Image-converter.js
 
 # misc
 .DS_Store
-.env
 .env*.local
 .env.local
 .env.development.local

@@ -309,6 +309,7 @@ function HeaderAndFooter({children}) {
     const api = new Api()
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_ENV)
         const userId = localStorage.getItem('currentUser')
 
         //Checking whether the user is logged in

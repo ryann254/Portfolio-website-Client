@@ -35,7 +35,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
     }, [body, modalType, onHide])
 
     const fillFields = () => {
-        setEmail('ryan@example.com')
+        setEmail('mikemag.edu@gmail.com')
         setPassword("password1")
     }
 
