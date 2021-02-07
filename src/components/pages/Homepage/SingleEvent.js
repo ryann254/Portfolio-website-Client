@@ -116,7 +116,7 @@ export default function SingleEvent({picNumber}) {
                         <Event>
                             <Link to="/events-page" className="event-link" onClick={() => handleViewEvent(event)}>
                                 <img src={event.picture.split(',')[0]} alt="events" className="img-fluid event-image"/>
-                                <EventHeader className="pt-4 pl-4 pr-4 header">{event.title}</EventHeader>
+                                <EventHeader className="pt-4 pl-4 pr-4 header">{event.title.slice(0, 40) + '...'}</EventHeader>
                                 <Text className="text-dark p-4 mt-0 event-text">
                                     {event.description.slice(0, 120) + '...'}
                                 </Text>

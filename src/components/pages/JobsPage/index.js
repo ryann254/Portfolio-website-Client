@@ -199,7 +199,7 @@ function Index() {
                                     <Event className="event">
                                         <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
                                         <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
-                                        <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title}</EventHeader>
+                                        <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
                                 </Col>
@@ -209,7 +209,7 @@ function Index() {
                             <Event className="event">
                                  <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
                                 <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title}</EventHeader>
+                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
                                 <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
                             </Event>
                         </Col>   

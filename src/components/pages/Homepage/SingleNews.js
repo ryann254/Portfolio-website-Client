@@ -68,7 +68,7 @@ export default function SingleNews({newsItem, handleViewNews}) {
                 <img src={newsItem.picture.split(',')[0]} alt="events" className="img-fluid news-image"/>
                 <div className="pt-3 pl-3 pr-3 pb-5">
                     <Date>Jan 20, 2021</Date>
-                    <EventHeader className="news-text">{newsItem.title}</EventHeader>
+                    <EventHeader className="news-text">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                 </div>
                 <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}>
                     <i class="fa fa-arrow-right"></i>

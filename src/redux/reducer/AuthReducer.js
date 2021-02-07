@@ -11,7 +11,7 @@ function AuthReducer(state=initialState, action) {
             return {
                 ...state,
                 user: action.payload,
-                auth: !state.auth
+                auth: true
             }
         case UPDATE_AUTH:
             return {
