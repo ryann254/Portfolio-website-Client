@@ -1,19 +1,30 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Flip from 'react-reveal/Flip'
+import {Link} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+
 
 //Own Components
 import {Header} from './Events'
 import {Underline, Text} from './Homepage'
 import SingleNews from './SingleNews'
+import Api from '../../../services/network'
+import { AddNews, ViewNews } from '../../../redux/action-creator/NewsActionCreator'
+import notify from '../../../helpers/Notify'
 
 const ContainerFrame = styled.div`
     background: #f6f6f6;
     padding-top: 45px;
+
+    a {
+        text-decoration: none !important;
+        color: #fff !important;
+    }
 
     .btn {
         display: flex;
@@ -47,6 +58,39 @@ const ContainerFrame = styled.div`
 `
 
 export default function News() {
+    const dispatch = useDispatch()
+    const api = new Api()
+    const {news} = useSelector(state => state.news)
+    const {updateCount} = useSelector(state => state.events)
+
+    
+    useEffect(() => {
+        fetchNews()
+        // eslint-disable-next-line
+    }, [updateCount])
+
+    function fetchNews() {
+        api.News().getAllNewsArtilces()
+        .then(res => {
+            if (res.status === 200) {
+                dispatch(AddNews(res.data.results))
+            }
+        })
+        .catch(err => {
+            if (err.response) {
+                const {message} = err.response.data
+                notify('error', message)
+			} else {
+				notify('error', 'Something went wrong, Please refresh the page.')
+			}
+        })
+    }
+
+    
+    //Dispatch the event to be viewed on the single event page
+    function handleViewNews(newsItem) {
+        dispatch(ViewNews(newsItem))
+    }
     return (
         <ContainerFrame>
             <Container fluid className="news-container">
@@ -58,23 +102,17 @@ export default function News() {
                             We aren’t the only ones talking about how Oklahoma City is the perfect place to live, work and play. See what others are saying about your next hometown.
                         </Text>
                     </Col>
-                    <Col xs={12} md={6} lg={4}>
-                        <Flip bottom>
-                            <SingleNews picNumber="1" />
-                        </Flip>
-                    </Col>
-                    <Col xs={12} md={6} lg={4}>
-                        <Flip bottom>
-                            <SingleNews picNumber="2" />
-                        </Flip>
-                    </Col>
-                    <Col xs={12} md={6} lg={4}>
-                        <Flip bottom>
-                            <SingleNews picNumber="3" />
-                        </Flip>
-                    </Col>
+                    {news.length !== 0 ? news.map(newsItem => (
+                        <Col xs={12} md={6} lg={4}>
+                            <Flip bottom>
+                                <SingleNews newsItem={newsItem} handleViewNews={handleViewNews} />
+                            </Flip>
+                        </Col>
+                    )): null}
                     <Col xs={12}>
-                        <Button variant="primary">See All News</Button>
+                        <Link to="/news-page">
+                            <Button variant="primary">See All News</Button>
+                        </Link>
                     </Col>
                 </Row>
             </Container>

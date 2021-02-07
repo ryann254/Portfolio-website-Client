@@ -7,10 +7,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 
+
 //Own Components
 import {Text} from '../Homepage/Homepage'
 import Api from '../../../services/network'
 import {AddUser} from '../../../redux/action-creator/AuthActionCreator'
+import $ from 'jquery'
+
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
 
@@ -49,6 +52,11 @@ export default function SingleNewsPage() {
     const api = new Api()
 
     useEffect(() => {
+        //Scroll to the top
+        $(document).ready(function(){
+            $(this).scrollTop(0);
+        });
+
         //Checking whether the user is logged in
         checkAuth()
         

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import {useDispatch, useSelector} from 'react-redux'
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import $ from 'jquery'
 
 //Own Components
 import {Text} from '../Homepage/Homepage'
@@ -48,6 +49,11 @@ export default function SingleEventPage() {
     const api = new Api()
 
     useEffect(() => {
+        //Scroll to the top
+        $(document).ready(function(){
+            $(this).scrollTop(0);
+        });
+
         //Checking whether the user is logged in
         checkAuth()
         
