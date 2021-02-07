@@ -32,6 +32,10 @@ const ContainerFrame = styled.div`
             height: 236px;
         }
     }
+
+    .create-column {
+        height: 400px;
+    }
  
     @media all and (min-width: 768px) {
         .heading {
@@ -118,7 +122,7 @@ function Index() {
 
     function handleDelete() {
         setModalShow(!modalShow)
-        setModalType('delete')
+        setModalType('delete event')
         setTitle('Are you sure you want to delete this event?')
         if (Id !== '') {
             setEventBody(Id)
@@ -127,7 +131,7 @@ function Index() {
 
     function handleCreate() {
         setModalShow(!modalShow)
-        setModalType('create')
+        setModalType('create event')
         setTitle('Create an Event')
     }
 
@@ -174,7 +178,7 @@ function Index() {
                                  <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
                                 <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
                                 <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title}</EventHeader>
-                                <Pointer to="/events-page"><i className="fa fa-arrow-right"></i></Pointer>
+                                <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
                             </Event>
                         </Col>   
                     )): null}
@@ -185,7 +189,7 @@ function Index() {
                             delay={{ show: 250, hide: 400 }}
                             overlay={renderTooltip}
                         >
-                            <Col xs={12} md={6} lg={4} onClick={handleCreate}>
+                            <Col xs={12} md={6} lg={4} onClick={handleCreate} className="create-column">
                                 <AddButton>
                                     <span class="iconify" data-icon="akar-icons:plus" data-inline="false"></span>
                                 </AddButton>

@@ -48,11 +48,26 @@ class Api {
         return {
             createEvent: (data) => this.instance.post(`events/`, data),
             getAllEvents: () => this.instance.get(`events/`),
-            getTask: (id) => this.instance.get(`tasks/${id}`),
             updateEvent: (id, data) => this.instance.patch(`events/${id}`, data),
             deleteEvent: (id) => this.instance.delete(`events/${id}`),
-            getUsersTasks: (id) => this.instance.get(`users/tasks/${id}`),
-            assignUserTask: (id, data) => this.instance.post(`users/${id}`, data)
+        }
+    }
+
+    News() {
+        return {
+            createNewsArtilce: (data) => this.instance.post(`news/`, data),
+            getAllNewsArtilces: () => this.instance.get(`news/`),
+            updateNewsArtilce: (id, data) => this.instance.patch(`news/${id}`, data),
+            deleteNewsArtilce: (id) => this.instance.delete(`news/${id}`),
+        }
+    }
+
+    Jobs() {
+        return {
+            createJob: (data) => this.instance.post(`jobs/`, data),
+            getAllJobs: () => this.instance.get(`jobs/`),
+            updateJob: (id, data) => this.instance.patch(`jobs/${id}`, data),
+            deleteJob: (id) => this.instance.delete(`jobs/${id}`),
         }
     }
 }

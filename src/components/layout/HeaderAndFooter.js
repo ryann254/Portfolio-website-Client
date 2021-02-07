@@ -373,6 +373,10 @@ function HeaderAndFooter({children}) {
             setTitle('ABOUT PAGE')
         } else if (window.location.href.includes('events.')) {
             setTitle('EVENTS PAGE')
+        } else if (window.location.href.includes('news.')) {
+            setTitle('NEWS PAGE')
+        } else if (window.location.href.includes('jobs.')) {
+            setTitle('JOBS PAGE')
         } else if (window.location.href.includes('status')) {
             setTitle('STATUS PAGE')
         } else if (window.location.href.includes('faq')) {
@@ -409,7 +413,7 @@ function HeaderAndFooter({children}) {
             <Modal show={show} modalType="form" title="Please fill in your details" onHide={handleShow}/>
             <OuterContainer>
                 <ContainerFrame className="header">
-                    <Navbar className="mx-auto" expand="md" variant="dark">
+                    <Navbar className="mx-auto" expand="lg" variant="dark">
                         <Navbar.Brand href="/">
                             <span className="logo-text pl-2">
                                 <Logo src="assets/bg-images/Logo-1.jpg" className="img-fluid"/>
@@ -420,6 +424,8 @@ function HeaderAndFooter({children}) {
                                 <Nav.Link href="/home" className="mx-auto">Home</Nav.Link>
                                 <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
                                 <Nav.Link href="/events." className="mx-auto">Events</Nav.Link>
+                                <Nav.Link href="/news." className="mx-auto">News</Nav.Link>
+                                <Nav.Link href="/jobs." className="mx-auto">Jobs</Nav.Link>
                                 <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
                                 <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
                                 <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>

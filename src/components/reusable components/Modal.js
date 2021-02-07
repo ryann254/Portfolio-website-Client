@@ -14,19 +14,19 @@ import {UpdateEvent} from '../../redux/action-creator/EventsActionCreator'
 export default function ReusableModal({show, onHide, modalType, title, body}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [eventTitle, setEventTitle] = useState('')
+    const [bodyTitle, setBodyTitle] = useState('')
     const [description, setDescription] = useState('')
     const api = new Api()
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (body !== undefined) {
-            setEventTitle(body.title)
+            setBodyTitle(body.title)
             setDescription(body.description)
         }
 
         return () => {
-            setEventTitle('')
+            setBodyTitle('')
             setDescription('')
             setEmail('')
             setPassword('')
@@ -103,11 +103,11 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
 
                     const data = {
                         picture: picUrl,
-                        title: eventTitle,
+                        title: bodyTitle,
                         description
                     }
 
-                    if (modalType === 'create') {
+                    if (modalType === 'create event') {
                         api.Events().createEvent(data)
                         .then(res => {
                             if (res.status === 201) {
@@ -139,6 +139,70 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 notify('error', 'Something went wrong, Please refresh the page.')
                             }
                         })
+                    } else if (modalType === 'create news article') {
+                        api.News().createNewsArtilce(data)
+                        .then(res => {
+                            if (res.status === 201) {
+                                notify('success', 'News Article created successfully')
+                                //When an event is created and it has multiple values update the event with
+                                //the event picture values
+                                if (files.length > 1 && Object.keys(picData).length > 1) {
+                                    let dataUrls = []
+                                    Object.values(picData).map(item => {
+                                        let picUrl =  `${getUrl}/v${item.version}/${item.public_id}.${item.format}`
+                                        dataUrls.push(picUrl)
+                                        return null;
+                                    })
+                                    //Prepare the data for sending
+                                    let data = {
+                                        picture: dataUrls.toString()
+                                    }
+                                    api.News().updateNewsArtilce(res.data.id, data)
+                                }
+                                dispatch(UpdateEvent())
+                                onHide()
+                            }
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                const {message} = err.response.data
+                                notify('error', message)
+                            } else {
+                                notify('error', 'Something went wrong, Please refresh the page.')
+                            }
+                        })
+                    } else if (modalType === 'create job') {
+                        api.Jobs().createJob(data)
+                        .then(res => {
+                            if (res.status === 201) {
+                                notify('success', 'Job created successfully')
+                                //When an event is created and it has multiple values update the event with
+                                //the event picture values
+                                if (files.length > 1 && Object.keys(picData).length > 1) {
+                                    let dataUrls = []
+                                    Object.values(picData).map(item => {
+                                        let picUrl =  `${getUrl}/v${item.version}/${item.public_id}.${item.format}`
+                                        dataUrls.push(picUrl)
+                                        return null;
+                                    })
+                                    //Prepare the data for sending
+                                    let data = {
+                                        picture: dataUrls.toString()
+                                    }
+                                    api.Jobs().updateJob(res.data.id, data)
+                                }
+                                dispatch(UpdateEvent())
+                                onHide()
+                            }
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                const {message} = err.response.data
+                                notify('error', message)
+                            } else {
+                                notify('error', 'Something went wrong, Please refresh the page.')
+                            }
+                        })
                     }
                 }
             })
@@ -146,30 +210,65 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
     }
 
     function handleDelete() {
-        
         if(body !== '') {
-            api.Events().deleteEvent(body)
-            .then(res => {
-                if (res.status === 204) {
-                    notify('success', 'Event deleted successfully')
-                    dispatch(UpdateEvent())
-                    onHide()
-                }
-            })
-            .catch(err => {
-                if (err.response) {
-                    const {message} = err.response.data
-                    notify('error', message)
-                } else {
-                    notify('error', 'Something went wrong, Please refresh the page.')
-                }
-            })
+            if (modalType === 'delete event') {
+                api.Events().deleteEvent(body)
+                .then(res => {
+                    if (res.status === 204) {
+                        notify('success', 'Event deleted successfully')
+                        dispatch(UpdateEvent())
+                        onHide()
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        const {message} = err.response.data
+                        notify('error', message)
+                    } else {
+                        notify('error', 'Something went wrong, Please refresh the page.')
+                    }
+                })
+            } else if (modalType === 'delete news article') {
+                api.News().deleteNewsArtilce(body)
+                .then(res => {
+                    if (res.status === 204) {
+                        notify('success', 'News Article deleted successfully')
+                        dispatch(UpdateEvent())
+                        onHide()
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        const {message} = err.response.data
+                        notify('error', message)
+                    } else {
+                        notify('error', 'Something went wrong, Please refresh the page.')
+                    }
+                })
+            } else if (modalType === 'delete job') {
+                api.Jobs().deleteJob(body)
+                .then(res => {
+                    if (res.status === 204) {
+                        notify('success', 'Job deleted successfully')
+                        dispatch(UpdateEvent())
+                        onHide()
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        const {message} = err.response.data
+                        notify('error', message)
+                    } else {
+                        notify('error', 'Something went wrong, Please refresh the page.')
+                    }
+                })
+            }
         }
     }
 
     return (
         <>    
-            <Modal show={show} onHide={onHide} centered size={modalType === 'delete' ? 'sm' : 'md'}>
+            <Modal show={show} onHide={onHide} centered size={modalType === 'delete event' || modalType === 'delete news article' || modalType === 'delete job' ? 'sm' : 'md'}>
                 <Modal.Header closeButton>
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
@@ -188,14 +287,14 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             </Button>
                             <Button variant="warning" className="d-flex mt-3 mx-auto" onClick={fillFields}>Fill</Button>
                     </Form>
-                    ): modalType === 'update' || modalType === 'create' ? (
+                    ): modalType === 'create event' || modalType === 'create news article' || modalType === 'create job' ? (
                         <Form>
                             <Form.Group>
                                 <Form.Control type="file" name="files[]" multiple/>
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control value={eventTitle} onChange={(e) => setEventTitle(e.target.value)} type="text" placeholder="Add new title..." />
+                                <Form.Control value={bodyTitle} onChange={(e) => setBodyTitle(e.target.value)} type="text" placeholder="Add new title..." />
                             </Form.Group>
 
                             <Form.Group>
@@ -205,7 +304,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 Send
                             </Button>
                         </Form>
-                    ) : modalType === 'delete' ? (
+                    ) : modalType === 'delete event' || modalType === 'delete news article' || modalType === 'delete job'? (
                         <>
                         <Button variant="outline-primary" className="mr-3" onClick={onHide}>No</Button>
                         <Button variant="danger" onClick={handleDelete}>Yes</Button>

@@ -41,10 +41,11 @@ const ContainerFrame = styled.div`
 
 `
 
-export default function SingleEventPage() {
+export default function SingleJobsPage() {
     const dispatch = useDispatch()
     const [pictures, setPictures] = useState([])
-    const {viewEvent, updateCount} = useSelector(state => state.events)
+    const {updateCount} = useSelector(state => state.events)
+    const {viewJob} = useSelector(state => state.jobs)
     const api = new Api()
 
     useEffect(() => {
@@ -53,7 +54,7 @@ export default function SingleEventPage() {
         
         convertToArray()
         // eslint-disable-next-line
-    }, [updateCount, viewEvent])
+    }, [updateCount, viewJob])
 
     function checkAuth() {
         const userId = localStorage.getItem('currentUser')
@@ -77,8 +78,8 @@ export default function SingleEventPage() {
     }
 
     const convertToArray = () => {
-        if (viewEvent !== '') {
-            const newArray = viewEvent.picture.split(',')
+        if (viewJob !== '') {
+            const newArray = viewJob.picture.split(',')
             setPictures(newArray)
         }
     }
@@ -100,7 +101,7 @@ export default function SingleEventPage() {
                     </Col>
                     <Col xs={12} className="text-container">
                         <Text>
-                            {viewEvent.description}
+                            {viewJob.description}
                         </Text>
                     </Col>
                 </Row>

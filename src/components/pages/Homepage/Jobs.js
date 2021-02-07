@@ -120,26 +120,28 @@ export default function Jobs() {
                         <Text>
                         Did you know Oklahoma City has one of the most diversified economies in the United States? A quick look at our job boards will show you that no matter your expertise, our community has a place for you. You can search by job type or simply view all jobs to see what opportunities await you in OKC.
                         </Text>
-                        <Button variant="primary">View All Jobs</Button>
+                        <Link to="/jobs.">
+                            <Button variant="primary">View All Jobs</Button>
+                        </Link>
                     </Col>
                     <Col xs={12} md={6} className="jobs-component">
                         <JobContainer>
                             <img src="assets/jobs/job-1.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
+                            <JobLink to="/jobs.">
                                 Software and Cybersecurity
                                 <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
                         </JobContainer>
                         <JobContainer>
                             <img src="assets/jobs/job-2.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
+                            <JobLink to="/jobs.">
                                 Health Care
                                 <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>
                         </JobContainer>
                         <JobContainer>
                             <img src="assets/jobs/job-3.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
+                            <JobLink to="/jobs.">
                                 Aerospace
                                 <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                             </JobLink>

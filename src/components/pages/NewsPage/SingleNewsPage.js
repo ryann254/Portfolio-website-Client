@@ -41,10 +41,11 @@ const ContainerFrame = styled.div`
 
 `
 
-export default function SingleEventPage() {
+export default function SingleNewsPage() {
     const dispatch = useDispatch()
     const [pictures, setPictures] = useState([])
-    const {viewEvent, updateCount} = useSelector(state => state.events)
+    const {updateCount} = useSelector(state => state.events)
+    const {viewNews} = useSelector(state => state.news)
     const api = new Api()
 
     useEffect(() => {
@@ -53,7 +54,7 @@ export default function SingleEventPage() {
         
         convertToArray()
         // eslint-disable-next-line
-    }, [updateCount, viewEvent])
+    }, [updateCount, viewNews])
 
     function checkAuth() {
         const userId = localStorage.getItem('currentUser')
@@ -77,8 +78,8 @@ export default function SingleEventPage() {
     }
 
     const convertToArray = () => {
-        if (viewEvent !== '') {
-            const newArray = viewEvent.picture.split(',')
+        if (viewNews !== '') {
+            const newArray = viewNews.picture.split(',')
             setPictures(newArray)
         }
     }
@@ -100,7 +101,7 @@ export default function SingleEventPage() {
                     </Col>
                     <Col xs={12} className="text-container">
                         <Text>
-                            {viewEvent.description}
+                            {viewNews.description}
                         </Text>
                     </Col>
                 </Row>
