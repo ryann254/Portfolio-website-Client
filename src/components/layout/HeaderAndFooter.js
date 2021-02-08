@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,18 +8,22 @@ import styled from 'styled-components'
 import {loadStripe} from '@stripe/stripe-js'
 import {Elements} from '@stripe/react-stripe-js'
 import $ from 'jquery'
+import { ToastContainer } from 'react-toastify';
+import {useSelector, useDispatch} from 'react-redux'
 
-
-
-import LoginModal from '../reusable components/LoginModal'
+//Own Components
+import Modal from '../reusable components/Modal'
 import MovingBackground from '../reusable components/MovingBackground'
+import Api from '../../services/network'
+import {AddUser, UpdateAuth} from '../../redux/action-creator/AuthActionCreator'
+import notify from '../../helpers/Notify'
+
 
 const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
 
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
 //The light theme to be specific
-
 const OuterContainer = styled.div`
     transition: all 500ms cubic-bezier(0.55, 0, 0.1, 1);
 
@@ -60,9 +64,9 @@ const ContainerFrame = styled.div`
         font-size: 15px;
     }
 
-    .login {
+    .login, .logout {
         margin-top: 5px;
-        background: #ffc107;
+        background: #007bff;
         padding: 0.5rem 1rem !important;
         text-align: center;
         border-radius: 0.25rem;
@@ -70,7 +74,11 @@ const ContainerFrame = styled.div`
         background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, 
         box-shadow 0.15s ease-in-out;
-        }
+    }
+
+    .logout {
+        background: #ffc107;
+    }
     
         @media all and (min-width: 768px) {
             .navbar-nav {
@@ -296,9 +304,60 @@ const Logo = styled.img`
 function HeaderAndFooter({children}) {
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState('')
+    const dispatch = useDispatch()
+    const {auth, user} = useSelector(state => state.auth)
+    const api = new Api()
+
+    useEffect(() => {
+        console.log(process.env.REACT_APP_ENV)
+        const userId = localStorage.getItem('currentUser')
+
+        //Checking whether the user is logged in
+        if (userId !== null && userId !== '') {
+            api.Users().getUser(userId)
+            .then(res => {
+                if (res.status === 200) {
+                    dispatch(AddUser(res.data))
+                }
+            })
+            .catch(err => {
+                if (err.response) {
+                    const {message} = err.response.data
+                    console.log(message)
+                } else {
+                    console.log(err)
+                }
+            })
+        }
+        // eslint-disable-next-line
+    }, [])
 
     const handleShow = () => setShow(!show)
-    
+
+    function handleLogout() {
+        let data = {
+            refreshToken: `${localStorage.getItem('refreshToken')}`
+        }
+        api.auth().logout(data)
+        .then(res => {
+            if (res.status === 204) {
+                dispatch(UpdateAuth(false))
+                notify('success', 'Logged out successfully')
+                localStorage.removeItem('jwtToken')
+                localStorage.removeItem('refreshToken')
+                localStorage.removeItem('currentUser')
+            }
+        })
+        .catch(err => {
+            if (err.response) {
+                const {message} = err.response.data
+                notify('error', message)
+			} else {
+				notify('error', 'Something went wrong, Please refresh the page.')
+			}
+        })
+    }
+
     //Making the header sticky after scrolling to a certain height
     $(window).scroll(function() {
         if ($(this).scrollTop() > 50){  
@@ -315,6 +374,10 @@ function HeaderAndFooter({children}) {
             setTitle('ABOUT PAGE')
         } else if (window.location.href.includes('events.')) {
             setTitle('EVENTS PAGE')
+        } else if (window.location.href.includes('news.')) {
+            setTitle('NEWS PAGE')
+        } else if (window.location.href.includes('jobs.')) {
+            setTitle('JOBS PAGE')
         } else if (window.location.href.includes('status')) {
             setTitle('STATUS PAGE')
         } else if (window.location.href.includes('faq')) {
@@ -337,11 +400,21 @@ function HeaderAndFooter({children}) {
 
     return (
         <>
+        <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+        />
       <Elements stripe={stripePromise}>
-            <LoginModal show={show} onHide={handleShow}/>
+            <Modal show={show} modalType="form" title="Please fill in your details" onHide={handleShow}/>
             <OuterContainer>
                 <ContainerFrame className="header">
-                    <Navbar className="mx-auto" expand="md" variant="dark">
+                    <Navbar className="mx-auto" expand="lg" variant="dark">
                         <Navbar.Brand href="/">
                             <span className="logo-text pl-2">
                                 <Logo src="assets/bg-images/Logo-1.jpg" className="img-fluid"/>
@@ -352,11 +425,15 @@ function HeaderAndFooter({children}) {
                                 <Nav.Link href="/home" className="mx-auto">Home</Nav.Link>
                                 <Nav.Link href="/about" className="mx-auto">About</Nav.Link>
                                 <Nav.Link href="/events." className="mx-auto">Events</Nav.Link>
+                                <Nav.Link href="/news." className="mx-auto">News</Nav.Link>
+                                <Nav.Link href="/jobs." className="mx-auto">Jobs</Nav.Link>
                                 <Nav.Link href="/status" className="mx-auto">Status</Nav.Link>
                                 <Nav.Link href="/faq" className="mx-auto">FAQ</Nav.Link>
                                 <Nav.Link href="/contact" className="mx-auto">Contact</Nav.Link>
                                 <Nav.Link href="/donation" className="mx-auto contact">Donation</Nav.Link>
-                                <Nav.Link href="#" className="mx-auto text-white login" onClick={handleShow}>Login</Nav.Link>
+                                {user !== '' && auth === true ? (<Nav.Link href="#" className="mx-auto text-white logout" onClick={handleLogout}>Logout</Nav.Link>) : (
+                                    <Nav.Link href="#" className="mx-auto text-white login" onClick={handleShow}>Login</Nav.Link>
+                                )}
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar> 
