@@ -1,19 +1,29 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+
 
 //Own Components
 import {Underline, Text} from './Homepage'
+import Api from '../../../services/network'
+import { AddJob, ViewJob } from '../../../redux/action-creator/JobActionCreator'
+import notify from '../../../helpers/Notify'
 
 const ContainerFrame = styled.div`
     .btn {
         border-radius: 0 !important;
         width: 50%;
         padding: .575rem .75rem;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: #fff !important;
     }
 
     @media all and (min-width: 992px) {
@@ -110,6 +120,38 @@ const JobContainer = styled.div`
 `
 
 export default function Jobs() {
+    const dispatch = useDispatch()
+    const api = new Api()
+    const {updateCount} = useSelector(state => state.events)
+    const {jobs} = useSelector(state => state.jobs)
+
+    useEffect(() => {
+        fetchJobs()
+        // eslint-disable-next-line
+    }, [updateCount])
+
+    function fetchJobs() {
+        api.Jobs().getAllJobs()
+        .then(res => {
+            if (res.status === 200) {
+                dispatch(AddJob(res.data.results))
+            }
+        })
+        .catch(err => {
+            if (err.response) {
+                const {message} = err.response.data
+                notify('error', message)
+			} else {
+				notify('error', 'Something went wrong, Please refresh the page.')
+			}
+        })
+    }
+
+    //Dispatch the event to be viewed on the single event page
+    function handleViewJob(job) {
+        dispatch(ViewJob(job))
+    }
+
     return (
         <ContainerFrame>
             <Container>
@@ -120,30 +162,20 @@ export default function Jobs() {
                         <Text>
                         Did you know Oklahoma City has one of the most diversified economies in the United States? A quick look at our job boards will show you that no matter your expertise, our community has a place for you. You can search by job type or simply view all jobs to see what opportunities await you in OKC.
                         </Text>
-                        <Button variant="primary">View All Jobs</Button>
+                        <Link to="/jobs.">
+                            <Button variant="primary">View All Jobs</Button>
+                        </Link>
                     </Col>
                     <Col xs={12} md={6} className="jobs-component">
-                        <JobContainer>
-                            <img src="assets/jobs/job-1.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
-                                Software and Cybersecurity
-                                <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
-                            </JobLink>
-                        </JobContainer>
-                        <JobContainer>
-                            <img src="assets/jobs/job-2.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
-                                Health Care
-                                <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
-                            </JobLink>
-                        </JobContainer>
-                        <JobContainer>
-                            <img src="assets/jobs/job-3.webp" alt="jobs" className="img-fluid jobs-image"/>
-                            <JobLink to="/jobs-page">
-                                Aerospace
-                                <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
-                            </JobLink>
-                        </JobContainer>
+                        {jobs.length !== 0 ? jobs.map((job) => (
+                            <JobContainer>
+                                <img src={job.picture.split(',')[0]} alt="jobs" className="img-fluid jobs-image"/>
+                                <JobLink to="/jobs-page" onClick={() => handleViewJob(job)}>
+                                    {job.title.slice(0, 10)}
+                                    <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
+                                </JobLink>
+                            </JobContainer>
+                        )): null}
                     </Col>
                 </Row>
             </Container>

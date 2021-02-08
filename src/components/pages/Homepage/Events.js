@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
-import ItemsCarousel from 'react-items-carousel';
 import Flip from 'react-reveal/Flip'
 import {Link} from 'react-router-dom'
 
@@ -17,6 +16,11 @@ const ContainerFrame = styled.div`
     margin-top: 75px;
     height: 970px;
     position: relative;
+
+    a {
+        text-decoration: none !important;
+        color: #fff !important;
+    }
 
     .events {
         position: absolute;
@@ -111,18 +115,8 @@ export const Header = styled.h1`
     text-align: center;
 `
 
-let cards = 1;
 
 export default function Events() {
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
-    if (window.screen.width >= 576 && window.screen.width < 992) {
-        cards = 2
-    } else if (window.screen.width >= 992 && window.screen.width < 1200) {
-        cards = 3
-    } else if (window.screen.width >= 1200) {
-        cards = 4
-    }
-
     return (
         <ContainerFrame>
             <MovingBackground>
@@ -135,43 +129,12 @@ export default function Events() {
                             </Text>
                         </Col>
                         <Col xs={12} className="events-container">
-                        <div style={{"padding":"40px 25px 70px 25px","maxWidth":1300,"margin":"0 auto"}}>
-                            <ItemsCarousel
-                                infiniteLoop={true}
-                                gutter={12}
-                                activePosition={'center'}
-                                chevronWidth={60}
-                                disableSwipe={false}
-                                alwaysShowChevrons={false}
-                                numberOfCards={cards}
-                                slidesToScroll={1}
-                                outsideChevron={true}
-                                showSlither={false}
-                                firstAndLastGutter={false}
-                                activeItemIndex={activeItemIndex}
-                                requestToChangeActive={value => setActiveItemIndex(value)}
-                                leftChevron={<span class="iconify" data-icon="dashicons:arrow-left-alt2" data-inline="false"></span>}
-                                rightChevron={<span class="iconify" data-icon="dashicons:arrow-right-alt2" data-inline="false"></span>}>
-                                    <Flip bottom>
-                                        <SingleEvent picNumber="2" />
-                                    </Flip>
-                                    <Flip bottom>
-                                        <SingleEvent picNumber="5" />
-                                    </Flip>
-                                    <Flip bottom>
-                                        <SingleEvent picNumber="6" />
-                                    </Flip>
-                                    <Flip bottom>
-                                        <SingleEvent picNumber="7" />
-                                    </Flip>
-                                    <Flip bottom>
-                                        <SingleEvent picNumber="8" />
-                                    </Flip>
-                                </ItemsCarousel>
-                                </div>
-                                <Link to="/events.">
-                                    <Button variant="outline-primary">See All Events</Button>
-                                </Link>
+                            <Flip bottom>
+                                <SingleEvent picNumber="2" />
+                            </Flip>
+                            <Link to="/events.">
+                                <Button variant="outline-primary">See All Events</Button>
+                            </Link>
                         </Col>
                     </Row>
                 </Container>

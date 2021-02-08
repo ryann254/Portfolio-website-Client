@@ -10,6 +10,7 @@ import {Text} from '../pages/Homepage/Homepage'
 const ContainerFrame = styled.div`
     .question {
         font-weight: bold;
+        cursor: pointer;
     }
 
     @media all and (max-width: 320px) {
