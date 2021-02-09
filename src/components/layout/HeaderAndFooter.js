@@ -20,7 +20,7 @@ import notify from '../../helpers/Notify'
 import catchFn from '../../helpers/Catch'
 
 
-const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
 
 
 //All the styles from the ${props => props.theme.main} come from the theme.js

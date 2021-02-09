@@ -24,6 +24,11 @@ const ResetPassword = styled.div`
     }
 `
 
+const Back = styled(Button)`
+    background-color: #aaa;
+    color: #333;
+`
+
 export default function ReusableModal({show, onHide, modalType, title, body}) {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
@@ -298,6 +303,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleForgotPassword}>
                                 Send
                             </Button>
+                            <Back>Back to Login</Back>
                         </Form>
                     ) : register ? (
                         <Form>
