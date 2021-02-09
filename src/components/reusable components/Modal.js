@@ -24,9 +24,23 @@ const ResetPassword = styled.div`
     }
 `
 
-const Back = styled(Button)`
-    background-color: #aaa;
-    color: #333;
+const Buttons = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+
+    .back {
+        background-color: #ccc;
+        outline: none;
+        border: none;
+
+        &:active, &:hover {
+            background-color: #aaa !important;
+            outline: none;
+            border: none;
+        }
+    }
 `
 
 export default function ReusableModal({show, onHide, modalType, title, body}) {
@@ -300,10 +314,12 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Form.Group>
                                 <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Your Email..." />
                             </Form.Group>
-                            <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleForgotPassword}>
-                                Send
-                            </Button>
-                            <Back>Back to Login</Back>
+                            <Buttons>
+                                <Button variant="primary" type="submit" className="d-flex mr-3" onClick={handleForgotPassword}>
+                                    Send
+                                </Button>
+                                <Button className="back" onClick={() => setForgot(false)}>Back to Login</Button>
+                            </Buttons>
                         </Form>
                     ) : register ? (
                         <Form>
@@ -316,9 +332,12 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Form.Group>
                                 <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type="password" required placeholder="Your Password..." />
                             </Form.Group>
-                            <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleRegister}>
-                                Submit
-                            </Button>
+                            <Buttons>
+                                <Button variant="primary" type="submit" className="d-flex mr-3" onClick={handleRegister}>
+                                    Submit
+                                </Button>
+                                <Button className="back" onClick={() => setRegister(false)}>Back to Login</Button>
+                            </Buttons>
                         </Form>
                     ) : 
                     (
@@ -335,7 +354,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 <span> | </span>
                                 <ResetPassword onClick={() => setRegister(true)} className="ml-2">Register with us</ResetPassword>
                             </div>
-                            <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleSubmit}>
+                            <Button variant="primary" type="submit" className="d-flex mt-4 mx-auto" onClick={handleSubmit}>
                                 Login
                             </Button>
                             <Button variant="warning" className="d-flex mt-3 mx-auto" onClick={fillFields}>Fill</Button>

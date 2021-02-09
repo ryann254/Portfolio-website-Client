@@ -171,7 +171,7 @@ export default function Jobs() {
                             <JobContainer key={job.id}>
                                 <img src={job.picture.split(',')[0]} alt="jobs" className="img-fluid jobs-image"/>
                                 <JobLink to="/jobs-page" onClick={() => handleViewJob(job)}>
-                                    {job.title.slice(0, 10)}
+                                    {job.title.slice(0, 10) + '...'}
                                     <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                                 </JobLink>
                             </JobContainer>
