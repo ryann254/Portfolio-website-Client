@@ -130,7 +130,7 @@ export default function Events() {
                         </Col>
                         <Col xs={12} className="events-container">
                             <Flip bottom>
-                                <SingleEvent picNumber="2" />
+                                <SingleEvent />
                             </Flip>
                             <Link to="/events.">
                                 <Button variant="outline-primary">See All Events</Button>

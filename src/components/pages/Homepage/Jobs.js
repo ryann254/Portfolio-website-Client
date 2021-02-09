@@ -168,7 +168,7 @@ export default function Jobs() {
                     </Col>
                     <Col xs={12} md={6} className="jobs-component">
                         {jobs.length !== 0 ? jobs.map((job) => (
-                            <JobContainer>
+                            <JobContainer key={job.id}>
                                 <img src={job.picture.split(',')[0]} alt="jobs" className="img-fluid jobs-image"/>
                                 <JobLink to="/jobs-page" onClick={() => handleViewJob(job)}>
                                     {job.title.slice(0, 10)}

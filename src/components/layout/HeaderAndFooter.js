@@ -442,16 +442,16 @@ function HeaderAndFooter({children}) {
                     <div className="upper-footer">
                         <Socials>
                             <div className="facebook">
-                                <i class="fa fa-facebook-f"></i>
+                                <i className="fa fa-facebook-f"></i>
                             </div>
                             <div className="twitter">
-                                <i class="fa fa-twitter"></i>
+                                <i className="fa fa-twitter"></i>
                             </div>
                             <div className="insta">
-                                <i class="fa fa-instagram"></i>
+                                <i className="fa fa-instagram"></i>
                             </div>
                             <div className="quora">
-                                <i class="fa fa-quora"></i>
+                                <i className="fa fa-quora"></i>
                             </div>
                         </Socials>
                         <p className="text-center">Get connected with us on social networks</p>

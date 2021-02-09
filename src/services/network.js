@@ -1,7 +1,14 @@
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 
 export const API_URL = 'http://localhost:3000/v1/'
 export const PROD_URL = 'https://portfolio-backend-application.herokuapp.com/v1'
+
+axiosRetry(axios, {
+    retries: 2,
+    shouldResetTimeout: true,
+    retryCondition: (_error) => true
+})
 
 class Api {
     constructor() {

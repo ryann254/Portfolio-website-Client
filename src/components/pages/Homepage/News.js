@@ -103,7 +103,7 @@ export default function News() {
                         </Text>
                     </Col>
                     {news.length !== 0 ? news.map(newsItem => (
-                        <Col xs={12} md={6} lg={4}>
+                        <Col xs={12} md={6} lg={4} key={newsItem.id}>
                             <Flip bottom>
                                 <SingleNews newsItem={newsItem} handleViewNews={handleViewNews} />
                             </Flip>

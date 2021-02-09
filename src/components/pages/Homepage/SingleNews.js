@@ -71,7 +71,7 @@ export default function SingleNews({newsItem, handleViewNews}) {
                     <EventHeader className="news-text">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                 </div>
                 <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}>
-                    <i class="fa fa-arrow-right"></i>
+                    <i className="fa fa-arrow-right"></i>
                 </Pointer>
             </News>
         </>
