@@ -17,6 +17,7 @@ import MovingBackground from '../reusable components/MovingBackground'
 import Api from '../../services/network'
 import {AddUser, UpdateAuth} from '../../redux/action-creator/AuthActionCreator'
 import notify from '../../helpers/Notify'
+import catchFn from '../../helpers/Catch'
 
 
 const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
@@ -309,7 +310,6 @@ function HeaderAndFooter({children}) {
     const api = new Api()
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_ENV)
         const userId = localStorage.getItem('currentUser')
 
         //Checking whether the user is logged in
@@ -348,14 +348,7 @@ function HeaderAndFooter({children}) {
                 localStorage.removeItem('currentUser')
             }
         })
-        .catch(err => {
-            if (err.response) {
-                const {message} = err.response.data
-                notify('error', message)
-			} else {
-				notify('error', 'Something went wrong, Please refresh the page.')
-			}
-        })
+        .catch(err => catchFn(err))
     }
 
     //Making the header sticky after scrolling to a certain height
