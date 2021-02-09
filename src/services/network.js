@@ -78,6 +78,12 @@ class Api {
             deleteJob: (id) => this.instance.delete(`jobs/${id}`),
         }
     }
+
+    Stripe() {
+        return {
+            makePayment: (data) => this.instance.post(`stripe/`, data)
+        }
+    }
 }
 
 export default Api;
