@@ -1,4 +1,5 @@
 import Routes from './Routes'
+import 'react-toastify/dist/ReactToastify.css';
 
 //For the bootstrap code
 import 'bootstrap/dist/css/bootstrap.min.css';
