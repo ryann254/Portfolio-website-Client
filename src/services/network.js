@@ -29,6 +29,12 @@ class Api {
         return localStorage.getItem('refreshToken')
     }
 
+    getUrl() {
+        const queryString = window.location.search
+        let substring = queryString.slice(7,)
+        return substring
+    }
+
     auth() {
         return {
             login: (data) => this.instance.post(`auth/login/`, data),

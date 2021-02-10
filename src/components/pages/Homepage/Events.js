@@ -14,7 +14,7 @@ import MovingBackground from '../../reusable components/MovingBackground'
 const ContainerFrame = styled.div`
     color: ${props => props.theme.primary};
     margin-top: 75px;
-    height: 970px;
+    height: 1040px;
     position: relative;
 
     a {
@@ -43,13 +43,11 @@ const ContainerFrame = styled.div`
             }
         }
 
-    @media all and (min-width: 411px) {
-        height: 990px;
-    }  
+    @media all and (max-width: 320px) {
+        height: 1070px;
+    }
 
-    @media all and (min-width: 576px) {
-        height: 1020px;
-        
+    @media all and (min-width: 576px) {        
         .event-text {
             margin-bottom: 27px;
         }
