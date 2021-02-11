@@ -9,16 +9,16 @@ const TEST_URL = 'https://portfolio-backend-application.herokuapp.com/v1/events/
 
 (function wake() {
     try {
-        const handler = setInterval(() => {
+        setInterval(() => {
             fetch(TEST_URL)
                 .then(res => console.log(`response-ok: ${res.ok}, status: ${res.status}`))
                 .catch(err => console.error(`Error occurred: ${err}`))
 
         }, interval)
-        handler()
 
     } catch (error) {
-        console.error('Error occured: retrying...')
+        console.error('Error occured: retrying...', error)
+        console.log('here')
         return setTimeout(() => wake(), 10000)
     }
 })()
