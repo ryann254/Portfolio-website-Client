@@ -3,26 +3,6 @@ import axios from 'axios'
 export const API_URL = 'http://localhost:3000/v1/'
 export const PROD_URL = 'https://portfolio-backend-application.herokuapp.com/v1'
 
-// globals
-const interval = 25*60*1000 // interval in milliseconds - {25mins x 60s x 1000}ms
-const TEST_URL = 'https://portfolio-backend-application.herokuapp.com/v1/events/';
-//Making sure the heroku dyno does nof fall asleep
-(function wake() {
-    try {
-        setInterval(() => {
-            fetch(TEST_URL)
-                .then(res => console.log(`response-ok: ${res.ok}, status: ${res.status}`))
-                .catch(err => console.error(`Error occurred: ${err}`))
-
-        }, interval)
-
-    } catch (error) {
-        console.error('Error occured: retrying...', error)
-        console.log('here')
-        return setTimeout(() => wake(), 10000)
-    }
-})()
-
 class Api {
     constructor() {
         this.instance =  axios.create({
