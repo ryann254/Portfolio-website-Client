@@ -6,7 +6,7 @@ export const PROD_URL = 'https://portfolio-backend-application.herokuapp.com/v1'
 // globals
 const interval = 25*60*1000 // interval in milliseconds - {25mins x 60s x 1000}ms
 const TEST_URL = 'https://portfolio-backend-application.herokuapp.com/v1/events/';
-
+//Making sure the heroku dyno does nof fall asleep
 (function wake() {
     try {
         setInterval(() => {
@@ -27,7 +27,7 @@ class Api {
     constructor() {
         this.instance =  axios.create({
             baseURL: process.env.REACT_APP_ENV === 'PRODUCTION' ? PROD_URL : API_URL,
-            timeout: 9000,
+            timeout: 11000,
             headers: {
                 Authorization: `Bearer ${this.getToken()}`
             },
