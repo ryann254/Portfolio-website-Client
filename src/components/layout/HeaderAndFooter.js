@@ -310,6 +310,16 @@ function HeaderAndFooter({children}) {
     const api = new Api()
 
     useEffect(() => {
+        if (user === '') {
+            //Checking whether the user is logged in
+            checkAuth()
+        }
+        // eslint-disable-next-line
+    }, [])
+
+    const handleShow = () => setShow(!show)
+
+    function checkAuth() {
         const userId = localStorage.getItem('currentUser')
 
         //Checking whether the user is logged in
@@ -329,10 +339,7 @@ function HeaderAndFooter({children}) {
                 }
             })
         }
-        // eslint-disable-next-line
-    }, [])
-
-    const handleShow = () => setShow(!show)
+    }
 
     function handleLogout() {
         let data = {

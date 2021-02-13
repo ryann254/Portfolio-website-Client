@@ -110,7 +110,7 @@ export default function News() {
                         </Col>
                     )): null}
                     <Col xs={12}>
-                        <Link to="/news-page">
+                        <Link to="/news.">
                             <Button variant="primary">See All News</Button>
                         </Link>
                     </Col>

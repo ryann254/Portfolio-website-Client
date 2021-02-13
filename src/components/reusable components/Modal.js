@@ -61,17 +61,21 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
         }
 
         return () => {
-            setBodyTitle('')
-            setDescription('')
-            setEmail('')
-            setPassword('')
-            setName('')
+            clearFields()
         }
         // eslint-disable-next-line
     }, [body, modalType, onHide])
 
+    const clearFields = () => {
+        setBodyTitle('')
+        setDescription('')
+        setEmail('')
+        setPassword('')
+        setName('')
+    }
+
     const fillFields = () => {
-        setEmail('mikemag.edu@gmail.com')
+        setEmail('ryan@example.com')
         setPassword("password1")
     }
 

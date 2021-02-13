@@ -24,6 +24,7 @@ export const EventHeader = styled.div`
 `
 
 export const Event = styled.div`
+    height: 100%;
     background: ${props => props.theme.primary};
     border-radius: 5px;
     .event-image {
