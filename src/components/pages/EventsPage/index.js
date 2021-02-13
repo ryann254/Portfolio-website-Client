@@ -74,7 +74,7 @@ const AddButton = styled.div`
 `
 
 function Index() {
-    const {auth} = useSelector(state => state.auth)
+    const {auth, user} = useSelector(state => state.auth)
     const {events, updateCount} = useSelector(state => state.events)
     const [popoverShow, setPopoverShow] = useState(false)
     const [modalShow, setModalShow] = useState(false)
@@ -95,8 +95,10 @@ function Index() {
             $(this).scrollTop(0);
         });
         
-        //Checking whether the user is logged in
-        checkAuth()
+        if (user === '') {
+            //Checking whether the user is logged in
+            checkAuth()
+        }
 
         fetchEvents()
         // eslint-disable-next-line

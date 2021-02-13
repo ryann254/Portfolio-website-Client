@@ -66,10 +66,14 @@ function CheckoutForm({history}) {
 
     const cardElement = elements.getElement(CardElement)
 
+
     try {
-      const { data: clientSecret } = await axios.post("https://stripe-payment-backend-001.herokuapp.com/api/payment_intents", {
+      const res = await axios.post("https://portfolio-backend-application.herokuapp.com/v1/stripe", {
         amount: parseInt(billingDetails.price, 10) * 100
       })
+      
+      const {client_secret} = res.data
+      console.log(client_secret)
   
       //So that the price does not get sent along with the data
       delete billingDetails.price
@@ -86,7 +90,7 @@ function CheckoutForm({history}) {
         return;
       }
 
-      const {error} = await stripe.confirmCardPayment(clientSecret, {
+      const {error} = await stripe.confirmCardPayment(client_secret, {
         payment_method: paymentMethodReq.paymentMethod.id
       })
 

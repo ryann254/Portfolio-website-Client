@@ -3,19 +3,54 @@ import {useDispatch} from 'react-redux'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import styled from 'styled-components'
 
 //Own Components
 import Api from '../../services/network'
 import notify from '../../helpers/Notify'
+import catchFn from '../../helpers/Catch'
 import {AddUser} from '../../redux/action-creator/AuthActionCreator'
 import {UpdateEvent} from '../../redux/action-creator/EventsActionCreator'
 
 
+const ResetPassword = styled.div`
+    color: #111;
+    transition: all 0.5s ease-in;
+    text-align: center;
+
+    &:hover {
+        color: #bbb;
+        text-decoration: underline;
+    }
+`
+
+const Buttons = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+
+    .back {
+        background-color: #ccc;
+        outline: none;
+        border: none;
+
+        &:active, &:hover {
+            background-color: #aaa !important;
+            outline: none;
+            border: none;
+        }
+    }
+`
+
 export default function ReusableModal({show, onHide, modalType, title, body}) {
     const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [bodyTitle, setBodyTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [forgot, setForgot] = useState(false)
+    const [register, setRegister] = useState(false)
     const api = new Api()
     const dispatch = useDispatch()
 
@@ -26,13 +61,18 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
         }
 
         return () => {
-            setBodyTitle('')
-            setDescription('')
-            setEmail('')
-            setPassword('')
+            clearFields()
         }
         // eslint-disable-next-line
     }, [body, modalType, onHide])
+
+    const clearFields = () => {
+        setBodyTitle('')
+        setDescription('')
+        setEmail('')
+        setPassword('')
+        setName('')
+    }
 
     const fillFields = () => {
         setEmail('mikemag.edu@gmail.com')
@@ -131,14 +171,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 onHide()
                             }
                         })
-                        .catch(err => {
-                            if (err.response) {
-                                const {message} = err.response.data
-                                notify('error', message)
-                            } else {
-                                notify('error', 'Something went wrong, Please refresh the page.')
-                            }
-                        })
+                        .catch(err => catchFn(err))
                     } else if (modalType === 'create news article') {
                         api.News().createNewsArtilce(data)
                         .then(res => {
@@ -163,14 +196,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 onHide()
                             }
                         })
-                        .catch(err => {
-                            if (err.response) {
-                                const {message} = err.response.data
-                                notify('error', message)
-                            } else {
-                                notify('error', 'Something went wrong, Please refresh the page.')
-                            }
-                        })
+                        .catch(err => catchFn(err))
                     } else if (modalType === 'create job') {
                         api.Jobs().createJob(data)
                         .then(res => {
@@ -195,14 +221,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 onHide()
                             }
                         })
-                        .catch(err => {
-                            if (err.response) {
-                                const {message} = err.response.data
-                                notify('error', message)
-                            } else {
-                                notify('error', 'Something went wrong, Please refresh the page.')
-                            }
-                        })
+                        .catch(err => catchFn(err))
                     }
                 }
             })
@@ -220,14 +239,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                         onHide()
                     }
                 })
-                .catch(err => {
-                    if (err.response) {
-                        const {message} = err.response.data
-                        notify('error', message)
-                    } else {
-                        notify('error', 'Something went wrong, Please refresh the page.')
-                    }
-                })
+                .catch(err => catchFn(err))
             } else if (modalType === 'delete news article') {
                 api.News().deleteNewsArtilce(body)
                 .then(res => {
@@ -237,14 +249,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                         onHide()
                     }
                 })
-                .catch(err => {
-                    if (err.response) {
-                        const {message} = err.response.data
-                        notify('error', message)
-                    } else {
-                        notify('error', 'Something went wrong, Please refresh the page.')
-                    }
-                })
+                .catch(err => catchFn(err))
             } else if (modalType === 'delete job') {
                 api.Jobs().deleteJob(body)
                 .then(res => {
@@ -254,16 +259,53 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                         onHide()
                     }
                 })
-                .catch(err => {
-                    if (err.response) {
-                        const {message} = err.response.data
-                        notify('error', message)
-                    } else {
-                        notify('error', 'Something went wrong, Please refresh the page.')
-                    }
-                })
+                .catch(err => catchFn(err))
             }
         }
+    }
+
+    function handleForgotPassword(e) {
+        e.preventDefault()
+
+        let data = {
+            email
+        } 
+
+        if (data.email === '')  {
+            notify('error', 'You need to key in your email')
+        } else {
+            api.auth().forgotPassword(data)
+            .then((res) => {
+                if (res.status === 204) {
+                    notify('success', 'Success')
+                    notify('info', 'Please check your email for further details')
+                    setForgot(false)
+                    onHide()
+                }
+            })
+            .catch(err => catchFn(err))
+        }
+    }
+
+    function handleRegister(e) {
+        e.preventDefault()
+
+        let data = {
+            name,
+            email,
+            password
+        }
+
+        api.auth().registerUser(data)
+        .then(res => {
+            if (res.status === 201) {
+                notify('success', 'User account created successfully')
+                onHide()
+                setRegister(false)
+                notify('info', 'You can now login into your account')
+            }
+        })
+        .catch(err => catchFn(err))
     }
 
     return (
@@ -273,7 +315,38 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {modalType === 'form' ? (
+                    {modalType === 'form' ? forgot ? (
+                        <Form>
+                            <Form.Group>
+                                <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Your Email..." />
+                            </Form.Group>
+                            <Buttons>
+                                <Button variant="primary" type="submit" className="d-flex mr-3" onClick={handleForgotPassword}>
+                                    Send
+                                </Button>
+                                <Button className="back" onClick={() => setForgot(false)}>Back to Login</Button>
+                            </Buttons>
+                        </Form>
+                    ) : register ? (
+                        <Form>
+                            <Form.Group>
+                                <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="text" required placeholder="Your Name..." />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Your Email..." />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type="password" required placeholder="Your Password..." />
+                            </Form.Group>
+                            <Buttons>
+                                <Button variant="primary" type="submit" className="d-flex mr-3" onClick={handleRegister}>
+                                    Submit
+                                </Button>
+                                <Button className="back" onClick={() => setRegister(false)}>Back to Login</Button>
+                            </Buttons>
+                        </Form>
+                    ) : 
+                    (
                         <Form>
                             <Form.Group>
                                 <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Your Email..." />
@@ -282,7 +355,12 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Form.Group>
                                 <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type="password" required placeholder="Your Password..." />
                             </Form.Group>
-                            <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleSubmit}>
+                            <div className="d-flex justify-content-center">
+                                <ResetPassword onClick={() => setForgot(true)} className="mr-2">Forgot Password</ResetPassword>
+                                <span> | </span>
+                                <ResetPassword onClick={() => setRegister(true)} className="ml-2">Register with us</ResetPassword>
+                            </div>
+                            <Button variant="primary" type="submit" className="d-flex mt-4 mx-auto" onClick={handleSubmit}>
                                 Login
                             </Button>
                             <Button variant="warning" className="d-flex mt-3 mx-auto" onClick={fillFields}>Fill</Button>
@@ -290,17 +368,17 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                     ): modalType === 'create event' || modalType === 'create news article' || modalType === 'create job' ? (
                         <Form>
                             <Form.Group>
-                                <Form.Control type="file" name="files[]" multiple/>
+                                <Form.Control type="file" name="files[]" multiple required/>
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control value={bodyTitle} onChange={(e) => setBodyTitle(e.target.value)} type="text" placeholder="Add new title..." />
+                                <Form.Control value={bodyTitle} onChange={(e) => setBodyTitle(e.target.value)} type="text" required placeholder="Add new title..." />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} rows={4} placeholder="Add new description..." />
+                                <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} rows={4} required placeholder="Add new description..." />
                             </Form.Group>
-                            <Button variant="primary" type="submit" className="d-flex mt-5 mx-auto" onClick={handleUpdate}>
+                            <Button variant="primary" type="submit" className="d-flex mt-4 mx-auto" onClick={handleUpdate}>
                                 Send
                             </Button>
                         </Form>
