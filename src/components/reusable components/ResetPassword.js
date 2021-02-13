@@ -42,7 +42,7 @@ export default function ResetPassword() {
 
     const backToLogin = (e) => {
         e.preventDefault()
-        history.push('/login')
+        history.push('/home')
     }
 
     function handleReset(e) {

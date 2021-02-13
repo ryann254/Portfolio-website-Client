@@ -75,7 +75,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
     }
 
     const fillFields = () => {
-        setEmail('ryan@example.com')
+        setEmail('mikemag.edu@gmail.com')
         setPassword("password1")
     }
 
@@ -278,7 +278,9 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
             .then((res) => {
                 if (res.status === 204) {
                     notify('success', 'Success')
+                    notify('info', 'Please check your email for further details')
                     setForgot(false)
+                    onHide()
                 }
             })
             .catch(err => catchFn(err))

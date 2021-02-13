@@ -35,7 +35,7 @@ function Routes() {
                     <Route exact path="/">
                         <Redirect to="/home"/>
                     </Route>
-                    <Route path="/reset/password" component={ResetPassword}/>
+                    <Route path="/reset-password" component={ResetPassword}/>
 
                     <RouteWithLayout path="/home" exact component={Homepage} layout={HeaderAndFooter}/>
                     <RouteWithLayout path="/status" exact component={Status} layout={HeaderAndFooter}/>
