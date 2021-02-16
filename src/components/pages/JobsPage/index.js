@@ -19,7 +19,6 @@ import Api from '../../../services/network'
 import { AddJob, ViewJob } from '../../../redux/action-creator/JobActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
-import {AddUser} from '../../../redux/action-creator/AuthActionCreator'
 
 
 const ContainerFrame = styled.div`
@@ -95,35 +94,9 @@ function Index() {
             $(this).scrollTop(0);
         });
 
-        if (user === '') {
-            //Checking whether the user is logged in
-            checkAuth()
-        }
         fetchJobs()
         // eslint-disable-next-line
     }, [updateCount])
-
-    
-    function checkAuth() {
-        const userId = localStorage.getItem('currentUser')
-
-        if (userId !== null && userId !== '') {
-            api.Users().getUser(userId)
-            .then(res => {
-                if (res.status === 200) {
-                    dispatch(AddUser(res.data))
-                }
-            })
-            .catch(err => {
-                if (err.response) {
-                    const {message} = err.response.data
-                    console.log(message)
-                } else {
-                    console.log(err)
-                }
-            })
-        }
-    }
 
     function fetchJobs() {
         api.Jobs().getAllJobs()
@@ -217,7 +190,7 @@ function Index() {
                         </Col>   
                     )): null}
                     {/* The Add Button */}
-                    {auth === true ? (
+                    {auth === true && user.role === 'admin' ? (
                         <OverlayTrigger
                             placement="top"
                             delay={{ show: 250, hide: 400 }}

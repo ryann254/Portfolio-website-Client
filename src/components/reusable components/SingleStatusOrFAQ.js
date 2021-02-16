@@ -31,7 +31,7 @@ const ContainerFrame = styled.div`
     }
 `
 
-export default function SingleStatusOrFAQ({questionOrStatus}) {
+export default function SingleStatusOrFAQ({questionOrStatus, answers, index}) {
     function ContextAwareToggle({ eventKey, callback }) {
         const currentEventKey = useContext(AccordionContext);
       
@@ -59,7 +59,7 @@ export default function SingleStatusOrFAQ({questionOrStatus}) {
                     Click me!
                 </ContextAwareToggle>
                 <Accordion.Collapse eventKey="0">
-                <Text>Hello! I'm the body</Text>
+                <Text>{answers[index]}</Text>
                 </Accordion.Collapse>
             </Accordion>
         </ContainerFrame>
