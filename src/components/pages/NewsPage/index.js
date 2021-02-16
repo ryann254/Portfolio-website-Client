@@ -92,6 +92,7 @@ function Index() {
         $(document).ready(function(){
             $(this).scrollTop(0);
         });    
+      
         fetchNews()
         // eslint-disable-next-line
     }, [updateCount])

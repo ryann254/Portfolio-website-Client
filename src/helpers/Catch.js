@@ -1,7 +1,6 @@
 import notify from './Notify'
 
 const catchFn = (err) => {
-    console.log(err)
     if (err.response) {
         const {message} = err.response.data
         notify('error', message)
