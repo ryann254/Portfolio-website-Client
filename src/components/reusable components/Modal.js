@@ -226,7 +226,6 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                                 catchFn(err)
                             })
                         }
-                        
                     } else if (modalType === 'create news article') {
                         //When an event is created and it has multiple values update the event with
                         //the event picture values
@@ -362,7 +361,6 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
             password
         }
         setIsLoading(true)
-
         api.auth().registerUser(data)
         .then(res => {
             if (res.status === 201) {
@@ -449,6 +447,7 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Form.Group>
                                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} rows={4} required placeholder="Add new description..." />
                             </Form.Group>
+
                             <Button variant="primary" disabled={isLoading} type="submit" className="d-flex mt-4 mx-auto" onClick={handleUpdate}>
                                 {isLoading ? 'Loading...' : 'Send'}
                             </Button>

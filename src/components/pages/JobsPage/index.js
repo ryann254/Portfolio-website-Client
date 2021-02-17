@@ -100,7 +100,7 @@ function Index() {
         $(document).ready(function(){
             $(this).scrollTop(0);
         });
-
+      
         fetchJobs()
         // eslint-disable-next-line
     }, [updateCount])
