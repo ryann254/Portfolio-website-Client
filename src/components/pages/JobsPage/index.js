@@ -24,10 +24,17 @@ import Modal from '../../reusable components/Modal'
 const ContainerFrame = styled.div`
     background: #f6f6f6;
     margin-top: 70px;
+
+    .main-jobs-container {
+        margin-bottom: 65px;
+    }
+
+    .single-job-container {
+        height: 100%;
+    } 
     
     .event {
         position: relative;
-        margin-bottom: 65px;
 
         img {
             height: 236px;
@@ -154,7 +161,7 @@ function Index() {
                 <Row>
                     <Col xs={12} className="heading"></Col>
                     {auth === true ? jobs.length !== 0 ? jobs.map((job, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} onClick={handlePopover} id={job.id}>
+                        <Col xs={12} md={6} lg={4} key={index} className="main-jobs-container" popoverRef={popoverRef} onClick={handlePopover} id={job.id}>
                             <Overlay 
                                 show={popoverShow}
                                 container={popoverRef.current}
@@ -170,7 +177,7 @@ function Index() {
                                         </Popover.Content>
                                     </Popover>
                                 </Overlay>
-                                <Col>
+                                <Col className="single-job-container">
                                     <Event className="event">
                                         <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
                                         <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
@@ -180,7 +187,7 @@ function Index() {
                                 </Col>
                         </Col>)
                     ): null : jobs.length !== 0 ? jobs.map((job, index) => (
-                        <Col xs={12} md={6} lg={4} key={index}>
+                        <Col xs={12} md={6} lg={4} key={index} className="single-job-container">
                             <Event className="event">
                                  <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
                                 <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>

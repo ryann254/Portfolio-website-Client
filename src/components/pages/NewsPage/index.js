@@ -23,10 +23,17 @@ import Modal from '../../reusable components/Modal'
 const ContainerFrame = styled.div`
     background: #f6f6f6;
     margin-top: 70px;
+
+    .main-news-container {
+        margin-bottom: 65px;
+    }
+
+    .single-news-container {
+        height: 100%;
+    } 
     
     .event {
         position: relative;
-        margin-bottom: 65px;
 
         img {
             height: 236px;
@@ -152,7 +159,7 @@ function Index() {
                 <Row>
                     <Col xs={12} className="heading"></Col>
                     {auth === true ? news.length !== 0 ? news.map((newsItem, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} onClick={handlePopover} id={newsItem.id}>
+                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} className="main-news-container" onClick={handlePopover} id={newsItem.id}>
                             <Overlay 
                                 show={popoverShow}
                                 container={popoverRef.current}
@@ -168,7 +175,7 @@ function Index() {
                                         </Popover.Content>
                                     </Popover>
                                 </Overlay>
-                                <Col>
+                                <Col className="single-news-container">
                                     <Event className="event">
                                         <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
                                         <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
@@ -178,7 +185,7 @@ function Index() {
                                 </Col>
                         </Col>)
                     ): null : news.length !== 0 ? news.map((newsItem, index) => (
-                        <Col xs={12} md={6} lg={4} key={index}>
+                        <Col xs={12} md={6} lg={4} key={index} className="single-news-container">
                             <Event className="event">
                                  <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
                                 <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
