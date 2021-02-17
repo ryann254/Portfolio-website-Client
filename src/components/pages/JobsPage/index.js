@@ -189,14 +189,16 @@ function Index() {
                                 </Col>
                         </Col>)
                     ): null : jobs.length !== 0 ? jobs.map((job, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} className="single-job-container">
-                            <Event className="event">
-                                 <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
-                                <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
-                            </Event>
-                        </Col>   
+                        <Col xs={12} md={6} lg={4} key={index} className="main-jobs-container">
+                            <Col className="single-job-container">
+                                <Event className="event">
+                                    <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
+                                    <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
+                                    <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
+                                    <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
+                                </Event>
+                            </Col>   
+                        </Col>
                     )): null}
                     {/* The Add Button */}
                     {auth === true && user.role === 'admin' ? (

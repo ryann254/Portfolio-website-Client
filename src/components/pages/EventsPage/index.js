@@ -27,8 +27,12 @@ const ContainerFrame = styled.div`
     background: #f6f6f6;
     margin-top: 70px;
 
-    .single-event-container {
+    .main-events-container {
         margin-bottom: 65px;
+    }
+
+    .single-event-container {
+        height: 100%;
     } 
     
     .event {
@@ -186,13 +190,15 @@ function Index() {
                                 </Col>
                         </Col>)
                     ): null : events.length !== 0 ? events.map((event, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} className="single-event-container">
-                            <Event className="event">
-                                 <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(event.createdAt)} ${event.createdAt.slice(8, 10) } ${event.createdAt.slice(0, 4)}`}</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title.slice(0, 40) + '...'}</EventHeader>
-                                <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
-                            </Event>
+                        <Col xs={12} md={6} lg={4} key={index} className="main-events-container">
+                            <Col className="single-event-container">
+                                <Event className="event">
+                                    <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
+                                    <Date className="pt-4 pl-4 pr-4">{`${getMonth(event.createdAt)} ${event.createdAt.slice(8, 10) } ${event.createdAt.slice(0, 4)}`}</Date>
+                                    <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title.slice(0, 40) + '...'}</EventHeader>
+                                    <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
+                                </Event>
+                            </Col>
                         </Col>   
                     )): null}
                     {/* The Add Button */}

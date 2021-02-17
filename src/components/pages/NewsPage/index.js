@@ -187,14 +187,16 @@ function Index() {
                                 </Col>
                         </Col>)
                     ): null : news.length !== 0 ? news.map((newsItem, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} className="single-news-container">
-                            <Event className="event">
-                                 <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
-                                <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
-                            </Event>
-                        </Col>   
+                        <Col xs={12} md={6} lg={4} key={index} className="main-news-container">
+                            <Col className="single-news-container">
+                                <Event className="event">
+                                    <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
+                                    <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
+                                    <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
+                                    <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
+                                </Event>
+                            </Col>   
+                        </Col>
                     )): null}
                     {/* The Add Button */}
                     {auth === true && user.role === 'admin' ? (
