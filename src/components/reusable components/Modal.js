@@ -76,11 +76,6 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
         setIsLoading(false)
     }
 
-    const fillFields = () => {
-        setEmail('mikemag.edu@gmail.com')
-        setPassword("password1")
-    }
-
     function handleSubmit(e) {
         e.preventDefault()
         setIsLoading(true)
@@ -189,10 +184,6 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
             .then(data => {
                 const {public_id, version, format} = data
                 picData[i] = {public_id, version, format}
-                console.log(Object.keys(picData).length !== 0)
-                console.log(Object.keys(picData).length === files.length)
-                console.log(picData[0] !== undefined)
-                console.log(i === files.length - 1)
 
                 //Check if the images object is empty before sending a request
                 if (Object.keys(picData).length !== 0 && Object.keys(picData).length === files.length  && picData[0] !== undefined) {
@@ -432,7 +423,6 @@ export default function ReusableModal({show, onHide, modalType, title, body}) {
                             <Button variant="primary" disabled={isLoading} type="submit" className="d-flex mt-4 mx-auto" onClick={handleSubmit}>
                                 {isLoading ? 'Loading...' : 'Login'}
                             </Button>
-                            <Button variant="warning" className="d-flex mt-3 mx-auto" onClick={fillFields}>Fill</Button>
                     </Form>
                     ): modalType === 'create event' || modalType === 'create news article' || modalType === 'create job' ? (
                         <Form>
