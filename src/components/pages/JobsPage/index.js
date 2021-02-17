@@ -19,16 +19,24 @@ import Api from '../../../services/network'
 import { AddJob, ViewJob } from '../../../redux/action-creator/JobActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
-import {AddUser} from '../../../redux/action-creator/AuthActionCreator'
+import {getMonth} from '../../../helpers/Date'
+
 
 
 const ContainerFrame = styled.div`
     background: #f6f6f6;
     margin-top: 70px;
+
+    .main-jobs-container {
+        margin-bottom: 65px;
+    }
+
+    .single-job-container {
+        height: 100%;
+    } 
     
     .event {
         position: relative;
-        margin-bottom: 65px;
 
         img {
             height: 236px;
@@ -94,36 +102,10 @@ function Index() {
         $(document).ready(function(){
             $(this).scrollTop(0);
         });
-
-        if (user === '') {
-            //Checking whether the user is logged in
-            checkAuth()
-        }
+      
         fetchJobs()
         // eslint-disable-next-line
     }, [updateCount])
-
-    
-    function checkAuth() {
-        const userId = localStorage.getItem('currentUser')
-
-        if (userId !== null && userId !== '') {
-            api.Users().getUser(userId)
-            .then(res => {
-                if (res.status === 200) {
-                    dispatch(AddUser(res.data))
-                }
-            })
-            .catch(err => {
-                if (err.response) {
-                    const {message} = err.response.data
-                    console.log(message)
-                } else {
-                    console.log(err)
-                }
-            })
-        }
-    }
 
     function fetchJobs() {
         api.Jobs().getAllJobs()
@@ -181,7 +163,7 @@ function Index() {
                 <Row>
                     <Col xs={12} className="heading"></Col>
                     {auth === true ? jobs.length !== 0 ? jobs.map((job, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} onClick={handlePopover} id={job.id}>
+                        <Col xs={12} md={6} lg={4} key={index} className="main-jobs-container" popoverRef={popoverRef} onClick={handlePopover} id={job.id}>
                             <Overlay 
                                 show={popoverShow}
                                 container={popoverRef.current}
@@ -197,27 +179,29 @@ function Index() {
                                         </Popover.Content>
                                     </Popover>
                                 </Overlay>
-                                <Col>
+                                <Col className="single-job-container">
                                     <Event className="event">
                                         <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
-                                        <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                        <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
                                 </Col>
                         </Col>)
                     ): null : jobs.length !== 0 ? jobs.map((job, index) => (
-                        <Col xs={12} md={6} lg={4} key={index}>
-                            <Event className="event">
-                                 <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
-                                <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
-                            </Event>
-                        </Col>   
+                        <Col xs={12} md={6} lg={4} key={index} className="main-jobs-container">
+                            <Col className="single-job-container">
+                                <Event className="event">
+                                    <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
+                                    <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
+                                    <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
+                                    <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
+                                </Event>
+                            </Col>   
+                        </Col>
                     )): null}
                     {/* The Add Button */}
-                    {auth === true ? (
+                    {auth === true && user.role === 'admin' ? (
                         <OverlayTrigger
                             placement="top"
                             delay={{ show: 250, hide: 400 }}

@@ -21,6 +21,14 @@ const ContainerFrame = styled.div`
     background: #f6f6f6;
     padding-top: 45px;
 
+    .news-column {
+        margin-bottom: 55px;
+    }
+
+    .react-reveal {
+        height: 100%
+    }
+
     a {
         text-decoration: none !important;
         color: #fff !important;
@@ -102,8 +110,8 @@ export default function News() {
                             We aren’t the only ones talking about how Oklahoma City is the perfect place to live, work and play. See what others are saying about your next hometown.
                         </Text>
                     </Col>
-                    {news.length !== 0 ? news.map(newsItem => (
-                        <Col xs={12} md={6} lg={4} key={newsItem.id}>
+                    {news.length !== 0 ? news.slice(0,3).map(newsItem => (
+                        <Col xs={12} md={6} lg={4} key={newsItem.id} className="news-column">
                             <Flip bottom>
                                 <SingleNews newsItem={newsItem} handleViewNews={handleViewNews} />
                             </Flip>
