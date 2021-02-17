@@ -164,7 +164,8 @@ function Index() {
                 <Row>
                     <Col xs={12} className="heading"></Col>
                     {auth === true ? events.length !== 0 ? events.map((event, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} className="main-events-container" onClick={handlePopover} id={event.id}>
+                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} onClick={handlePopover} id={event.id}>
+                            <div className="main-events-container">
                             <Overlay 
                                 show={popoverShow}
                                 container={popoverRef.current}
@@ -188,6 +189,7 @@ function Index() {
                                         <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
                                 </Col>
+                                </div>
                         </Col>)
                     ): null : events.length !== 0 ? events.map((event, index) => (
                         <Col xs={12} md={6} lg={4} key={index} className="single-event-container">
