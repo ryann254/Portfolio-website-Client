@@ -19,6 +19,8 @@ import Api from '../../../services/network'
 import { AddJob, ViewJob } from '../../../redux/action-creator/JobActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
+import {getMonth} from '../../../helpers/Date'
+
 
 
 const ContainerFrame = styled.div`
@@ -180,7 +182,7 @@ function Index() {
                                 <Col className="single-job-container">
                                     <Event className="event">
                                         <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
-                                        <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                        <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
@@ -190,7 +192,7 @@ function Index() {
                         <Col xs={12} md={6} lg={4} key={index} className="single-job-container">
                             <Event className="event">
                                  <img src={job.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(job.createdAt)} ${job.createdAt.slice(8, 10) } ${job.createdAt.slice(0, 4)}`}</Date>
                                 <EventHeader className="pt-4 pl-4 pr-4 pb-5">{job.title.slice(0, 40) + '...'}</EventHeader>
                                 <Pointer to="/jobs-page" onClick={() => handleViewJob(job)}><i className="fa fa-arrow-right"></i></Pointer>
                             </Event>

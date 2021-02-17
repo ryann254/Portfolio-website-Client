@@ -21,6 +21,14 @@ const ContainerFrame = styled.div`
     background: #f6f6f6;
     padding-top: 45px;
 
+    .news-column {
+        margin-bottom: 55px;
+    }
+
+    .react-reveal {
+        height: 100%
+    }
+
     a {
         text-decoration: none !important;
         color: #fff !important;
@@ -103,7 +111,7 @@ export default function News() {
                         </Text>
                     </Col>
                     {news.length !== 0 ? news.slice(0,3).map(newsItem => (
-                        <Col xs={12} md={6} lg={4} key={newsItem.id}>
+                        <Col xs={12} md={6} lg={4} key={newsItem.id} className="news-column">
                             <Flip bottom>
                                 <SingleNews newsItem={newsItem} handleViewNews={handleViewNews} />
                             </Flip>

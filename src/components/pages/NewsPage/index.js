@@ -18,6 +18,7 @@ import Api from '../../../services/network'
 import { AddNews, ViewNews } from '../../../redux/action-creator/NewsActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
+import {getMonth} from '../../../helpers/Date'
 
 
 const ContainerFrame = styled.div`
@@ -179,7 +180,7 @@ function Index() {
                                 <Col className="single-news-container">
                                     <Event className="event">
                                         <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
-                                        <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                        <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
@@ -189,7 +190,7 @@ function Index() {
                         <Col xs={12} md={6} lg={4} key={index} className="single-news-container">
                             <Event className="event">
                                  <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
                                 <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                                 <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
                             </Event>

@@ -20,6 +20,7 @@ import Api from '../../../services/network'
 import { AddEvents, ViewEvent } from '../../../redux/action-creator/EventsActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
+import {getMonth} from '../../../helpers/Date'
 
 
 const ContainerFrame = styled.div`
@@ -155,6 +156,7 @@ function Index() {
         dispatch(ViewEvent(event))
     }
 
+
     return (
         <ContainerFrame>
             <Modal show={modalShow} modalType={modalType} title={title} body={eventBody} onHide={() => setModalShow(false)}/>
@@ -181,7 +183,7 @@ function Index() {
                                 <Col className="single-event-container">
                                     <Event className="event">
                                         <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
-                                        <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                        <Date className="pt-4 pl-4 pr-4">{`${getMonth(event.createdAt)} ${event.createdAt.slice(8, 10) } ${event.createdAt.slice(0, 4)}`}</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
@@ -191,7 +193,7 @@ function Index() {
                         <Col xs={12} md={6} lg={4} key={index} className="single-event-container">
                             <Event className="event">
                                  <img src={event.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                <Date className="pt-4 pl-4 pr-4">{`${getMonth(event.createdAt)} ${event.createdAt.slice(8, 10) } ${event.createdAt.slice(0, 4)}`}</Date>
                                 <EventHeader className="pt-4 pl-4 pr-4 pb-5">{event.title.slice(0, 40) + '...'}</EventHeader>
                                 <Pointer to="/events-page" onClick={() => handleViewEvent(event)}><i className="fa fa-arrow-right"></i></Pointer>
                             </Event>

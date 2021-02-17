@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom'
 
 //Own Components
 import {EventHeader} from './SingleEvent'
+import {getMonth} from '../../../helpers/Date'
 
 
 const News = styled.div`
     position: relative;
     margin-top: 45px;
-    margin-bottom: 55px;
+    height: 100%;
     background: ${props => props.theme.primary};
     border-radius: 5px;
 
@@ -67,7 +68,7 @@ export default function SingleNews({newsItem, handleViewNews}) {
             <News>
                 <img src={newsItem.picture.split(',')[0]} alt="events" className="img-fluid news-image"/>
                 <div className="pt-3 pl-3 pr-3 pb-5">
-                    <Date>Jan 20, 2021</Date>
+                    <Date>{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
                     <EventHeader className="news-text">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                 </div>
                 <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}>
