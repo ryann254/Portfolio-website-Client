@@ -26,6 +26,10 @@ const ContainerFrame = styled.div`
         color: #fff !important;
     }
 
+    .jobs-image {
+            height: 254px;
+        }
+
     @media all and (min-width: 992px) {
         .container {
             max-width: 960px !important;
