@@ -45,6 +45,7 @@ const ContainerFrame = styled.div`
 export default function SingleEventPage() {
     const dispatch = useDispatch()
     const [pictures, setPictures] = useState([])
+    const {user} = useSelector(state => state.auth)
     const {viewEvent, updateCount} = useSelector(state => state.events)
     const api = new Api()
 
@@ -54,8 +55,10 @@ export default function SingleEventPage() {
             $(this).scrollTop(0);
         });
 
-        //Checking whether the user is logged in
-        checkAuth()
+        if (user === '') {
+            //Checking whether the user is logged in
+            checkAuth()
+        }
         
         convertToArray()
         // eslint-disable-next-line

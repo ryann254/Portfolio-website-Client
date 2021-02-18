@@ -18,16 +18,23 @@ import Api from '../../../services/network'
 import { AddNews, ViewNews } from '../../../redux/action-creator/NewsActionCreator'
 import notify from '../../../helpers/Notify'
 import Modal from '../../reusable components/Modal'
-import {AddUser} from '../../../redux/action-creator/AuthActionCreator'
+import {getMonth} from '../../../helpers/Date'
 
 
 const ContainerFrame = styled.div`
     background: #f6f6f6;
     margin-top: 70px;
+
+    .main-news-container {
+        margin-bottom: 65px;
+    }
+
+    .single-news-container {
+        height: 100%;
+    } 
     
     .event {
         position: relative;
-        margin-bottom: 65px;
 
         img {
             height: 236px;
@@ -72,7 +79,7 @@ const AddButton = styled.div`
 `
 
 function Index() {
-    const {auth} = useSelector(state => state.auth)
+    const {auth, user} = useSelector(state => state.auth)
     const {updateCount} = useSelector(state => state.events)
     const {news} = useSelector(state => state.news)
     const [popoverShow, setPopoverShow] = useState(false)
@@ -92,35 +99,11 @@ function Index() {
         //Scroll to the top
         $(document).ready(function(){
             $(this).scrollTop(0);
-        });
-        
-        //Checking whether the user is logged in
-        checkAuth()
+        });    
+      
         fetchNews()
         // eslint-disable-next-line
     }, [updateCount])
-
-    function checkAuth() {
-        const userId = localStorage.getItem('currentUser')
-
-        if (userId !== null && userId !== '') {
-            api.Users().getUser(userId)
-            .then(res => {
-                if (res.status === 200) {
-                    dispatch(AddUser(res.data))
-                }
-            })
-            .catch(err => {
-                if (err.response) {
-                    const {message} = err.response.data
-                    console.log(message)
-                } else {
-                    console.log(err)
-                }
-            })
-        }
-    }
-
 
     function fetchNews() {
         api.News().getAllNewsArtilces()
@@ -178,7 +161,7 @@ function Index() {
                 <Row>
                     <Col xs={12} className="heading"></Col>
                     {auth === true ? news.length !== 0 ? news.map((newsItem, index) => (
-                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} onClick={handlePopover} id={newsItem.id}>
+                        <Col xs={12} md={6} lg={4} key={index} popoverRef={popoverRef} className="main-news-container" onClick={handlePopover} id={newsItem.id}>
                             <Overlay 
                                 show={popoverShow}
                                 container={popoverRef.current}
@@ -194,27 +177,29 @@ function Index() {
                                         </Popover.Content>
                                     </Popover>
                                 </Overlay>
-                                <Col>
+                                <Col className="single-news-container">
                                     <Event className="event">
                                         <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>
-                                        <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
+                                        <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
                                         <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
                                         <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
                                     </Event>
                                 </Col>
                         </Col>)
                     ): null : news.length !== 0 ? news.map((newsItem, index) => (
-                        <Col xs={12} md={6} lg={4} key={index}>
-                            <Event className="event">
-                                 <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
-                                <Date className="pt-4 pl-4 pr-4">Jan 20, 2021</Date>
-                                <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
-                                <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
-                            </Event>
-                        </Col>   
+                        <Col xs={12} md={6} lg={4} key={index} className="main-news-container">
+                            <Col className="single-news-container">
+                                <Event className="event">
+                                    <img src={newsItem.picture.split(',')[0]} className="img-fluid" alt="Events images"/>   
+                                    <Date className="pt-4 pl-4 pr-4">{`${getMonth(newsItem.createdAt)} ${newsItem.createdAt.slice(8, 10) } ${newsItem.createdAt.slice(0, 4)}`}</Date>
+                                    <EventHeader className="pt-4 pl-4 pr-4 pb-5">{newsItem.title.slice(0, 40) + '...'}</EventHeader>
+                                    <Pointer to="/news-page" onClick={() => handleViewNews(newsItem)}><i className="fa fa-arrow-right"></i></Pointer>
+                                </Event>
+                            </Col>   
+                        </Col>
                     )): null}
                     {/* The Add Button */}
-                    {auth === true ? (
+                    {auth === true && user.role === 'admin' ? (
                         <OverlayTrigger
                             placement="top"
                             delay={{ show: 250, hide: 400 }}

@@ -18,14 +18,21 @@ const statusAnswers = [
     'Session 3: Team Building'
 ]
 
+const Answers = [
+    'Answer to status one',
+    'Answer to status two',
+    'Answer to status three',
+    'Answer to status four'
+]
+
 export default function Status() {
     return (
         <ContainerFrame>
             <Container>
                 <Row>
                     <Col>
-                        {statusAnswers.length !== 0 ? statusAnswers.map(item => (
-                            <SingleStatus questionOrStatus={item} key={item}/>
+                        {statusAnswers.length !== 0 ? statusAnswers.map((item, index) => (
+                            <SingleStatus questionOrStatus={item} key={item} index={index} answers={Answers}/>
                         )): null}
                     </Col>
                 </Row>
