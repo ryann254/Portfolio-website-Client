@@ -125,9 +125,11 @@ function Index() {
     }
 
     const handlePopover = (e) => {
-        setPopoverShow(!popoverShow)
-        setTarget(e.target)
-        setId(e.currentTarget.id)
+        if (user.role === 'admin') {
+            setPopoverShow(!popoverShow)
+            setTarget(e.target)
+            setId(e.currentTarget.id)
+        }
     }
 
     const renderTooltip = (props) => (
