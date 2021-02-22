@@ -24,6 +24,7 @@ const ContainerFrame = styled.div`
     }
 
     .awssld {
+        --fall-animation-duration: 200ms;
         --organic-arrow-thickness: 5px;
         --organic-arrow-color: #f46b34;
         --organic-arrow-thickness: 6px;
@@ -101,7 +102,7 @@ export default function SingleJobsPage() {
                         <AutoplaySlider 
                             play={true}
                             cancelOnInteraction={false} // should stop playing on user interaction
-                            interval={5000}
+                            interval={3000}
                             animation="fallAnimation">
                                 {pictures.length !== 0 ? pictures.map(pic => (
                                     <div data-src={pic} />

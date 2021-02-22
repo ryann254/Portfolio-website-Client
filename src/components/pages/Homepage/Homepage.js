@@ -176,6 +176,7 @@ const Img = styled.div`
     margin-right: auto;
 
     .awssld {
+        --fall-animation-duration: 200ms;
         --organic-arrow-thickness: 7px;
         --organic-arrow-color: #f46b34;
         --organic-arrow-thickness: 6px;
@@ -251,7 +252,7 @@ function Homepage() {
                     <AutoplaySlider 
                         play={true}
                         cancelOnInteraction={false} // should stop playing on user interaction
-                        interval={5000}
+                        interval={4000}
                         animation="fallAnimation">
                             <div data-src="assets/bg-images/bg-3.webp" />
                             <div data-src="assets/bg-images/bg-2.webp" />
