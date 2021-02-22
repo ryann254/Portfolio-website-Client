@@ -17,9 +17,10 @@ import MovingBackground from '../reusable components/MovingBackground'
 import Api from '../../services/network'
 import {AddUser, UpdateAuth} from '../../redux/action-creator/AuthActionCreator'
 import notify from '../../helpers/Notify'
+import catchFn from '../../helpers/Catch'
 
 
-const stripePromise = loadStripe('pk_test_51HWJt8DnpHPxB6GWCJgSUeP5okYIZ0zvYMtD02smALOGeNSECOFxkx6O9Ts9OFXQXOVjuLAXDfTep9fb7BaFzNJ4000PspTqPk')
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
 
 
 //All the styles from the ${props => props.theme.main} come from the theme.js
@@ -309,7 +310,16 @@ function HeaderAndFooter({children}) {
     const api = new Api()
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_ENV)
+        if (user === '') {
+            //Checking whether the user is logged in
+            checkAuth()
+        }
+        // eslint-disable-next-line
+    }, [])
+
+    const handleShow = () => setShow(!show)
+
+    function checkAuth() {
         const userId = localStorage.getItem('currentUser')
 
         //Checking whether the user is logged in
@@ -329,10 +339,7 @@ function HeaderAndFooter({children}) {
                 }
             })
         }
-        // eslint-disable-next-line
-    }, [])
-
-    const handleShow = () => setShow(!show)
+    }
 
     function handleLogout() {
         let data = {
@@ -348,14 +355,7 @@ function HeaderAndFooter({children}) {
                 localStorage.removeItem('currentUser')
             }
         })
-        .catch(err => {
-            if (err.response) {
-                const {message} = err.response.data
-                notify('error', message)
-			} else {
-				notify('error', 'Something went wrong, Please refresh the page.')
-			}
-        })
+        .catch(err => catchFn(err))
     }
 
     //Making the header sticky after scrolling to a certain height
@@ -449,16 +449,16 @@ function HeaderAndFooter({children}) {
                     <div className="upper-footer">
                         <Socials>
                             <div className="facebook">
-                                <i class="fa fa-facebook-f"></i>
+                                <i className="fa fa-facebook-f"></i>
                             </div>
                             <div className="twitter">
-                                <i class="fa fa-twitter"></i>
+                                <i className="fa fa-twitter"></i>
                             </div>
                             <div className="insta">
-                                <i class="fa fa-instagram"></i>
+                                <i className="fa fa-instagram"></i>
                             </div>
                             <div className="quora">
-                                <i class="fa fa-quora"></i>
+                                <i className="fa fa-quora"></i>
                             </div>
                         </Socials>
                         <p className="text-center">Get connected with us on social networks</p>

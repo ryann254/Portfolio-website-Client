@@ -14,6 +14,13 @@ const FAQAnswers = [
     'How do I get a reference ?'
 ]
 
+const Answers = [
+    'Answer to question one',
+    'Answer to question two',
+    'Answer to question three',
+    'Answer to question four'
+]
+
 const ContainerFrame = styled.div`
     margin-top: 50px;
 `
@@ -24,8 +31,8 @@ export default function Status() {
             <Container>
                 <Row>
                     <Col>
-                        {FAQAnswers.length !== 0 ? FAQAnswers.map(item => (
-                            <SingleStatus questionOrStatus={item} key={item}/>
+                        {FAQAnswers.length !== 0 ? FAQAnswers.map((item, index) => (
+                            <SingleStatus questionOrStatus={item} key={item} index={index} answers={Answers}/>
                         )): null}
                     </Col>
                 </Row>

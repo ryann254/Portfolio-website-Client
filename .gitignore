@@ -25,3 +25,5 @@ Image-converter.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.blackbox/pubring.gpg~
+/keyrings/live/pubring.gpg~

@@ -26,6 +26,10 @@ const ContainerFrame = styled.div`
         color: #fff !important;
     }
 
+    .jobs-image {
+            height: 254px;
+        }
+
     @media all and (min-width: 992px) {
         .container {
             max-width: 960px !important;
@@ -167,11 +171,11 @@ export default function Jobs() {
                         </Link>
                     </Col>
                     <Col xs={12} md={6} className="jobs-component">
-                        {jobs.length !== 0 ? jobs.map((job) => (
-                            <JobContainer>
+                        {jobs.length !== 0 ? jobs.slice(0,3).map((job) => (
+                            <JobContainer key={job.id}>
                                 <img src={job.picture.split(',')[0]} alt="jobs" className="img-fluid jobs-image"/>
                                 <JobLink to="/jobs-page" onClick={() => handleViewJob(job)}>
-                                    {job.title.slice(0, 10)}
+                                    {job.title.slice(0, 10) + '...'}
                                     <span className="iconify" data-icon="carbon:arrow-right" data-inline="false"></span>
                                 </JobLink>
                             </JobContainer>

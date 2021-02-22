@@ -47,6 +47,7 @@ const ContainerFrame = styled.div`
 export default function SingleNewsPage() {
     const dispatch = useDispatch()
     const [pictures, setPictures] = useState([])
+    const {user} = useSelector(state => state.auth)
     const {updateCount} = useSelector(state => state.events)
     const {viewNews} = useSelector(state => state.news)
     const api = new Api()
@@ -57,8 +58,10 @@ export default function SingleNewsPage() {
             $(this).scrollTop(0);
         });
 
-        //Checking whether the user is logged in
-        checkAuth()
+        if (user === '') {
+            //Checking whether the user is logged in
+            checkAuth()
+        }
         
         convertToArray()
         // eslint-disable-next-line

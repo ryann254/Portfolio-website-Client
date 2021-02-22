@@ -24,6 +24,7 @@ export const EventHeader = styled.div`
 `
 
 export const Event = styled.div`
+    height: 100%;
     background: ${props => props.theme.primary};
     border-radius: 5px;
     .event-image {
@@ -51,7 +52,7 @@ export const Event = styled.div`
 
 let cards = 1;
 
-export default function SingleEvent({picNumber}) {
+export default function SingleEvent() {
     const {events, updateCount} = useSelector(state => state.events)
     const api = new Api()
     const dispatch = useDispatch()
@@ -113,7 +114,7 @@ export default function SingleEvent({picNumber}) {
                 leftChevron={<span class="iconify" data-icon="dashicons:arrow-left-alt2" data-inline="false"></span>}
                 rightChevron={<span class="iconify" data-icon="dashicons:arrow-right-alt2" data-inline="false"></span>}>
                     {events.length !== 0 ? events.map((event, index) => (
-                        <Event>
+                        <Event key={event.id}>
                             <Link to="/events-page" className="event-link" onClick={() => handleViewEvent(event)}>
                                 <img src={event.picture.split(',')[0]} alt="events" className="img-fluid event-image"/>
                                 <EventHeader className="pt-4 pl-4 pr-4 header">{event.title.slice(0, 40) + '...'}</EventHeader>
