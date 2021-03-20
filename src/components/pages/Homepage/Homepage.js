@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -18,6 +18,7 @@ import Jobs from './Jobs'
 import Events from './Events'
 import News from './News'
 import Members from './Members'
+import notify from '../../../helpers/Notify'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider)
 
@@ -244,6 +245,37 @@ const Img = styled.div`
 `
 
 function Homepage() {
+    const [email, setEmail] = useState('')
+
+    const hanldeSubmit = (e) => {
+        e.preventDefault()
+        
+        let data = {
+            email,
+        }
+        //Preparing the data for sending
+        let form_data = new FormData();
+        for (let key in data) {
+        form_data.append(key, data[key]);
+        }
+
+        //Sending
+        const xhr = new XMLHttpRequest();
+        let action="https://formspree.io/f/mjvpzlvv" 
+        let method="POST"
+        xhr.open(method, action);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) return;
+        if (xhr.status === 200) {
+            setEmail('')
+            notify('success', 'Form submission was successful')
+        } else {
+            notify('error', 'Form submission failed, kindly check your internet connection and try again')
+        }
+        };
+        xhr.send(form_data);
+    }
     return (
         <>
         <Landing>
@@ -279,9 +311,11 @@ function Homepage() {
                             <InputGroup>
                                 <FormControl
                                     placeholder="Email Address..."
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <InputGroup.Append>
-                                <Button variant="primary">Go</Button>
+                                <Button variant="primary" onClick={hanldeSubmit}>Go</Button>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Email>
