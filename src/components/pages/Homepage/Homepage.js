@@ -310,6 +310,7 @@ function Homepage() {
                             <div className="lower-text">Enter your email below to get a Welcome Guide, sign up for our blog and more</div>
                             <InputGroup>
                                 <FormControl
+                                    required={true}
                                     placeholder="Email Address..."
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
