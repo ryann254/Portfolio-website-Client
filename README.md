@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Portfolio Donation Website
+The website is a basic site to post news articles and events for a Non-profit organisation with a section where the public can donate. It includes authentication and backend logic to allow the admin to add events and news articles with integrated stripe payments to allow for donations.
+
+## Disclaimer
+The project is however not accessible to the public for testing as only the admin can create events, articles and create new users.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
